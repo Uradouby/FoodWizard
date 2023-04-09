@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Register"
+    tools:context=".login"
     android:background="@color/welcome_background">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="158dp"
-        android:layout_height="154dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:rotationX="0"
         android:rotationY="180"
         android:scaleType="fitCenter"
@@ -20,8 +20,10 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="131dp"
-        android:layout_height="120dp"
+        android:layout_width="186dp"
+        android:layout_height="173dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,11 +31,11 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="300dp"
+        android:layout_width="279dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:gravity="top"
-        android:text="@string/title_activity_register"
+        android:text="@string/title_activity_login"
         android:textAppearance="@style/food_wizard"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +63,7 @@
         style="@style/wizard_hint_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="12dp"
         android:drawableRight="@drawable/lock"
         android:drawablePadding="5dp"
         android:ems="13"
@@ -71,31 +73,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/account" />
 
-    <EditText
-        android:id="@+id/repeatpassword"
-        style="@style/wizard_hint_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:drawableRight="@drawable/lock"
-        android:drawablePadding="5dp"
-        android:ems="13"
-        android:hint="@string/title_activity_register_confirmPassword"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
-
     <Button
-        android:id="@+id/register"
+        android:id="@+id/login"
         android:layout_width="156dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         style="@style/wizard_button"
-        android:text="@string/title_activity_register"
+        android:text="Log In"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/repeatpassword" />
+        app:layout_constraintTop_toBottomOf="@+id/password" />
     <Button
         android:id="@+id/back"
         android:layout_width="156dp"
@@ -105,5 +92,6 @@
         android:text="@string/back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register" />
+        app:layout_constraintTop_toBottomOf="@+id/login" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

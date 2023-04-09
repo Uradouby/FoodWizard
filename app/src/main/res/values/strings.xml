@@ -12,4 +12,17 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_main">MainActivity</string>
+    <!--real string values-->
+    <string name="food_wizard">Food Wizard</string>
+    <string name="title_activity_login">Login</string>
+    <string name="back">Back</string>
+    <string name="title_activity_register">Register</string>
+    <string name="title_activity_register_password">Password</string>
+    <string name="title_activity_register_username">Username</string>
+    <string name="title_activity_register_confirmPassword">Confirm password</string>
+    <!--record part-->
+    <string name="record_main">Record Today\'s Meal:</string>
+    <string name="record_detail">Meal Details:</string>
+    <string name="record_upload">Upload</string>
+    <string name="record_meal">Upload your meal ^^</string>
 </resources>

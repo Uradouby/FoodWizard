@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.FoodWizard" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.FoodWizard" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -22,4 +22,47 @@
     <style name="Theme.FoodWizard.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.FoodWizard.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="food_wizard">
+        <item name="android:textSize">64sp</item>
+        <item name="android:textColor">#AEFC08</item>
+        <item name="android:fontFamily">@font/aclonica</item>
+    </style>
+
+    <style name="main_text">
+        <item name="android:textSize">48sp</item>
+        <item name="android:textColor">#0E6D68</item>
+        <item name="android:fontFamily">@font/aclonica</item>
+    </style>
+
+    <style name="wizard_text">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#828282</item>
+        <item name="android:fontFamily">@font/alfa_slab_one</item>
+    </style>
+
+
+    <style name="ShapeAppearanceOverlay.MyApp.Button.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">32dp</item>
+    </style>
+
+    <style name="wizard_button" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width"> 214dp </item>
+        <item name="android:layout_height">54dp </item>
+        <item name="backgroundTint"> @color/button_color </item>
+        <item name="android:textAllCaps"> false </item>
+        <item name="android:textSize"> 16dp</item>
+        <item name="android:fontFamily">@font/alfa_slab_one</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApp.Button.Rounded</item>
+    </style>
+
+    <style name="wizard_hint_text">
+        <item name="android:padding">14sp</item>
+        <item name="android:background">@color/text_background</item>
+        <item name="android:textAppearance">@style/wizard_text</item>
+    </style>
+
+
+
 </resources>

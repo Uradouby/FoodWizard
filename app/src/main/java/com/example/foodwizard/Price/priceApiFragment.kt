@@ -1,3 +1,4 @@
+package com.example.foodwizard.Price/*
 package com.bignerdranch.android.price
 
 import android.os.Bundle
@@ -5,7 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bignerdranch.android.price.databinding.FragmentPriceApiBinding
+import com.example.android.price.databinding.FragmentPriceApiBinding
 import kotlinx.coroutines.*
 import retrofit2.await
 import kotlin.coroutines.CoroutineContext
@@ -51,3 +52,5 @@ class priceApiFragment : Fragment(), CoroutineScope {
     }
 
 }
+
+*/

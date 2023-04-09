@@ -1,12 +1,11 @@
 package com.example.foodwizard
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.foodwizard.R
+import android.os.Bundle
 
-class LogIn : AppCompatActivity() {
+class Record : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_log_in)
+        setContentView(R.layout.activity_record)
     }
 }
