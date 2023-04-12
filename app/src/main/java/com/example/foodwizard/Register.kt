@@ -7,6 +7,7 @@ import android.text.Html
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.viewModels
+import com.example.foodwizard.DB.USER_TYPE
 import com.example.foodwizard.DB.User
 import com.example.foodwizard.databinding.ActivityRegisterBinding
 import com.example.foodwizard.viewModel.UsersViewModel
@@ -15,7 +16,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class Register : AppCompatActivity() {
-    private val allUsers: List<User> ?=null
+    private val allUsers: MutableList<User> = mutableListOf()
     private val usersViewModel: UsersViewModel by viewModels()
 
     private lateinit var binding: ActivityRegisterBinding
@@ -23,16 +24,18 @@ class Register : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityRegisterBinding.inflate(layoutInflater)
+
         binding.title.text= Html.fromHtml(
             "<font color=${Color.parseColor("#AEFC08")}>R</font>" +
                     "<font color=${Color.parseColor("#06F23A")}>egister</font>")
         binding.back.setOnClickListener {
-            finish();
+            finish()
         }
         binding.register.setOnClickListener {
             OnRegisterClick()
         }
         setContentView(binding.root)
+
 
     }
 
