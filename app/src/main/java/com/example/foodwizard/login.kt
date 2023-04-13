@@ -8,8 +8,21 @@ import android.text.Html
 import com.example.foodwizard.databinding.ActivityLoginBinding
 import java.util.zip.Inflater
 
+import androidx.activity.viewModels
+import com.example.foodwizard.viewModel.UsersViewModel
+import android.widget.Toast
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import androidx.lifecycle.viewModelScope
+import com.example.foodwizard.DB.User
+
 class login : AppCompatActivity() {
     private lateinit var binding:ActivityLoginBinding
+
+    private val usersViewModel: UsersViewModel by viewModels()
+
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,9 +34,31 @@ class login : AppCompatActivity() {
             finish();
         }
         binding.login.setOnClickListener {
-            val intent = Intent(this, Record::class.java)
-            startActivity(intent)
+            var loginBool = OnLoginClick()
+            if (loginBool) {
+                val intent = Intent(this, Record::class.java)
+                startActivity(intent)
+            }else{
+                Toast.makeText(applicationContext, "Login Error!", Toast.LENGTH_SHORT).show()
+            }
         }
         setContentView(binding.root)
+    }
+
+    private fun OnLoginClick():Boolean {
+        val userName = binding.account.text.toString()
+        val password = binding.password.text.toString()
+
+        if (userName.isEmpty() || password.isEmpty()) { // check if the fields are empty
+            Toast.makeText(applicationContext, "Please fill all fields", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        var user  = usersViewModel.getUserByUsername(userName)
+        if (user.password==password) {
+            return true
+        }
+
+        return false
     }
 }
