@@ -63,7 +63,7 @@ class Register : AppCompatActivity() {
                             return
                         }
                     }
-        GlobalScope.launch (Dispatchers.IO){ usersViewModel.addUser(User(userName, ValidationManager.encryption(password))) }//add the user to the database
+        GlobalScope.launch (Dispatchers.IO){ usersViewModel.addUser(User(userName, ValidationManager.encryption(password),USER_TYPE.USER)) }//add the user to the database
         Toast.makeText(applicationContext, "User created Successfully", Toast.LENGTH_SHORT).show()
     }
 
