@@ -1,6 +1,7 @@
 package com.example.foodwizard.Adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodwizard.Meal
@@ -9,6 +10,8 @@ import com.example.foodwizard.databinding.ListItemMealBinding
 class MealHolder(
     val binding: ListItemMealBinding
 ) : RecyclerView.ViewHolder(binding.root) {
+
+
 }
 
 class mealAdapter(
@@ -28,8 +31,10 @@ class mealAdapter(
         {
             val meal = meals[position]
             holder.apply {
+                binding.food.visibility= View.INVISIBLE
                 binding.upload.text=meal.Name
             }
+
         }
         else
         {
