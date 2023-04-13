@@ -29,4 +29,7 @@
     <string name="signIn_error"> invalid account or password</string>
     <string name="success">Success</string>
     <string name="signIn_success">Sign in success</string>
+    <!--recipe part-->
+    <string name="recommend_Recipe">Recommend Recipe</string>
+
 </resources>
