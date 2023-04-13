@@ -12,7 +12,7 @@
         android:theme="@style/Theme.FoodWizard"
         tools:targetApi="31">
         <activity
-            android:name=".Record"
+            android:name=".Main"
             android:exported="false" />
         <activity
             android:name=".Register"

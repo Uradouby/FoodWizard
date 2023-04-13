@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.text.Html
 import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
-import androidx.lifecycle.ViewModelProvider
 import com.example.foodwizard.DB.USER_TYPE
 import com.example.foodwizard.DB.User
 import com.example.foodwizard.databinding.ActivityLoginBinding
@@ -16,7 +15,6 @@ import com.example.foodwizard.viewModel.UsersViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.util.zip.Inflater
 import www.sanju.motiontoast.MotionToast
 import www.sanju.motiontoast.MotionToastStyle
 
@@ -46,7 +44,6 @@ class login : AppCompatActivity() {
         binding.back.setOnClickListener {
             finish();
         }
-
 //        binding.login.setOnClickListener {
 //            val intent = Intent(this, Record::class.java)
 //            startActivity(intent)
@@ -106,7 +103,7 @@ class login : AppCompatActivity() {
     private fun goToMainActivityDirectly(lastId: Int) {
         userId = lastId
         userType = if (userId == 1) USER_TYPE.ADMIN else USER_TYPE.USER
-        val intent = Intent(this, Record::class.java)
+        val intent = Intent(this, Main::class.java)
         intent.putExtra("userId", userId)
         intent.putExtra("userType", userType)
         startActivity(intent)
@@ -116,7 +113,7 @@ class login : AppCompatActivity() {
         sharedPreferences.edit().putLong("LAST_LOGIN", System.currentTimeMillis()).apply()
         sharedPreferences.edit().putInt("USER_ID", userId).apply()
         userType = if (userId == 1) USER_TYPE.ADMIN else USER_TYPE.USER
-        val intent = Intent(this, Record::class.java)
+        val intent = Intent(this, Main::class.java)
         intent.putExtra("userId", userId)
         intent.putExtra("userType", userType)
         startActivity(intent)
