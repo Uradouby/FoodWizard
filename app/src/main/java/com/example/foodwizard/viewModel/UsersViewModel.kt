@@ -18,6 +18,10 @@ class UsersViewModel(val app: Application): AndroidViewModel(app) {
         repository.addUser(user)
     }
 
+    fun getUserByUsername(userName: String): User {
+        return repository.getUserByUsername(userName)
+    }
+
     fun getUserById(userId: Int): User {
         return repository.getUserById(userId)
     }
