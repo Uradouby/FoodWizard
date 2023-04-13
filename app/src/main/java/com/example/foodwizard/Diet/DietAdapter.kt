@@ -9,7 +9,10 @@ import com.example.foodwizard.DB.DietResponse
 import com.example.foodwizard.databinding.ActivityDietBinding
 
 class DietAdapter : ListAdapter<DietResponse, DietAdapter.DietViewHolder>(DIFF_CALLBACK) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DietViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): DietViewHolder {
         return DietViewHolder(ActivityDietBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
@@ -20,10 +23,17 @@ class DietAdapter : ListAdapter<DietResponse, DietAdapter.DietViewHolder>(DIFF_C
     inner class DietViewHolder(private val binding: ActivityDietBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(dietResponse: DietResponse) {
-            // get the first diet object in the list
-            val diet = dietResponse.dietResult.firstOrNull()
-            // set the result of the diet
-            binding.dietResult.text = diet?.dietTitle
+            // get the category
+            val category = dietResponse.category_response
+            binding.categoryName.text = category.name
+            binding.categoryProbability.text = category.probability.toString()
+
+            // get nutrition list
+            var nutritionResultText = ""
+            for (nutrition in dietResponse.nutrition_response) {
+                nutritionResultText += "${nutrition.nutritionTitle}: ${nutrition.nutritionValue}\n"
+            }
+            binding.nutritionResult.text = nutritionResultText
         }
     }
 

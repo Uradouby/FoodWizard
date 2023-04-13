@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.foodwizard.DB.Diet
+import com.example.foodwizard.DB.Category
 import com.example.foodwizard.DB.DietResponse
+import com.example.foodwizard.DB.Nutrition
 import com.example.foodwizard.databinding.FragmentListDietBinding
 
 
@@ -28,7 +29,7 @@ class DietList : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentListDietBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -38,9 +39,17 @@ class DietList : Fragment() {
         adapter = DietAdapter()
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = adapter
+
         val dietList = mutableListOf<DietResponse>()
         for (i in 0..10) {
-            dietList.add(DietResponse(List(i) { Diet("Result $i", "Image $i") }))
+            // create a random list of nutrition for each diet response
+            val nutritionList = List((1..5).random()) {
+                Nutrition("Nutrition $it", (10..100).random().toFloat().toDouble())
+            }
+            dietList.add(DietResponse(
+                category_response = Category("Category $i", (0..100).random().toDouble()),
+                nutrition_response = nutritionList
+            ))
         }
         adapter.submitList(dietList)
     }
