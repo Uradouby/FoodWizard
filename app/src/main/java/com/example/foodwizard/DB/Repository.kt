@@ -30,6 +30,10 @@ class Repository private constructor(context: Context){
         return usersDao.getUserById(userId)
     }
 
+    fun getUserByUsername(userName: String): User {
+        return usersDao.getUserByUsername(userName)
+    }
+
     fun updateUserName(userId: Int, userName: String) {
         usersDao.updateUserName(userId, userName)
     }
