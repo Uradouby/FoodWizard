@@ -48,7 +48,7 @@ class list_meal : Fragment() {
         _binding = FragmentListMealBinding.inflate(inflater, container, false)
         binding.mealRecyclerView.layoutManager=LinearLayoutManager(context)
         binding.mealRecyclerView.addItemDecoration(
-            MarginItemDecoration(16)
+            MarginItemDecoration(64)
         )
         var meals= mutableListOf<Meal>(Meal("apple"),Meal("hamburger"))
         val adapter = mealAdapter(meals)

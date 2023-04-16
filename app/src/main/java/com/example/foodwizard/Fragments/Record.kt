@@ -5,11 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.setFragmentResultListener
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import com.example.foodwizard.R
 import com.example.foodwizard.databinding.FragmentRecordBinding
 
 class Record : Fragment() {
     private var _binding: FragmentRecordBinding? = null
+
     private val binding
         get() = checkNotNull(_binding) {
             "Cannot access binding because it is null. Is the view visible?"
@@ -25,6 +28,7 @@ class Record : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentRecordBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
