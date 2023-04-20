@@ -35,6 +35,8 @@ class DietRecognition {
 
         val dietResponse: Response<DietResponse> =
             apiInterface.uploadImage(apiKey, "", 0, requestBody)
+
+        // return dietResponse
         return if (dietResponse.isSuccessful) {
             dietResponse.body()
         } else {

@@ -11,9 +11,7 @@ import com.example.foodwizard.DB.DietResponse
 import com.example.foodwizard.DB.Nutrition
 import com.example.foodwizard.databinding.FragmentListDietBinding
 
-
-
-class DietList : Fragment() {
+class DietFragment : Fragment() {
     private var _binding: FragmentListDietBinding? = null
     private val binding
         get() = checkNotNull(_binding) {
