@@ -6,21 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.fragment.app.setFragmentResult
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodwizard.Adapter.mealAdapter
+import com.example.foodwizard.Adapter.recipeAdapter
+import com.example.foodwizard.Adapter.shopAdapter
 import com.example.foodwizard.Meal
 import com.example.foodwizard.R
 import com.example.foodwizard.Util.MarginItemDecoration
-import com.example.foodwizard.databinding.FragmentListMealBinding
+import com.example.foodwizard.databinding.FragmentListShopBinding
 
 
-class list_meal : Fragment() {
-    private var _binding: FragmentListMealBinding? = null
+class list_shop : Fragment() {
+    private var _binding: FragmentListShopBinding? = null
     private val binding
         get() = checkNotNull(_binding) {
             "Cannot access binding because it is null. Is the view visible?"
@@ -35,18 +33,14 @@ class list_meal : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentListMealBinding.inflate(inflater, container, false)
-        binding.mealRecyclerView.layoutManager=LinearLayoutManager(context)
-        binding.mealRecyclerView.addItemDecoration(
+        _binding = FragmentListShopBinding.inflate(inflater, container, false)
+        binding.shopRecyclerView.layoutManager=LinearLayoutManager(context)
+        binding.shopRecyclerView.addItemDecoration(
             MarginItemDecoration(64)
         )
-        var meals= mutableListOf<Meal>(Meal("apple"),Meal("hamburger"))
-        val adapter = mealAdapter(meals) {
-            //findNavController().navigate(R.id.nav_detail_meal)
-            val newFragment=detail_meal()
-            fragmentManager?.let { newFragment.show(it, "dialog") }
-        }
-        binding.mealRecyclerView.adapter = adapter
+        var meals= mutableListOf<Meal>(Meal("apple$1"),Meal("hamburger$2"))
+        val adapter = shopAdapter(meals)
+        binding.shopRecyclerView.adapter = adapter
         return binding.root
     }
 

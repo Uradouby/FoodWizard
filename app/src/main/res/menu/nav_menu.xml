@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/nav_record"
+        android:icon="@drawable/inactive_camera"
+        app:showAsAction="ifRoom|withText"
+        android:title="Record" />
+    <item
+        android:id="@+id/nav_recipe"
+        android:icon="@drawable/inactive_recipe"
+        app:showAsAction="ifRoom|withText"
+        android:title="Recommend" />
+    <item
+        android:id="@+id/nav_shop"
+        android:icon="@drawable/inactive_shop"
+        app:showAsAction="ifRoom|withText"
+        android:title="Shop" />
+    <item
+        android:id="@+id/nav_personal"
+        android:icon="@drawable/inactive_personalinfo"
+        app:showAsAction="ifRoom|withText"
+        android:title="Personal" />
+</menu>
