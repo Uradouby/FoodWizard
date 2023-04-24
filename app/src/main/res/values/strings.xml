@@ -30,6 +30,7 @@
     <string name="success">Success</string>
     <string name="signIn_success">Sign in success</string>
     <!--recipe part-->
-    <string name="recommend_Recipe">Recommend Recipe</string>
-
+    <string name="recommend_Recipe">\nRecommend Recipe</string>
+    <!--shop part-->
+    <string name="special_offer">\nSpecial Offer</string>
 </resources>

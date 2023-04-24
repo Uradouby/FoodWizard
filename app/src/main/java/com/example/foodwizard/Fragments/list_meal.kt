@@ -6,29 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodwizard.Adapter.mealAdapter
 import com.example.foodwizard.Meal
 import com.example.foodwizard.R
+import com.example.foodwizard.Util.MarginItemDecoration
 import com.example.foodwizard.databinding.FragmentListMealBinding
 
-class MarginItemDecoration(private val spaceSize: Int) : RecyclerView.ItemDecoration() {
-    override fun getItemOffsets(
-        outRect: Rect, view: View,
-        parent: RecyclerView,
-        state: RecyclerView.State
-    ) {
-        with(outRect) {
-            if (parent.getChildAdapterPosition(view) == 0) {
-                top = spaceSize
-            }
-            left = spaceSize
-            right = spaceSize
-            bottom = spaceSize
-        }
-    }
-}
+
 class list_meal : Fragment() {
     private var _binding: FragmentListMealBinding? = null
     private val binding
@@ -51,7 +41,11 @@ class list_meal : Fragment() {
             MarginItemDecoration(64)
         )
         var meals= mutableListOf<Meal>(Meal("apple"),Meal("hamburger"))
-        val adapter = mealAdapter(meals)
+        val adapter = mealAdapter(meals) {
+            //findNavController().navigate(R.id.nav_detail_meal)
+            val newFragment=detail_meal()
+            fragmentManager?.let { newFragment.show(it, "dialog") }
+        }
         binding.mealRecyclerView.adapter = adapter
         return binding.root
     }

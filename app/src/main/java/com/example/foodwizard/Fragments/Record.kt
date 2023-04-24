@@ -28,8 +28,11 @@ class Record : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentRecordBinding.inflate(inflater, container, false)
-
         return binding.root
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

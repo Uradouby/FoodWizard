@@ -4,28 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:clipToOutline="true"
-    android:background="@drawable/layout_bg"
     android:layout_height="wrap_content">
 
 
     <ImageView
         android:id="@+id/food"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="300dp"
         android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:clipToOutline="true"
         app:srcCompat="@drawable/foods" />
 
     <TextView
-        android:id="@+id/upload"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/record_meal"
+        android:text="Food_name"
         android:padding="20dp"
         style="@style/wizard_text"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/time"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/food" />
 
@@ -33,23 +31,29 @@
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Time"
+        android:text="YY/MM/DD"
         android:padding="20dp"
-        android:visibility="gone"
         style="@style/wizard_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/name"
         app:layout_constraintTop_toBottomOf="@id/food" />
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name"
-        android:padding="10dp"
+        android:text="This is description This is description This is description This is description This is description This is description This is description This is description This is description This is description This is description This is description "
+        android:padding="20dp"
         style="@style/wizard_text"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/time" />
+
+
+
+
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
