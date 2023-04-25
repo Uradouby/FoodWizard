@@ -1,5 +1,6 @@
 package com.example.foodwizard.Diet
 
+import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -13,15 +14,14 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
-import java.io.File
-import android.Manifest
-import java.util.*
-import com.example.foodwizard.databinding.FragmentCameraBinding
+import com.example.foodwizard.databinding.ListItemMealBinding
 import kotlinx.coroutines.*
+import java.io.File
+import java.util.*
 
-// click the take photo -> take the photo of your diet ->
+// click the take photo -> take the photo of your diet
 class CameraFragment: Fragment() {
-    private lateinit var binding: FragmentCameraBinding
+    private lateinit var binding: ListItemMealBinding
     private var photoFile: File? = null
     private var photoUri: Uri? = null
 
@@ -30,8 +30,8 @@ class CameraFragment: Fragment() {
     ) { result: Boolean ->
         if (result) {
             photoUri?.let { uri ->
-                // Use the photo URI to access the photo file
-                // and upload it to the API for nutrition analysis.
+                // use the photo URI to access the photo file
+                // upload it to the API for nutrition analysis.
                 val inputStream = requireContext().contentResolver.openInputStream(uri)
                 val imageBytes = inputStream?.readBytes()
                 inputStream?.close()
@@ -48,12 +48,12 @@ class CameraFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCameraBinding.inflate(inflater, container, false)
+        binding = ListItemMealBinding.inflate(inflater, container, false)
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.dietCamera.setOnClickListener {
+        binding.upload.setOnClickListener {
             takePhoto()
         }
     }
