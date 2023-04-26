@@ -58,10 +58,10 @@ class login : AppCompatActivity() {
         if(lastLogin != -1L &&  System.currentTimeMillis() - lastLogin < 3600000 ) //one hour
             goToMainActivityDirectly(lastId) //
         else
-            setOnSingInUpListener()
+            setOnSignInUpListener()
     }
 
-    private fun setOnSingInUpListener() {
+    private fun setOnSignInUpListener() {
         binding.login.setOnClickListener {
             isUserValid()  //check if the user is valid or not
         }
