@@ -35,7 +35,7 @@ class Main : AppCompatActivity() {
             .setFragmentResultListener("requestKey", this) { requestKey, bundle ->
                 // We use a String here, but any type that can be put in a Bundle is supported
                 val result = bundle.getInt("bundleKey")
-                Log.d("dadas", result.toString())
+                //Log.d("dadas", result.toString())
                 val fragmentManager = supportFragmentManager
                 val newFragment = detail_meal()
                 newFragment.show(fragmentManager, "dialog")

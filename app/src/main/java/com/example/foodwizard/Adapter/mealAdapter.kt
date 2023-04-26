@@ -57,5 +57,5 @@ class mealAdapter(
 
 
 
-    override fun getItemCount() = meals.size+1
+    override fun getItemCount() = meals.size
 }

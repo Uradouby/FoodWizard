@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import com.example.foodwizard.Adapter.mealAdapter
 import com.example.foodwizard.R
 import com.example.foodwizard.databinding.FragmentRecordBinding
 
@@ -28,6 +29,10 @@ class Record : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentRecordBinding.inflate(inflater, container, false)
+        binding.addFab.setOnClickListener(){
+            val newFragment=uploadmeal()
+            fragmentManager?.let { newFragment.show(it, "dialog") }
+        }
         return binding.root
     }
     override fun onDestroyView() {
