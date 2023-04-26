@@ -33,7 +33,12 @@ class Price : AppCompatActivity() {
                     response: Response<ApiResponse>
                 ) {
                     if (response.isSuccessful) {
-                        val requestInfo = response.body()?.requestInfo
+                        val url = response.body()?.requestMetadata?.amazonUrl
+                        val food = response.body()?.product?.title
+                        val price = response.body()?.product?.buyboxWinner?.subscribeAndSave?.basePrice?.raw
+                        binding.apple.text = food
+                        binding.price.text = price
+                        binding.priceName.text = url
                         Log.e("Success", response.body().toString())
                     }
                 }
@@ -45,13 +50,4 @@ class Price : AppCompatActivity() {
             })
         }
     }
-
-//    fun showPrice() {
-//        binding.submitButton.setOnClickListener{ view: View ->
-//            if (binding.apple.text.equals("Apple")) {
-//                binding.price.text = "5"
-//            }
-//        }
-//    }
-
 }
