@@ -33,4 +33,9 @@
     <string name="recommend_Recipe">\nRecommend Recipe</string>
     <!--shop part-->
     <string name="special_offer">\nSpecial Offer</string>
+    <!--price part-->
+    <string name="price_name">Price</string>
+    <string name="apple">Apple</string>
+    <string name="submit_button">Submit</string>
+
 </resources>
