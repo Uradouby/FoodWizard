@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/nav_record">
+
+    <fragment
+        android:id="@+id/nav_record"
+        android:name="com.example.foodwizard.Fragments.Record"
+        tools:layout="@layout/fragment_record"
+        android:label="Record" >
+        <action
+            android:id="@+id/show_detail"
+            app:destination="@id/nav_detail_meal" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_recipe"
+        android:name="com.example.foodwizard.Fragments.Recipe"
+        tools:layout="@layout/fragment_recipe"
+        android:label="Recipe" />
+
+    <fragment
+        android:id="@+id/nav_shop"
+        android:name="com.example.foodwizard.Fragments.Shop"
+        tools:layout="@layout/fragment_shop"
+        android:label="Recipe" />
+
+    <fragment
+        android:id="@+id/nav_personal"
+        android:name="com.example.foodwizard.Fragments.PersonalInfo"
+        tools:layout="@layout/fragment_personal_info"
+        android:label="Recipe" />
+
+    <fragment
+        android:id="@+id/nav_detail_meal"
+        android:name="com.example.foodwizard.Fragments.detail_meal"
+        tools:layout="@layout/detail_item_meal"
+        android:label="Recipe" />
+</navigation>

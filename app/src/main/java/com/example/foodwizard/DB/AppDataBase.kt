@@ -4,21 +4,23 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.example.foodwizard.Diet.DietResponseConverter
 
-@Database(entities = arrayOf(User::class ), version = 1 )
-
+@Database(entities = [User::class,Diet::class], version = 6, exportSchema = false)
+@TypeConverters(DietResponseConverter::class)
 abstract class AppDataBase: RoomDatabase() {
 
     abstract fun getUserDao(): UsersDao
-
+    abstract fun getMealDao(): MealDao
     companion object {
         fun getAppDataBase(context: Context): AppDataBase {
             return Room.databaseBuilder(
-                context!!.applicationContext,
+                context.applicationContext,
                 AppDataBase::class.java,
                 "app_database"
-            ).build()
-
+            ).fallbackToDestructiveMigration()
+                .build()
         }
     }
 }

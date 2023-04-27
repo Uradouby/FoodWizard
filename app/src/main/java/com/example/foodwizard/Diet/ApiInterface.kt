@@ -6,14 +6,13 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiInterface {
-    @Multipart
-    @POST("upload")
+
+    @GET("food/images/analyze")
     suspend fun uploadImage(
         @Query("apiKey") apiKey: String,
-        @Query("diet") diet: String,
-        @Query("number") number: Int,
-        @Part image: MultipartBody
+        @Query("imageUrl") imageUrl : String
     ): Response<DietResponse>
+
 }
 
 
