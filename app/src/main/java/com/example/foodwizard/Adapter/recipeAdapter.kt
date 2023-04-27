@@ -12,11 +12,11 @@ class recipeHolder(
     val binding: ListItemRecipeBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-
 }
 
 class recipeAdapter(
-    private val meals: List<Meal>
+    private val meals: List<Meal>,
+    private val onMealClicked: () -> Unit
 ) : RecyclerView.Adapter<recipeHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -28,10 +28,25 @@ class recipeAdapter(
     }
 
     override fun onBindViewHolder(holder: recipeHolder, position: Int) {
-        val meal = meals[position]
-        holder.apply {
-            binding.food.visibility= View.INVISIBLE
-            binding.upload.text=meal.Name
+        if (position<meals.size)
+        {
+            val meal = meals[position]
+            holder.apply {
+                binding.food.visibility= View.INVISIBLE
+                binding.upload.text=meal.Name
+                binding.root.setOnClickListener(){
+                    onMealClicked()
+                }
+            }
+
+        }
+        else
+        {
+            holder.apply{
+                binding.root.setOnClickListener(){
+
+                }
+            }
         }
     }
     override fun getItemCount() = meals.size
