@@ -41,13 +41,13 @@ class DietFragment : Fragment() {
         val dietList = mutableListOf<DietResponse>()
         for (i in 0..10) {
             // create a random list of nutrition for each diet response
-            val nutritionList = List((1..5).random()) {
-                Nutrition("Nutrition $it", (0..1000).random().toFloat().toDouble())
-            }
-            dietList.add(DietResponse(
-                category_response = Category("Category $i", (0..10).random().toDouble()),
-                nutrition_response = nutritionList
-            ))
+//            val nutritionList = List((1..5).random()) {
+//                Nutrition("Nutrition $it", (0..1000).random().toFloat().toDouble())
+//            }
+//            dietList.add(DietResponse(
+//                category_response = Category("Category $i", (0..10).random().toDouble()),
+//                nutrition_response = nutritionList
+//            ))
         }
         adapter.submitList(dietList)
     }

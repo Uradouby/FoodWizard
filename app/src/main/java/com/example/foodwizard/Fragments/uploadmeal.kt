@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,15 +13,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.core.content.FileProvider
 import androidx.core.view.doOnLayout
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import com.example.foodwizard.DB.Diet
+import com.example.foodwizard.Diet.DietRecognition
 import com.example.foodwizard.R
+import com.example.foodwizard.Util.Constants.TEMP_IMAGE_URL
 import com.example.foodwizard.Util.PictureUtils.Companion.getScaledBitmap
 import com.example.foodwizard.databinding.FragmentRecordBinding
 import com.example.foodwizard.databinding.FragmentUploadmealBinding
+import com.example.foodwizard.viewModel.UsersViewModel
+import kotlinx.coroutines.*
 import java.io.File
 import java.util.*
+
 
 class uploadmeal : DialogFragment() {
     private var _binding: FragmentUploadmealBinding? = null
@@ -28,11 +38,15 @@ class uploadmeal : DialogFragment() {
     private val takePhoto = registerForActivityResult(
         ActivityResultContracts.TakePicture()
     ) { didTakePhoto: Boolean ->
-// Handle the result
+            // Handle the result
         if (didTakePhoto && photoName != null) {
             //add meal's photoname to dataset
             Log.d("photo", photoName!!)
+            val photoURL = TEMP_IMAGE_URL
+            photoURL?.let { recognizeDiet(it) }
             updatePhoto(photoName)
+
+
         }
     }
     private val binding
@@ -109,5 +123,16 @@ class uploadmeal : DialogFragment() {
         val dialog = super.onCreateDialog(savedInstanceState)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         return dialog
+    }
+
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun recognizeDiet(photoURL : String) {
+        GlobalScope.launch(Dispatchers.IO) {
+            val usersViewModel: UsersViewModel by viewModels()
+            DietRecognition(usersViewModel).recognizeDiet(photoURL)
+            withContext(Dispatchers.Main) {
+
+            }
+        }
     }
 }

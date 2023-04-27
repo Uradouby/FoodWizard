@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.foodwizard.Meal
 import com.example.foodwizard.databinding.ListItemMealBinding
 import androidx.fragment.app.setFragmentResult
+import com.example.foodwizard.DB.Diet
 
 class MealHolder(
     val binding: ListItemMealBinding
@@ -16,8 +17,8 @@ class MealHolder(
 }
 
 class mealAdapter(
-    private val meals: List<Meal>,
-    private val onMealClicked: () -> Unit
+    private val meals: List<Diet>,
+    private val onMealClicked: (Diet) -> Unit
 ) : RecyclerView.Adapter<MealHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -37,8 +38,10 @@ class mealAdapter(
                 binding.upload.visibility=View.INVISIBLE
                 binding.name.visibility=View.VISIBLE
                 binding.time.visibility=View.VISIBLE
+                binding.name.text = meal.dietTitle
+                binding.time.text = meal.date
                 binding.root.setOnClickListener(){
-                   onMealClicked()
+                   onMealClicked(meal)
                 }
             }
 

@@ -25,16 +25,16 @@ class DietAdapter : ListAdapter<DietResponse, DietAdapter.DietViewHolder>(DIFF_C
         // get the dietResponse
         fun bind(dietResponse: DietResponse) {
             // get the category
-            val category = dietResponse.category_response
+            val category = dietResponse.category
             binding.name.text = category.name
             binding.possibility.text = category.probability.toString()
 
             // get nutrition list
-            var nutritionResultText = ""
-            for (nutrition in dietResponse.nutrition_response) {
-                nutritionResultText += "${nutrition.nutritionTitle}: ${nutrition.nutritionValue}\n"
-            }
-            binding.description.text = nutritionResultText
+//            var nutritionResultText = ""
+//            for (nutrition in dietResponse.nutrition) {
+//                nutritionResultText += "${nutrition.nutritionTitle}: ${nutrition.nutritionValue}\n"
+//            }
+//            binding.description.text = nutritionResultText
         }
     }
 
