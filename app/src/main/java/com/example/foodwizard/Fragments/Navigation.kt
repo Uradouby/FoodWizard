@@ -29,6 +29,7 @@ class Navigation : Fragment() {
         binding.recipe.setImageResource(R.drawable.inactive_recipe);
         binding.shop.setImageResource(R.drawable.inactive_shop);
         binding.personalinfo.setImageResource(R.drawable.inactive_personalinfo);
+        binding.friends.setImageResource(R.drawable)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,6 +64,12 @@ class Navigation : Fragment() {
             val result= "peronalinfo"
             InativeAll()
             binding.personalinfo.setImageResource(R.drawable.active_personalinfo);
+            setFragmentResult("MainActivity", bundleOf("bundleKey" to result))
+        }
+        binding.friends.setOnClickListener{
+            val result = "friends"
+            InativeAll()
+            binding.friends.setImageResource(R.drawable.active_friends)
             setFragmentResult("MainActivity", bundleOf("bundleKey" to result))
         }
         return binding.root
