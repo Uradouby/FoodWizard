@@ -7,7 +7,6 @@ import android.content.pm.ResolveInfo
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,10 +14,9 @@ import android.view.Window
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.content.FileProvider
+import androidx.core.os.bundleOf
 import androidx.core.view.doOnLayout
-import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.*
 import com.example.foodwizard.DB.Diet
 import com.example.foodwizard.Diet.DietRecognition
 import com.example.foodwizard.R
@@ -61,6 +59,7 @@ class uploadmeal : DialogFragment() {
     ): View {
         // Inflate the layout to use as dialog or embedded fragment
         _binding = FragmentUploadmealBinding.inflate(inflater, container, false)
+
         binding.upload.setOnClickListener()
         {
             photoName = "IMG_${Date()}.JPG"
@@ -73,10 +72,13 @@ class uploadmeal : DialogFragment() {
             )
             takePhoto.launch(photoUri)
         }
+
         binding.save.setOnClickListener()
         {
             //add meal's photoname to dataset
             binding.save.visibility=View.GONE
+            val result="result"
+            setFragmentResult("requestKey1", bundleOf("bundleKey1" to result))
             dismiss()
         }
         /*
@@ -137,7 +139,6 @@ class uploadmeal : DialogFragment() {
             val usersViewModel: UsersViewModel by viewModels()
             DietRecognition(usersViewModel).recognizeDiet(photoURL)
             withContext(Dispatchers.Main) {
-
             }
         }
     }

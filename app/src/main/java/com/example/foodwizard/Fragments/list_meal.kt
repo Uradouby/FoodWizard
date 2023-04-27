@@ -4,14 +4,11 @@ import android.annotation.SuppressLint
 import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.setFragmentResult
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.*
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -43,6 +40,7 @@ class list_meal : Fragment()  {
         super.onCreate(savedInstanceState)
     }
 
+
     @SuppressLint("SimpleDateFormat")
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,6 +53,17 @@ class list_meal : Fragment()  {
             MarginItemDecoration(64)
         )
             // var meals= mutableListOf<Meal>()
+        updateview()
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    fun updateview()
+    {
         GlobalScope.launch(Dispatchers.IO) {
             val usersViewModel: UsersViewModel by activityViewModels()
             // TODO : userId swap to current userId
@@ -74,13 +83,6 @@ class list_meal : Fragment()  {
                 binding.mealRecyclerView.adapter = adapter
             }
         }
-
-        return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
 

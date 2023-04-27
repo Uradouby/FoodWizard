@@ -1,13 +1,12 @@
 package com.example.foodwizard.Fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
-import com.example.foodwizard.Adapter.mealAdapter
+import androidx.fragment.app.setFragmentResultListener
 import com.example.foodwizard.R
 import com.example.foodwizard.databinding.FragmentRecordBinding
 
@@ -20,6 +19,13 @@ class Record : Fragment() {
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setFragmentResultListener("requestKey1") { requestKey, bundle ->
+            // We use a String here, but any type that can be put in a Bundle is supported
+            val result = bundle.getString("bundleKey1")
+            Log.d("dadas", "addasdas")
+            (childFragmentManager.findFragmentById(R.id.meals) as list_meal)?.updateview()
+        }
+
         super.onCreate(savedInstanceState)
     }
 
@@ -35,6 +41,7 @@ class Record : Fragment() {
         }
         return binding.root
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
