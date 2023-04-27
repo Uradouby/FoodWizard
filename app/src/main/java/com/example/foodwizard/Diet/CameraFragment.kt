@@ -37,7 +37,7 @@ class CameraFragment: Fragment() {
                 inputStream?.close()
 
                 imageBytes?.let {
-                    recognizeDiet(imageBytes)
+//                    recognizeDiet(imageBytes)
                 }
             }
         }
@@ -83,12 +83,12 @@ class CameraFragment: Fragment() {
             takePhoto.launch(photoUri)
         }
     }
-    @OptIn(DelicateCoroutinesApi::class)
-    private fun recognizeDiet(imageBytes: ByteArray) {
-        GlobalScope.launch(Dispatchers.IO) {
-            val response = DietRecognition().recognizeDiet(imageBytes)
-            withContext(Dispatchers.Main) {
-            }
-        }
-    }
+//    @OptIn(DelicateCoroutinesApi::class)
+//    private fun recognizeDiet(imageBytes: ByteArray) {
+//        GlobalScope.launch(Dispatchers.IO) {
+//            val response = DietRecognition().recognizeDiet(imageBytes)
+//            withContext(Dispatchers.Main) {
+//            }
+//        }
+//    }
 }
