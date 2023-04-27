@@ -2,10 +2,13 @@ package com.example.foodwizard.DB
 
 import android.content.Context
 import androidx.lifecycle.LiveData
+import androidx.room.Insert
+import androidx.room.Query
+import java.util.*
 
 class Repository private constructor(context: Context){
     private val usersDao = AppDataBase.getAppDataBase(context).getUserDao()
-
+    private val mealDao = AppDataBase.getAppDataBase(context).getMealDao()
     companion object {
         private lateinit var instance: Repository
 
@@ -40,5 +43,14 @@ class Repository private constructor(context: Context){
 
     fun updateUserPassword(userId: Int, password: String) {
         usersDao.updateUserPassword(userId, password)
+    }
+
+    @Insert
+    fun insertDiet(diet: Diet){
+        mealDao.insertDiet(diet)
+    }
+
+    fun getTodayMeal(userId: Int,today: String) : List<Diet>{
+        return mealDao.getTodayMeal(userId,today)
     }
 }
