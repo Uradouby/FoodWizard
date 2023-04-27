@@ -6,12 +6,16 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
 import com.example.foodwizard.DB.USER_TYPE
 import com.example.foodwizard.DB.User
 import com.example.foodwizard.databinding.ActivityLoginBinding
 import com.example.foodwizard.viewModel.UsersViewModel
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -26,9 +30,28 @@ class login : AppCompatActivity() {
     private lateinit var userType : USER_TYPE //user type will be used to check if the user is admin or not
     private val adminUser = User("admin",ValidationManager.encryption("1234"), userType = USER_TYPE.ADMIN) //userId will be 1
     private lateinit var sharedPreferences: SharedPreferences
+
+    private lateinit var database2: DatabaseReference
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //demo for firebase
+        val database = Firebase.database
+        val myRef1 = database.getReference("TestKey1")
+        myRef1.setValue("TestValue1")
+        val myRef2 = database.getReference("TestKey2")
+        myRef2.setValue("TestValueNow 04/27")
+
+        database2 = Firebase.database.reference
+        database2.child("users").child("John").setValue("changemeplease")
+        database2.child("TestKey1").get().addOnSuccessListener {
+            Log.i("firebase read","Got value ${it.value}")
+        }.addOnFailureListener{
+            Log.e("firebase read", "Error getting data", it)
+        }
+
+
         binding= ActivityLoginBinding.inflate(layoutInflater)
         binding.title.text= Html.fromHtml(
             "<font color=${Color.parseColor("#AEFC08")}>L</font>" +
