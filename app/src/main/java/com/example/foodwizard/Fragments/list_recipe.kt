@@ -39,7 +39,11 @@ class list_recipe : Fragment() {
             MarginItemDecoration(64)
         )
         var meals= mutableListOf<Meal>(Meal("apple"),Meal("hamburger"))
-        val adapter = recipeAdapter(meals)
+        val adapter = recipeAdapter(meals){
+            //findNavController().navigate(R.id.nav_detail_meal)
+            val newFragment=detail_recipe()
+            fragmentManager?.let { newFragment.show(it, "dialog") }
+        }
         binding.recipeRecyclerView.adapter = adapter
         return binding.root
     }
