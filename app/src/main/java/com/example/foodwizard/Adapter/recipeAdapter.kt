@@ -6,9 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodwizard.Meal
 import com.example.foodwizard.databinding.ListItemMealBinding
+import com.example.foodwizard.databinding.ListItemRecipeBinding
 
 class recipeHolder(
-    val binding: ListItemMealBinding
+    val binding: ListItemRecipeBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
 
@@ -22,7 +23,7 @@ class recipeAdapter(
         viewType: Int
     ) : recipeHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ListItemMealBinding.inflate(inflater, parent, false)
+        val binding = ListItemRecipeBinding.inflate(inflater, parent, false)
         return recipeHolder(binding)
     }
 

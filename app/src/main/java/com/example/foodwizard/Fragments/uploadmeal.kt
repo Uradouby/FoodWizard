@@ -30,9 +30,10 @@ class uploadmeal : DialogFragment() {
     ) { didTakePhoto: Boolean ->
 // Handle the result
         if (didTakePhoto && photoName != null) {
-            //add meal's photoname to dataset
             Log.d("photo", photoName!!)
             updatePhoto(photoName)
+            binding.upload.text="take new picture"
+            binding.save.visibility=View.VISIBLE
         }
     }
     private val binding
@@ -58,6 +59,12 @@ class uploadmeal : DialogFragment() {
                 photoFile
             )
             takePhoto.launch(photoUri)
+        }
+        binding.save.setOnClickListener()
+        {
+            //add meal's photoname to dataset
+            binding.save.visibility=View.GONE
+            dismiss()
         }
         /*
         binding.apply{
