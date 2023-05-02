@@ -10,7 +10,7 @@ import java.util.*
 data class Diet(
     @ColumnInfo(name = "diet_title") var dietTitle: String,
     @ColumnInfo(name = "diet_image_url") var dietImage: String,
-    @ColumnInfo(name = "dietResponse") var dietResponse: DietResponse?,
+    @Embedded var dietResponse: DietResponse?,
     @ColumnInfo(name = "date") var date: String,
     @ColumnInfo(name = "userId") var userId: Int
 ): Serializable {
@@ -43,10 +43,10 @@ data class Category(
 @Entity(tableName = "nutritionTable")
 data class Nutrition(
 //    @ColumnInfo(name = "recipesUsed") var recipesUsed: Int,
-    @ColumnInfo(name = "calories") var calories: Nutrient,
-    @ColumnInfo(name = "fat") var fat: Nutrient,
-    @ColumnInfo(name = "protein") var protein: Nutrient,
-    @ColumnInfo(name = "carbs") var carbs: Nutrient,
+    @Embedded(prefix = "calories") var calories: Nutrient,
+    @Embedded(prefix = "fat") var fat: Nutrient,
+    @Embedded(prefix = "protein") var protein: Nutrient,
+    @Embedded(prefix = "carbs") var carbs: Nutrient,
 ){
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
