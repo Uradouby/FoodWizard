@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.foodwizard.Meal
 import com.example.foodwizard.databinding.ListItemMealBinding
 import androidx.fragment.app.setFragmentResult
+import com.bumptech.glide.Glide
 import com.example.foodwizard.DB.Diet
+import kotlin.math.max
 
 class MealHolder(
     val binding: ListItemMealBinding
@@ -30,16 +32,19 @@ class mealAdapter(
     }
 
     override fun onBindViewHolder(holder: MealHolder, position: Int) {
-        if (position<meals.size)
+        if (meals.size!=0)
         {
             val meal = meals[position]
             holder.apply {
-                binding.food.visibility= View.INVISIBLE
+                binding.food.visibility= View.VISIBLE
                 binding.upload.visibility=View.INVISIBLE
                 binding.name.visibility=View.VISIBLE
                 binding.time.visibility=View.VISIBLE
                 binding.name.text = meal.dietTitle
                 binding.time.text = meal.date
+                Glide.with(binding.food.context)
+                    .load(meal.dietImage)
+                    .into(binding.food)
                 binding.root.setOnClickListener(){
                    onMealClicked(meal)
                 }
@@ -49,10 +54,11 @@ class mealAdapter(
         else
         {
             holder.apply{
+                binding.food.visibility= View.VISIBLE
                 binding.upload.visibility=View.VISIBLE
-                binding.root.setOnClickListener(){
-
-                }
+                binding.name.visibility=View.VISIBLE
+                binding.time.visibility=View.GONE
+                binding.name.visibility=View.GONE
             }
         }
 
@@ -60,5 +66,5 @@ class mealAdapter(
 
 
 
-    override fun getItemCount() = meals.size
+    override fun getItemCount() = max(1,meals.size)
 }

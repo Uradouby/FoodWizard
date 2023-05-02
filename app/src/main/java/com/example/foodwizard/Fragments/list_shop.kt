@@ -1,18 +1,13 @@
 package com.example.foodwizard.Fragments
 
-import android.graphics.Rect
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.foodwizard.Adapter.mealAdapter
-import com.example.foodwizard.Adapter.recipeAdapter
 import com.example.foodwizard.Adapter.shopAdapter
 import com.example.foodwizard.Meal
-import com.example.foodwizard.R
 import com.example.foodwizard.Util.MarginItemDecoration
 import com.example.foodwizard.databinding.FragmentListShopBinding
 

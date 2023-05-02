@@ -1,12 +1,14 @@
 package com.example.foodwizard.Diet
 
 import android.annotation.SuppressLint
+import android.text.Editable
 import android.util.Log
-import androidx.fragment.app.activityViewModels
 import com.example.foodwizard.DB.Diet
 import com.example.foodwizard.DB.DietResponse
+import com.example.foodwizard.R
 import com.example.foodwizard.Util.Constants.DIET_REC_API_KEY
 import com.example.foodwizard.Util.Constants.DIET_URL
+import com.example.foodwizard.login
 import com.example.foodwizard.viewModel.UsersViewModel
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -15,6 +17,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 
 class DietRecognition(val usersViewModel: UsersViewModel) {
+
 
     // initialize
     private val apiKey = DIET_REC_API_KEY
@@ -28,22 +31,28 @@ class DietRecognition(val usersViewModel: UsersViewModel) {
 
     // recognize a diet from an uploaded image
     @SuppressLint("SimpleDateFormat")
-    suspend fun recognizeDiet(imageUrl : String): Diet? {
+    suspend fun recognizeDiet(imageUrl: String, description: String): Diet? {
+        var currentUserId = login.currentUserId
         val dietResponse: Response<DietResponse> =
             apiInterface.uploadImage(apiKey, imageUrl)
         // return dietResponse
         if (dietResponse.isSuccessful) {
             val dietResponseData: DietResponse? = dietResponse.body()
             if (dietResponseData != null) {
-                val diet = Diet(
-                    dietTitle = dietResponseData?.category?.name?:"No Name",
-                    dietImage = imageUrl,
-                    dietResponse = dietResponseData,
-                    date = SimpleDateFormat("MM/dd/yyyy").format(Date()),
-                    userId = 123 // TODO : swap to current userId
-                )
+                val diet = currentUserId?.let {
+                    Diet(
+                        dietTitle = dietResponseData?.category?.name?:"No Name",
+                        dietImage = imageUrl,
+                        dietResponse = dietResponseData,
+                        date = SimpleDateFormat("MM/dd/yyyy").format(Date()),
+                        description = description,
+                        userId = it
+                    )
+                }
                 Log.d("DietRecognition", "Insert diet")
-                usersViewModel.insertDiet(diet)
+                if (diet != null) {
+                    usersViewModel.insertDiet(diet)
+                }
                 return diet
             }
             return null

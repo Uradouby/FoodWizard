@@ -20,7 +20,11 @@
         android:name="com.example.foodwizard.Fragments.Recipe"
         tools:layout="@layout/fragment_recipe"
         android:label="Recipe" />
-
+    <fragment
+        android:id="@+id/nav_nutrition"
+        android:name="com.example.foodwizard.Fragments.list_nutrition"
+        tools:layout="@layout/fragment_list_nutrition"
+        android:label="nutrition" />
     <fragment
         android:id="@+id/nav_shop"
         android:name="com.example.foodwizard.Fragments.Shop"
@@ -37,5 +41,9 @@
         android:id="@+id/nav_detail_meal"
         android:name="com.example.foodwizard.Fragments.detail_meal"
         tools:layout="@layout/detail_item_meal"
-        android:label="Recipe" />
+        android:label="Recipe" >
+        <action
+            android:id="@+id/to_nutrition"
+            app:destination="@id/nav_nutrition" />
+    </fragment>
 </navigation>
