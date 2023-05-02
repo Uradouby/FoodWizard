@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:clipToOutline="true"
+    android:background="@drawable/layout_bg"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/food"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:clipToOutline="true"
+        app:srcCompat="@drawable/foods" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:padding="10dp"
+        style="@style/wizard_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/food" />
+
+    <TextView
+        android:id="@+id/possibility"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="50%(possibility)"
+        android:padding="5dp"
+        style="@style/wizard_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name" />
+
+    
+
+</androidx.constraintlayout.widget.ConstraintLayout>

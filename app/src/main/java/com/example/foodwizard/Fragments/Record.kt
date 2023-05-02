@@ -22,7 +22,6 @@ class Record : Fragment() {
         setFragmentResultListener("requestKey1") { requestKey, bundle ->
             // We use a String here, but any type that can be put in a Bundle is supported
             val result = bundle.getString("bundleKey1")
-            Log.d("dadas", "addasdas")
             (childFragmentManager.findFragmentById(R.id.meals) as list_meal)?.updateview()
         }
 
