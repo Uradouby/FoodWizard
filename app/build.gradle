@@ -3,6 +3,8 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id "org.jetbrains.kotlin.kapt"
+
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -41,7 +43,6 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
@@ -52,6 +53,8 @@ dependencies {
     implementation 'androidx.room:room-common:2.4.2'
     implementation 'androidx.room:room-ktx:2.4.2'
     implementation 'androidx.room:room-runtime:2.4.2'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+
 
     kapt 'androidx.room:room-compiler:2.4.1'
 
@@ -64,7 +67,7 @@ dependencies {
     // okhttp
     implementation 'com.squareup.okhttp3:okhttp:4.10.0'
 
-    implementation 'com.github.Spikeysanju:MotionToast:1.4' //motiontoast
+    implementation 'com.github.Spikeysanju:MotionToast:1.4' //motion-toast
 
     implementation 'com.android.car.ui:car-ui-lib:2.0.0'// For LiveData
     //test
@@ -78,4 +81,13 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:2.4.1"
     implementation "androidx.navigation:navigation-ui-ktx:2.4.1"
     implementation 'androidx.activity:activity-ktx:1.4.0'
+
+    implementation platform('com.google.firebase:firebase-bom:31.4.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-database-ktx'
+    implementation 'com.google.firebase:firebase-storage-ktx'
+    implementation 'com.google.firebase:firebase-storage:20.2.0'
+
+
+
 }

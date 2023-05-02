@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "231533227960",
+    "project_id": "foodwizard-92f05",
+    "storage_bucket": "foodwizard-92f05.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:231533227960:android:bbdac0d392993844b2e94d",
+        "android_client_info": {
+          "package_name": "com.example.foodwizard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "231533227960-r12vgvecjq6qpc62467vufe8kd14imfi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNA1YZ441Z3rNwwJ5a6FsVeDmAoTKWhjQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "231533227960-r12vgvecjq6qpc62467vufe8kd14imfi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
