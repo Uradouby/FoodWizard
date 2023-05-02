@@ -24,6 +24,10 @@ class UsersViewModel(val app: Application): AndroidViewModel(app) {
         return repository.getTodayMeal(userId,today)
     }
 
+    fun getRecommendMeal(userId: Int, today: String) : MutableList<Diet>{
+        return repository.getRecommendMeal(userId,today)
+    }
+
     fun addUser(user: User) {
         repository.addUser(user)
     }

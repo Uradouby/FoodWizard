@@ -14,4 +14,7 @@ interface MealDao {
 @Query("select * from dietsTable where userId = :userId OR date = :today")
     fun getTodayMeal(userId: Int, today :String) : List<Diet>
 
+@Query("select * from dietsTable where userId = :userId OR date = :today")
+    fun getRecommendMeal(userId: Int, today :String) : MutableList<Diet>
+
 }

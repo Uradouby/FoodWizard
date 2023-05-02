@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.foodwizard.DB.Diet
 import com.example.foodwizard.Meal
 import com.example.foodwizard.databinding.ListItemMealBinding
 import com.example.foodwizard.databinding.ListItemRecipeBinding
@@ -15,7 +16,7 @@ class recipeHolder(
 }
 
 class recipeAdapter(
-    private val meals: List<Meal>,
+    private val meals: List<Diet>,
     private val onMealClicked: () -> Unit
 ) : RecyclerView.Adapter<recipeHolder>() {
     override fun onCreateViewHolder(
@@ -33,7 +34,7 @@ class recipeAdapter(
             val meal = meals[position]
             holder.apply {
                 binding.food.visibility= View.INVISIBLE
-                binding.upload.text=meal.Name
+                binding.upload.text=meal.dietTitle
                 binding.root.setOnClickListener(){
                     onMealClicked()
                 }
