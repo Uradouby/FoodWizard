@@ -10,8 +10,7 @@ interface MealDao {
     @Insert
     fun insertDiet(diet: Diet)
 
-//    @Query("select * from dietsTable where userId = :userId AND date = :today")
-@Query("select * from dietsTable where userId = :userId OR date = :today")
+    @Query("select * from dietsTable where userId = :userId AND date = :today")
     fun getTodayMeal(userId: Int, today :String) : List<Diet>
 
 }

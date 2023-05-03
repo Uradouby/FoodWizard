@@ -3,6 +3,8 @@ package com.example.foodwizard.Adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.foodwizard.DB.Nutrient
+import com.example.foodwizard.DB.Nutrition
 import com.example.foodwizard.Meal
 import com.example.foodwizard.databinding.ListItemNutritionBinding
 
@@ -12,7 +14,7 @@ class NutritionHolder(
 
 }
 class nutritionAdapter(
-    private val meals: List<Meal>
+    private val nutrient:  List<Nutrient>
 ) : RecyclerView.Adapter<NutritionHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -24,10 +26,13 @@ class nutritionAdapter(
     }
 
     override fun onBindViewHolder(holder: NutritionHolder, position: Int) {
-        val meal = meals[position]
+        val nutrient = nutrient[position]
+        val nutritionName = mutableListOf<String>("calories","fat","protein","carbs")
         holder.apply {
+            binding.name.text = nutritionName[position]
+            binding.value.text = nutrient.value.toString()
         }
     }
 
-    override fun getItemCount() = meals.size
+    override fun getItemCount() = nutrient.size
 }

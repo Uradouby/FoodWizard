@@ -19,6 +19,7 @@ import com.example.foodwizard.Meal
 import com.example.foodwizard.R
 import com.example.foodwizard.Util.MarginItemDecoration
 import com.example.foodwizard.databinding.FragmentListMealBinding
+import com.example.foodwizard.login
 import com.example.foodwizard.viewModel.UsersViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -66,9 +67,9 @@ class list_meal : Fragment()  {
     {
         GlobalScope.launch(Dispatchers.IO) {
             val usersViewModel: UsersViewModel by activityViewModels()
-            // TODO : userId swap to current userId
+            var currentUserId = login.currentUserId
             // Get today's meal
-            var todayMeal = usersViewModel.getTodayMeal(123, SimpleDateFormat("MM/dd/yyyy").format(Date()))
+            var todayMeal = usersViewModel.getTodayMeal(currentUserId, SimpleDateFormat("MM/dd/yyyy").format(Date()))
 
             withContext(Dispatchers.Main) {
                 val adapter = mealAdapter(todayMeal) {meal ->

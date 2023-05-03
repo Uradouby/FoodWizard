@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.foodwizard.Meal
 import com.example.foodwizard.databinding.ListItemMealBinding
 import androidx.fragment.app.setFragmentResult
+import com.bumptech.glide.Glide
 import com.example.foodwizard.DB.Diet
 import kotlin.math.max
 
@@ -35,12 +36,15 @@ class mealAdapter(
         {
             val meal = meals[position]
             holder.apply {
-                binding.food.visibility= View.INVISIBLE
+                binding.food.visibility= View.VISIBLE
                 binding.upload.visibility=View.INVISIBLE
                 binding.name.visibility=View.VISIBLE
                 binding.time.visibility=View.VISIBLE
                 binding.name.text = meal.dietTitle
                 binding.time.text = meal.date
+                Glide.with(binding.food.context)
+                    .load(meal.dietImage)
+                    .into(binding.food)
                 binding.root.setOnClickListener(){
                    onMealClicked(meal)
                 }

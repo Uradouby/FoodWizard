@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@id/food" />
 
     <TextView
-        android:id="@+id/possibility"
+        android:id="@+id/value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="50%(possibility)"

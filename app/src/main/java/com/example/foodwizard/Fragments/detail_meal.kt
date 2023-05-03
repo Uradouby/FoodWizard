@@ -10,6 +10,7 @@ import android.view.Window
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.foodwizard.DB.Diet
 import com.example.foodwizard.R
 import com.example.foodwizard.databinding.DetailItemMealBinding
@@ -24,6 +25,7 @@ class detail_meal() : DialogFragment() {
             "Cannot access binding because it is null. Is the view visible?"
         }
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,11 +36,22 @@ class detail_meal() : DialogFragment() {
         _binding = DetailItemMealBinding.inflate(inflater, container, false)
         binding.apply{
             name.text=meal?.dietResponse?.category?.name
-            possibility.text=meal?.dietResponse?.category?.probability.toString()  //TODO: CHANGE THAT it's not possibility but description
+            possibility.text=meal?.dietResponse?.category?.probability.toString()
+            description.text = meal?.description
             nutritionFab.setOnClickListener(){
-                val newFragment=list_nutrition()
-                fragmentManager?.let { newFragment.show(it, "nutrition") }
+                val newFragment= meal?.dietResponse?.nutrition?.let { it1 -> list_nutrition(it1) }
+                fragmentManager?.let {
+                    if (newFragment != null) {
+                        newFragment.show(it, "nutrition")
+                    }
+                }
             }
+
+//            if (meal != null) {
+//                Glide.with(binding.food.context)
+//                    .load(meal.dietImage)
+//                    .into(binding.food)
+//            }
         }
         return binding.root
     }

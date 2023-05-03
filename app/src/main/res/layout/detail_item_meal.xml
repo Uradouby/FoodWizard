@@ -11,6 +11,7 @@
         android:id="@+id/food"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:clipToOutline="true"
         android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

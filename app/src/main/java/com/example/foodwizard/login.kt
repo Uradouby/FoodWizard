@@ -153,6 +153,10 @@ class login : AppCompatActivity() {
         }
     }
 
+    companion object {
+        var currentUserId: Int = 0
+    }
+
     private fun userCheck(users: List<User>) : Boolean { // check if the user is valid or not
         var flag = false
         for (user in users) {
@@ -160,6 +164,7 @@ class login : AppCompatActivity() {
                 ValidationManager.comparePasswordEncrypt(user.password, binding.password.text.toString())) {
                 flag = true
                 userId = user.id
+                currentUserId = user.id
             }
         }
         if (!flag)
