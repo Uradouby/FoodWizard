@@ -12,23 +12,11 @@
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="128dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="116dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/flowerbg" />
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="72dp"
-        android:gravity="top"
-        android:text="@string/special_offer"
-        android:textAppearance="@style/main_text"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -40,10 +28,35 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/glutten" />
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
+        android:gravity="top"
+        android:text="@string/special_offer"
+        android:textAppearance="@style/main_text"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.433" />
+
     <androidx.fragment.app.FragmentContainerView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/meals"
+        android:id="@+id/shops"
         android:name="com.example.foodwizard.Fragments.list_shop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,9 +64,6 @@
         app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-
-        tools:context=".Fragments.Shop" />
-
-
+        tools:context=".Fragments.Record" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

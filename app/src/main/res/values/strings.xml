@@ -19,6 +19,7 @@
     <string name="title_activity_register">Register</string>
     <string name="title_activity_register_password">Password</string>
     <string name="title_activity_register_username">Username</string>
+    <string name="title_activity_register_email">Email</string>
     <string name="title_activity_register_confirmPassword">Confirm password</string>
     <!--record part-->
     <string name="record_main">Record Today\'s Meal:</string>
@@ -30,14 +31,16 @@
     <string name="success">Success</string>
     <string name="signIn_success">Sign in success</string>
     <string name="add_meal"> Add Meal</string>
+    <string name="see_detail"> See detail</string>
     <!--recipe part-->
     <string name="recommend_Recipe">\nRecommend Recipe</string>
     <!--shop part-->
     <string name="special_offer">\nSpecial Offer</string>
     <!--price part-->
-    <string name="price_name">Price</string>
-    <string name="apple">Apple</string>
-    <string name="submit_button">Submit</string>
+    <string name="url_button">Click here to buy!</string>
+    <string name="product">Product</string>
+    <string name="mysymbol">$</string>
+    <string name="logo_text">FoodWizards</string>
     <!--personal info part -->
     <string name="changeEmail">Change Email</string>
     <string name="changePassword">Change Password</string>
@@ -50,6 +53,5 @@
     <string name="dietPlanLabel">Diet Plan</string>
     <string name="emailLabel">email</string>
     <string name="passwordLabel">password</string>
-
 
 </resources>

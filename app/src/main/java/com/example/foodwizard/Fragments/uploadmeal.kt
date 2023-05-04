@@ -7,27 +7,24 @@ import android.content.pm.ResolveInfo
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
 import androidx.core.content.FileProvider
+import androidx.core.os.bundleOf
 import androidx.core.view.doOnLayout
-import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import com.example.foodwizard.DB.Diet
+import androidx.fragment.app.*
 import com.example.foodwizard.Diet.DietRecognition
-import com.example.foodwizard.R
-import com.example.foodwizard.Util.Constants.TEMP_IMAGE_URL
 import com.example.foodwizard.Util.PictureUtils.Companion.getScaledBitmap
-import com.example.foodwizard.databinding.FragmentRecordBinding
 import com.example.foodwizard.databinding.FragmentUploadmealBinding
 import com.example.foodwizard.viewModel.UsersViewModel
+import com.google.android.gms.tasks.Task
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.*
+import kotlinx.coroutines.tasks.asTask
 import java.io.File
 import java.util.*
 
@@ -35,20 +32,41 @@ import java.util.*
 class uploadmeal : DialogFragment() {
     private var _binding: FragmentUploadmealBinding? = null
     private var photoName:String? = null
+    private var imageURL:String? = null
+
     private val takePhoto = registerForActivityResult(
         ActivityResultContracts.TakePicture()
     ) { didTakePhoto: Boolean ->
-            // Handle the result
+        // Handle the result
         if (didTakePhoto && photoName != null) {
             Log.d("photo", photoName!!)
-            val photoURL = TEMP_IMAGE_URL
-            photoURL?.let { recognizeDiet(it) }
             updatePhoto(photoName)
             binding.upload.text="take new picture"
             binding.save.visibility=View.VISIBLE
-
         }
     }
+
+
+    private fun uploadImageToDB(photoFileName: String?): Task<Uri> {
+        val photoFile = photoFileName?.let {
+            File(requireContext().applicationContext.filesDir, it)
+        }
+        // Image Upload/Download in Firebase Storage
+        val storage = Firebase.storage
+        val storageRef = storage.reference
+        val file = Uri.fromFile(photoFile)
+        val imagesRef = storageRef.child("images")
+        val imageRef = imagesRef.child(photoFileName.toString())
+        val uploadTask = imageRef.putFile(file)
+        return uploadTask.continueWithTask { task ->
+            if (!task.isSuccessful) {
+                task.exception?.let { throw it }
+            }
+            // Get the download URL from the task snapshot
+            task.result?.metadata?.reference?.downloadUrl
+        }
+    }
+
     private val binding
        get() = checkNotNull(_binding) {
            "Cannot access binding because it is null. Is the view visible?"
@@ -71,13 +89,26 @@ class uploadmeal : DialogFragment() {
                 "com.example.foodwizard.fileprovider",
                 photoFile
             )
+
             takePhoto.launch(photoUri)
         }
+
         binding.save.setOnClickListener()
         {
-            //add meal's photoname to dataset
-            binding.save.visibility=View.GONE
-            dismiss()
+            uploadImageToDB(photoName).addOnSuccessListener { uri ->
+                imageURL = uri.toString()
+                //Call remote API to recognizeDiet Food Image
+                imageURL?.let { recognizeDiet(it) }?.addOnCompleteListener { task ->
+                    // This block will execute when recognizeDiet has completed its execution
+                    binding.save.visibility=View.GONE
+                    val result="result"
+                    setFragmentResult("requestKey1", bundleOf("bundleKey1" to result))
+                    dismiss()
+                }
+            }.addOnFailureListener { exception ->
+                // Handle failed upload
+                Log.e("uploadMeal", "Upload Meal Image Error")
+            }
         }
         /*
         binding.apply{
@@ -132,13 +163,16 @@ class uploadmeal : DialogFragment() {
     }
 
     @OptIn(DelicateCoroutinesApi::class)
-    private fun recognizeDiet(photoURL : String) {
+    private fun recognizeDiet(photoURL : String): Task<Unit> {
+        val deferred = CompletableDeferred<Unit>()
         GlobalScope.launch(Dispatchers.IO) {
             val usersViewModel: UsersViewModel by viewModels()
-            DietRecognition(usersViewModel).recognizeDiet(photoURL)
+            var description = binding.editTextTextMultiLine.text.toString()
+            DietRecognition(usersViewModel).recognizeDiet(photoURL, description)
             withContext(Dispatchers.Main) {
-
+                deferred.complete(Unit)
             }
         }
+        return deferred.asTask()
     }
 }

@@ -12,7 +12,9 @@ data class Diet(
     @ColumnInfo(name = "diet_image_url") var dietImage: String,
     @ColumnInfo(name = "dietResponse") var dietResponse: DietResponse?,
     @ColumnInfo(name = "date") var date: String,
-    @ColumnInfo(name = "userId") var userId: Int
+    @ColumnInfo(name = "description") var description: String,
+    @ColumnInfo(name = "userId") var userId: Int,
+
 ): Serializable {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

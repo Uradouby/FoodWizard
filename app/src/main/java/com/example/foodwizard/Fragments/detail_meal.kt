@@ -9,12 +9,23 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.foodwizard.DB.Diet
 import com.example.foodwizard.R
+import com.example.foodwizard.databinding.DetailItemMealBinding
+import com.example.foodwizard.databinding.FragmentListMealBinding
+import com.example.foodwizard.databinding.FragmentListShopBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class detail_meal() : DialogFragment() {
-    private lateinit var nameTextView: TextView
-    private lateinit var possibilityTextView: TextView
+    private var _binding: DetailItemMealBinding? = null
+    private val binding
+        get() = checkNotNull(_binding) {
+            "Cannot access binding because it is null. Is the view visible?"
+        }
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -22,19 +33,37 @@ class detail_meal() : DialogFragment() {
     ): View {
         // Inflate the layout to use as dialog or embedded fragment
         val meal = arguments?.getSerializable("meal") as Diet?
-        val view = inflater.inflate(R.layout.detail_item_meal, container, false)
-        nameTextView = view.findViewById(R.id.name)
-        possibilityTextView = view.findViewById(R.id.possibility)
+        _binding = DetailItemMealBinding.inflate(inflater, container, false)
+        binding.apply{
+            name.text=meal?.dietResponse?.category?.name
+            possibility.text=meal?.dietResponse?.category?.probability.toString()
+            description.text = meal?.description
+            nutritionFab.setOnClickListener(){
+                val newFragment= meal?.dietResponse?.nutrition?.let { it1 -> list_nutrition(it1) }
+                fragmentManager?.let {
+                    if (newFragment != null) {
+                        newFragment.show(it, "nutrition")
+                    }
+                }
+            }
 
-        // Set text using values from Diet object
-        nameTextView.text = meal?.dietResponse?.category?.name
-        possibilityTextView.text = meal?.dietResponse?.category?.probability.toString()
-        return view
+            if (meal != null) {
+                Glide.with(binding.food.context)
+                    .load(meal.dietImage)
+                    .into(binding.food)
+            }
+        }
+        return binding.root
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         return dialog
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

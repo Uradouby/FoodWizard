@@ -1,20 +1,22 @@
 package com.example.foodwizard.Fragments
 
-import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.foodwizard.Adapter.mealAdapter
 import com.example.foodwizard.Adapter.recipeAdapter
 import com.example.foodwizard.Adapter.shopAdapter
-import com.example.foodwizard.Meal
-import com.example.foodwizard.R
+import com.example.foodwizard.Price.ApiResponse
+import com.example.foodwizard.Price.ApiService
+import com.example.foodwizard.Price.ServiceGenerator
 import com.example.foodwizard.Util.MarginItemDecoration
 import com.example.foodwizard.databinding.FragmentListShopBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class list_shop : Fragment() {
@@ -38,9 +40,37 @@ class list_shop : Fragment() {
         binding.shopRecyclerView.addItemDecoration(
             MarginItemDecoration(64)
         )
-        var meals= mutableListOf<Meal>(Meal("apple$1"),Meal("hamburger$2"))
-        val adapter = shopAdapter(meals)
+//        val asinList = listOf("B08ZFPQGK5", "B00OO77BL6", "B07K77SH7F", "B0829QQHCS")
+        val asinList = listOf("B08ZFPQGK5", "B00OO77BL6")
+        val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
+        val myapi = "7E7D26AB23B04E929FEEE6151E907080"
+        val mytype = "product"
+        val mydomain = "amazon.com"
+
+        val apiResponseList = mutableListOf<Response<ApiResponse>>()
+
+        for (myasin in asinList) {
+            val call = serviceGenerator.getPosts(myapi, mytype, mydomain, myasin)
+            call.enqueue(object : Callback<ApiResponse> {
+                override fun onResponse(
+                    call: Call<ApiResponse>,
+                    response: Response<ApiResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        apiResponseList.add(response)
+                    }
+                }
+
+                override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    t.printStackTrace()
+                    Log.e("Failure", t.message.toString())
+                }
+            })
+        }
+        Log.d("ad",apiResponseList.size.toString())
+        val adapter = shopAdapter(apiResponseList)
         binding.shopRecyclerView.adapter = adapter
+
         return binding.root
     }
 

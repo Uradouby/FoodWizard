@@ -21,7 +21,8 @@ data class RequestMetadata(
 // product title
 data class Product(
     @SerializedName("title") val title: String,
-    @SerializedName("buybox_winner") val buyboxWinner: BuyboxWinner
+    @SerializedName("buybox_winner") val buyboxWinner: BuyboxWinner,
+    @SerializedName("variants") val variants: List<Variants>
 )
 
 data class BuyboxWinner(
@@ -35,6 +36,11 @@ data class SubscribeAndSave(
 data class BasePrice(
     @SerializedName("raw") val raw: String
 )
+
+data class Variants(
+    @SerializedName("main_image") val mainImage: String
+)
+
 
 
 
