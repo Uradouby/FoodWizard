@@ -1,6 +1,7 @@
 package com.example.foodwizard.Adapter
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,8 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.foodwizard.Meal
 import com.example.foodwizard.Price.ApiResponse
 import com.example.foodwizard.Price.WebviewActivity
-import com.example.foodwizard.databinding.FragmentShopBinding
-import com.example.foodwizard.databinding.ListItemMealBinding
+import com.example.foodwizard.databinding.ListItemShopBinding
 import com.squareup.picasso.Picasso
 import retrofit2.Response
 
@@ -17,12 +17,13 @@ class shopAdapter(private val apiResponseList: MutableList<Response<ApiResponse>
     RecyclerView.Adapter<shopHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): shopHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = FragmentShopBinding.inflate(inflater, parent, false)
+        val binding = ListItemShopBinding.inflate(inflater, parent, false)
+        Log.d("adapter",apiResponseList.size.toString())
         return shopHolder(binding)
     }
 
     override fun onBindViewHolder(holder: shopHolder, position: Int) {
-        return holder.bind(apiResponseList[position])
+        holder.bind(apiResponseList[position])
     }
 
     override fun getItemCount(): Int {
@@ -30,7 +31,7 @@ class shopAdapter(private val apiResponseList: MutableList<Response<ApiResponse>
     }
 }
 
-class shopHolder(private val binding: FragmentShopBinding): RecyclerView.ViewHolder(binding.root) {
+class shopHolder(private val binding: ListItemShopBinding): RecyclerView.ViewHolder(binding.root) {
 
     fun bind(apiResponse: Response<ApiResponse>) {
         val myUrl = apiResponse.body()?.requestMetadata?.amazonUrl
@@ -39,8 +40,9 @@ class shopHolder(private val binding: FragmentShopBinding): RecyclerView.ViewHol
             apiResponse.body()?.product?.buyboxWinner?.subscribeAndSave?.basePrice?.raw
         val variants = apiResponse.body()?.product?.variants
         if (variants != null) {
-            Picasso.get().load(variants[0].mainImage).resize(600, 600).into(binding.imageView)
+            Picasso.get().load(variants[0].mainImage).resize(600, 600).into(binding.foodimg)
         }
+
         binding.urlButton.setOnClickListener {
 //          open website using browser
 //          val openURL = Intent(Intent.ACTION_VIEW)

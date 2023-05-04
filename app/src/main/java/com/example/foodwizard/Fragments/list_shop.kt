@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.foodwizard.Adapter.recipeAdapter
 import com.example.foodwizard.Adapter.shopAdapter
 import com.example.foodwizard.Price.ApiResponse
 import com.example.foodwizard.Price.ApiService
@@ -35,8 +36,10 @@ class list_shop : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentListShopBinding.inflate(inflater, container, false)
-        val recyclerView = binding.myRecyclerView
-
+        binding.shopRecyclerView.layoutManager=LinearLayoutManager(context)
+        binding.shopRecyclerView.addItemDecoration(
+            MarginItemDecoration(64)
+        )
 //        val asinList = listOf("B08ZFPQGK5", "B00OO77BL6", "B07K77SH7F", "B0829QQHCS")
         val asinList = listOf("B08ZFPQGK5", "B00OO77BL6")
         val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
@@ -45,6 +48,7 @@ class list_shop : Fragment() {
         val mydomain = "amazon.com"
 
         val apiResponseList = mutableListOf<Response<ApiResponse>>()
+
         for (myasin in asinList) {
             val call = serviceGenerator.getPosts(myapi, mytype, mydomain, myasin)
             call.enqueue(object : Callback<ApiResponse> {
@@ -55,11 +59,6 @@ class list_shop : Fragment() {
                     if (response.isSuccessful) {
                         apiResponseList.add(response)
                     }
-
-                    recyclerView.apply {
-                        layoutManager = LinearLayoutManager(context)
-                        adapter = shopAdapter(apiResponseList)
-                    }
                 }
 
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
@@ -68,6 +67,10 @@ class list_shop : Fragment() {
                 }
             })
         }
+        Log.d("ad",apiResponseList.size.toString())
+        val adapter = shopAdapter(apiResponseList)
+        binding.shopRecyclerView.adapter = adapter
+
         return binding.root
     }
 
