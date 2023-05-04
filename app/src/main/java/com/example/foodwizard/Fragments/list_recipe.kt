@@ -95,7 +95,7 @@ class list_recipe : Fragment() {
             val usersViewModel: UsersViewModel by activityViewModels()
             // TODO : userId swap to current userId
             // Get today's meal
-            meals= usersViewModel.getRecommendMeal(123, SimpleDateFormat("MM/dd/yyyy").format(Date()))
+            meals= usersViewModel.getRecommendMeal(20, 20, 20, 20)
 
             withContext(Dispatchers.Main) {
                 val adapter = recipeAdapter(meals){

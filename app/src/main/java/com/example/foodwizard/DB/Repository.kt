@@ -54,7 +54,7 @@ class Repository private constructor(context: Context){
         return mealDao.getTodayMeal(userId,today)
     }
 
-    fun getRecommendMeal(userId: Int,today: String) : MutableList<Diet>{
-        return mealDao.getRecommendMeal(userId,today)
+    fun getRecommendMeal(calories: Int, fat: Int, protein: Int, carbs: Int) : MutableList<Diet>{
+        return mealDao.getRecommendMeal(calories, fat, protein, carbs)
     }
 }
