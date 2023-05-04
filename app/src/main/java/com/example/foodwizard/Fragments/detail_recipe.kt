@@ -29,7 +29,7 @@ class detail_recipe : DialogFragment(){
         binding.apply{
             name.text=meal?.dietResponse?.category?.name
 //            possibility.text=meal?.dietResponse?.category?.probability.toString()  //TODO: CHANGE THAT it's not possibility but description
-            nutrition.setOnClickListener(){
+            nutritionFab.setOnClickListener(){
                 val newFragment=list_nutrition()
                 fragmentManager?.let { newFragment.show(it, "nutrition") }
             }
