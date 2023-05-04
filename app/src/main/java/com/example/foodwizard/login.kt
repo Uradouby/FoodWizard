@@ -51,7 +51,10 @@ class login : AppCompatActivity() {
         myRef2.setValue("TestValueNow 04/30")
 
         database2 = Firebase.database.reference
-        database2.child("users").child("John").setValue("changemeplease")
+//        database2.child("users").child("John").setValue("changemeplease")
+//        database2.child("meals").child("1").setValue("changemeplease")
+
+
         database2.child("TestKey1").get().addOnSuccessListener {
             Log.i("firebase read","Got value ${it.value}")
         }.addOnFailureListener{
