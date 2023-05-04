@@ -1,16 +1,18 @@
 package com.example.foodwizard.Fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.foodwizard.R
+import com.example.foodwizard.databinding.FragmentNavigationBinding
+import com.example.foodwizard.databinding.FragmentPersonalInfoBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val TAG = "PERSONALINFO"
 
 /**
  * A simple [Fragment] subclass.
@@ -19,15 +21,16 @@ private const val ARG_PARAM2 = "param2"
  */
 class PersonalInfo : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentPersonalInfoBinding? = null
+    private val binding
+        get() = checkNotNull(_binding) {
+            "Cannot access binding because it is null. Is the view visible?"
+        }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
@@ -35,26 +38,41 @@ class PersonalInfo : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_personal_info, container, false)
-    }
+        Log.d("Personal INFO", "We in here");
+        _binding = FragmentPersonalInfoBinding.inflate(inflater, container, false)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PersonalInfo.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PersonalInfo().apply {
+        binding.changeDietPlanButton.setOnClickListener{
+            Log.d(tag, "Clicked the change Diet Plan")
+            val fragmentManager = getParentFragmentManager()
+            val newFragment = UpdateModal().apply{
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putString("type", "dietPlan")
                 }
             }
+            newFragment.show(fragmentManager, "changeDiet")
+        }
+        binding.changePassword.setOnClickListener{
+            Log.d(tag, "Clicked the change password")
+            val fragmentManager = getParentFragmentManager()
+            val newFragment = UpdateModal().apply{
+                arguments = Bundle().apply {
+                    putString("type", "password")
+                }
+            }
+            newFragment.show(fragmentManager, "password")
+        }
+        binding.changeEmail.setOnClickListener{
+            Log.d(tag, "Clicked the change email")
+            val fragmentManager = getParentFragmentManager()
+            val newFragment = UpdateModal().apply{
+                arguments = Bundle().apply {
+                    putString("type", "email")
+                }
+            }
+            newFragment.show(fragmentManager, "email")
+        }
+        return binding.root
     }
+
+
 }
