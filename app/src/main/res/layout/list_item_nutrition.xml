@@ -8,15 +8,15 @@
     android:layout_height="wrap_content">
 
 
-    <ImageView
-        android:id="@+id/food"
-        android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:scaleType="fitXY"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:clipToOutline="true"
-        app:srcCompat="@drawable/foods" />
+<!--    <ImageView-->
+<!--        android:id="@+id/food"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="240dp"-->
+<!--        android:scaleType="fitXY"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:clipToOutline="true"-->
+<!--        app:srcCompat="@drawable/foods" />-->
 
     <TextView
         android:id="@+id/name"
@@ -25,9 +25,9 @@
         android:text="Name"
         android:padding="10dp"
         style="@style/wizard_text"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/value"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/food" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/value"
@@ -37,9 +37,19 @@
         android:padding="5dp"
         style="@style/wizard_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name" />
+        app:layout_constraintStart_toEndOf="@+id/name"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    
+    <View
+        android:id="@+id/bar"
+        android:layout_width="100dp"
+        android:layout_height="5dp"
+        android:background="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/value"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
