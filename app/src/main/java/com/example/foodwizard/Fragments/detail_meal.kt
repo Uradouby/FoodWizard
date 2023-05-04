@@ -47,11 +47,11 @@ class detail_meal() : DialogFragment() {
                 }
             }
 
-//            if (meal != null) {
-//                Glide.with(binding.food.context)
-//                    .load(meal.dietImage)
-//                    .into(binding.food)
-//            }
+            if (meal != null) {
+                Glide.with(binding.food.context)
+                    .load(meal.dietImage)
+                    .into(binding.food)
+            }
         }
         return binding.root
     }

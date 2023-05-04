@@ -1,5 +1,6 @@
 package com.example.foodwizard.Adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -28,9 +29,12 @@ class nutritionAdapter(
     override fun onBindViewHolder(holder: NutritionHolder, position: Int) {
         val nutrient = nutrient[position]
         val nutritionName = mutableListOf<String>("calories","fat","protein","carbs")
+        val horizontalBarColor = mutableListOf<String>("#4287f5","#f542e0","#42f554","#f5bf42")
         holder.apply {
             binding.name.text = nutritionName[position]
             binding.value.text = nutrient.value.toString()
+            binding.bar.setBackgroundColor(Color.parseColor(horizontalBarColor[position]))
+            binding.bar.layoutParams.width = nutrient.value
         }
     }
 

@@ -127,8 +127,10 @@ class login : AppCompatActivity() {
     private fun calculateLastLogin(){
         val lastLogin = sharedPreferences.getLong("LAST_LOGIN", -1)
         val lastId = sharedPreferences.getInt("USER_ID", -1)
-        if(lastLogin != -1L &&  System.currentTimeMillis() - lastLogin < 3600000 ) //one hour
+        if(lastLogin != -1L &&  System.currentTimeMillis() - lastLogin < 3600000 ) { //one hour
+            currentUserId = lastId
             goToMainActivityDirectly(lastId) //
+        }
         else
             setOnSignInUpListener()
     }
