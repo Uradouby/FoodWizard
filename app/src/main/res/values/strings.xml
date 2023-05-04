@@ -19,6 +19,7 @@
     <string name="title_activity_register">Register</string>
     <string name="title_activity_register_password">Password</string>
     <string name="title_activity_register_username">Username</string>
+    <string name="title_activity_register_email">Email</string>
     <string name="title_activity_register_confirmPassword">Confirm password</string>
     <!--record part-->
     <string name="record_main">Record Today\'s Meal:</string>
