@@ -21,6 +21,9 @@ import com.example.foodwizard.Util.MarginItemDecoration
 import com.example.foodwizard.databinding.FragmentListMealBinding
 import com.example.foodwizard.login
 import com.example.foodwizard.viewModel.UsersViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -31,6 +34,7 @@ import java.util.*
 
 class list_meal : Fragment()  {
 
+    private lateinit var auth: FirebaseAuth
     private var _binding: FragmentListMealBinding? = null
     private val binding
         get() = checkNotNull(_binding) {
@@ -54,6 +58,7 @@ class list_meal : Fragment()  {
             MarginItemDecoration(64)
         )
             // var meals= mutableListOf<Meal>()
+        auth = FirebaseAuth.getInstance()
         updateview()
         return binding.root
     }
@@ -67,7 +72,8 @@ class list_meal : Fragment()  {
     {
         GlobalScope.launch(Dispatchers.IO) {
             val usersViewModel: UsersViewModel by activityViewModels()
-            var currentUserId = login.currentUserId
+            val user: FirebaseUser? = auth.currentUser
+            var currentUserId = user!!.uid
             // Get today's meal
             var todayMeal = usersViewModel.getTodayMeal(currentUserId, SimpleDateFormat("MM/dd/yyyy").format(Date()))
 
