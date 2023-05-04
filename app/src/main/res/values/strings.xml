@@ -36,8 +36,9 @@
     <!--shop part-->
     <string name="special_offer">\nSpecial Offer</string>
     <!--price part-->
-    <string name="price_name">Price</string>
-    <string name="apple">Apple</string>
-    <string name="submit_button">Submit</string>
+    <string name="url_button">Click here to buy!</string>
+    <string name="product">Product</string>
+    <string name="mysymbol">$</string>
+    <string name="logo_text">FoodWizards</string>
 
 </resources>
