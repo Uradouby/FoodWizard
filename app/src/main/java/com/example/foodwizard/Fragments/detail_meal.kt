@@ -17,6 +17,7 @@ import com.example.foodwizard.databinding.DetailItemMealBinding
 import com.example.foodwizard.databinding.FragmentListMealBinding
 import com.example.foodwizard.databinding.FragmentListShopBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.squareup.picasso.Picasso
 
 class detail_meal() : DialogFragment() {
     private var _binding: DetailItemMealBinding? = null
@@ -48,9 +49,10 @@ class detail_meal() : DialogFragment() {
             }
 
             if (meal != null) {
-                Glide.with(binding.food.context)
-                    .load(meal.dietImage)
-                    .into(binding.food)
+                Picasso.get().load(meal.dietImage).into(binding.food)
+//                Glide.with(binding.food.context)
+//                    .load(meal.dietImage)
+//                    .into(binding.food)
             }
         }
         return binding.root
