@@ -20,7 +20,7 @@ const val CURRENT_INDEX_KEY = "CURRENT_INDEX_KEY"
 
 class RecipeViewModel(private val savedStateHandle: SavedStateHandle, val app: Application): ViewModel() {
 
-    private var meals: MutableList<Diet>?
+    var meals: MutableList<Diet>
         get() = savedStateHandle.get(CURRENT_INDEX_KEY) ?: meals
         set(value) = savedStateHandle.set(CURRENT_INDEX_KEY, value)
 

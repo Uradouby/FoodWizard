@@ -16,7 +16,7 @@ class recipeHolder(
 }
 
 class recipeAdapter(
-    private val meals: List<Diet>,
+    private val meals: MutableList<Diet>,
     private val onMealClicked: () -> Unit
 ) : RecyclerView.Adapter<recipeHolder>() {
     override fun onCreateViewHolder(
