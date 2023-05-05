@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.foodwizard.Diet.DietResponseConverter
 
-@Database(entities = [User::class,Diet::class], version = 7, exportSchema = false)
+@Database(entities = [User::class,Diet::class], version = 8, exportSchema = false)
 @TypeConverters(DietResponseConverter::class)
 abstract class AppDataBase: RoomDatabase() {
 
