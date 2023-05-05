@@ -57,7 +57,13 @@ class list_shop : Fragment() {
                     response: Response<ApiResponse>
                 ) {
                     if (response.isSuccessful) {
+                        // Log.e("Success", response.body().toString())
                         apiResponseList.add(response)
+                    }
+
+                    binding.shopRecyclerView.apply {
+                        layoutManager = LinearLayoutManager(context)
+                        binding.shopRecyclerView.adapter = shopAdapter(apiResponseList)
                     }
                 }
 
@@ -67,10 +73,6 @@ class list_shop : Fragment() {
                 }
             })
         }
-        Log.d("ad",apiResponseList.size.toString())
-        val adapter = shopAdapter(apiResponseList)
-        binding.shopRecyclerView.adapter = adapter
-
         return binding.root
     }
 
