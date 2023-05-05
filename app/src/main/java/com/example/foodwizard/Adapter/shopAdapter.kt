@@ -1,6 +1,7 @@
 package com.example.foodwizard.Adapter
 
 import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -45,12 +46,12 @@ class shopHolder(private val binding: ListItemShopBinding): RecyclerView.ViewHol
 
         binding.urlButton.setOnClickListener {
 //          open website using browser
-//          val openURL = Intent(Intent.ACTION_VIEW)
-//          openURL.data = Uri.parse(myUrl.toString())
-//          binding.root.context.startActivity(openURL)
-            val openURL = Intent(binding.root.context, WebviewActivity::class.java)
-            openURL.putExtra("url", myUrl.toString())
-            binding.root.context.startActivity(openURL)
+          val openURL = Intent(Intent.ACTION_VIEW)
+          openURL.data = Uri.parse(myUrl.toString())
+          binding.root.context.startActivity(openURL)
+//            val openURL = Intent(binding.root.context, WebviewActivity::class.java)
+//            openURL.putExtra("url", myUrl.toString())
+//            binding.root.context.startActivity(openURL)
         }
     }
 }
