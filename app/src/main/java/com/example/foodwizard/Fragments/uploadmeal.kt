@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.*
+import kotlinx.coroutines.tasks.asTask
 import java.io.File
 import java.util.*
 
@@ -97,11 +98,13 @@ class uploadmeal : DialogFragment() {
             uploadImageToDB(photoName).addOnSuccessListener { uri ->
                 imageURL = uri.toString()
                 //Call remote API to recognizeDiet Food Image
-                imageURL?.let { recognizeDiet(it) }
-                binding.save.visibility=View.GONE
-                val result="result"
-                setFragmentResult("requestKey1", bundleOf("bundleKey1" to result))
-                dismiss()
+                imageURL?.let { recognizeDiet(it) }?.addOnCompleteListener { task ->
+                    // This block will execute when recognizeDiet has completed its execution
+                    binding.save.visibility=View.GONE
+                    val result="result"
+                    setFragmentResult("requestKey1", bundleOf("bundleKey1" to result))
+                    dismiss()
+                }
             }.addOnFailureListener { exception ->
                 // Handle failed upload
                 Log.e("uploadMeal", "Upload Meal Image Error")
@@ -160,13 +163,16 @@ class uploadmeal : DialogFragment() {
     }
 
     @OptIn(DelicateCoroutinesApi::class)
-    private fun recognizeDiet(photoURL : String) {
+    private fun recognizeDiet(photoURL : String): Task<Unit> {
+        val deferred = CompletableDeferred<Unit>()
         GlobalScope.launch(Dispatchers.IO) {
             val usersViewModel: UsersViewModel by viewModels()
             var description = binding.editTextTextMultiLine.text.toString()
             DietRecognition(usersViewModel).recognizeDiet(photoURL, description)
             withContext(Dispatchers.Main) {
+                deferred.complete(Unit)
             }
         }
+        return deferred.asTask()
     }
 }

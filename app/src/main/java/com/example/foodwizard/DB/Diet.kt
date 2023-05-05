@@ -13,7 +13,7 @@ data class Diet(
     @ColumnInfo(name = "dietResponse") var dietResponse: DietResponse?,
     @ColumnInfo(name = "date") var date: String,
     @ColumnInfo(name = "description") var description: String,
-    @ColumnInfo(name = "userId") var userId: Int,
+    @ColumnInfo(name = "userId") var userId: String,
 
 ): Serializable {
     @PrimaryKey(autoGenerate = true)

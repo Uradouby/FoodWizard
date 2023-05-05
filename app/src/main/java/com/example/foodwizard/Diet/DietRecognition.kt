@@ -10,6 +10,8 @@ import com.example.foodwizard.Util.Constants.DIET_REC_API_KEY
 import com.example.foodwizard.Util.Constants.DIET_URL
 import com.example.foodwizard.login
 import com.example.foodwizard.viewModel.UsersViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -18,6 +20,8 @@ import java.util.Date
 
 class DietRecognition(val usersViewModel: UsersViewModel) {
 
+
+    private lateinit var auth: FirebaseAuth
 
     // initialize
     private val apiKey = DIET_REC_API_KEY
@@ -32,7 +36,9 @@ class DietRecognition(val usersViewModel: UsersViewModel) {
     // recognize a diet from an uploaded image
     @SuppressLint("SimpleDateFormat")
     suspend fun recognizeDiet(imageUrl: String, description: String): Diet? {
-        var currentUserId = login.currentUserId
+        auth = FirebaseAuth.getInstance()
+        val user: FirebaseUser? = auth.currentUser
+        var currentUserId = user!!.uid
         val dietResponse: Response<DietResponse> =
             apiInterface.uploadImage(apiKey, imageUrl)
         // return dietResponse

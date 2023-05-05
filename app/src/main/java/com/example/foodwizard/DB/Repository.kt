@@ -21,36 +21,36 @@ class Repository private constructor(context: Context){
     }
 
 //    User Repository
-    fun getAllUsers(): LiveData<List<User>> {
-    return usersDao.getAllUsers()
-    }
-
-    fun addUser(user: User) {
-        usersDao.insertUser(user)
-    }
-
-    fun getUserById(userId: Int): User {
-        return usersDao.getUserById(userId)
-    }
-
-    fun getUserByUsername(userName: String): User {
-        return usersDao.getUserByUsername(userName)
-    }
-
-    fun updateUserName(userId: Int, userName: String) {
-        usersDao.updateUserName(userId, userName)
-    }
-
-    fun updateUserPassword(userId: Int, password: String) {
-        usersDao.updateUserPassword(userId, password)
-    }
+//    fun getAllUsers(): LiveData<List<User>> {
+//    return usersDao.getAllUsers()
+//    }
+//
+//    fun addUser(user: User) {
+//        usersDao.insertUser(user)
+//    }
+//
+//    fun getUserById(userId: Int): User {
+//        return usersDao.getUserById(userId)
+//    }
+//
+//    fun getUserByUsername(userName: String): User {
+//        return usersDao.getUserByUsername(userName)
+//    }
+//
+//    fun updateUserName(userId: Int, userName: String) {
+//        usersDao.updateUserName(userId, userName)
+//    }
+//
+//    fun updateUserPassword(userId: Int, password: String) {
+//        usersDao.updateUserPassword(userId, password)
+//    }
 
     @Insert
     fun insertDiet(diet: Diet){
         mealDao.insertDiet(diet)
     }
 
-    fun getTodayMeal(userId: Int,today: String) : List<Diet>{
+    fun getTodayMeal(userId: String,today: String) : List<Diet>{
         return mealDao.getTodayMeal(userId,today)
     }
 }
