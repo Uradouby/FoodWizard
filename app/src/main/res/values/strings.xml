@@ -53,5 +53,6 @@
     <string name="dietPlanLabel">Diet Plan</string>
     <string name="emailLabel">email</string>
     <string name="passwordLabel">password</string>
+    <string name="log_out">Log out</string>
 
 </resources>

@@ -1,5 +1,6 @@
 package com.example.foodwizard.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,6 +10,8 @@ import android.view.ViewGroup
 import com.example.foodwizard.R
 import com.example.foodwizard.databinding.FragmentNavigationBinding
 import com.example.foodwizard.databinding.FragmentPersonalInfoBinding
+import com.example.foodwizard.login
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -75,6 +78,13 @@ class PersonalInfo : Fragment() {
             }
             newFragment.show(fragmentManager, "email")
         }
+
+        binding.logoutButton.setOnClickListener{
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent(activity, login::class.java)
+            startActivity(intent)
+        }
+
         return binding.root
     }
 
