@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import com.example.foodwizard.R
 import com.example.foodwizard.databinding.FragmentNavigationBinding
 import com.example.foodwizard.databinding.FragmentPersonalInfoBinding
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,6 +42,8 @@ class PersonalInfo : Fragment() {
         // Inflate the layout for this fragment
         Log.d("Personal INFO", "We in here");
         _binding = FragmentPersonalInfoBinding.inflate(inflater, container, false)
+
+
 
         binding.changeDietPlanButton.setOnClickListener{
             Log.d(tag, "Clicked the change Diet Plan")

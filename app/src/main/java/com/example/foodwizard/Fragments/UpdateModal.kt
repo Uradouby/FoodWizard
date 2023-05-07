@@ -10,13 +10,25 @@ import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
+import com.example.foodwizard.DB.Repository
 import com.example.foodwizard.R
+import com.example.foodwizard.login
+import com.example.foodwizard.viewModel.UsersViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 
 class UpdateModal() : DialogFragment() {
     private lateinit var nameTextView: TextView
     private lateinit var inputView: EditText
     private lateinit var enterButton: Button
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,8 +36,13 @@ class UpdateModal() : DialogFragment() {
     ): View {
         // Inflate the layout to use as dialog or embedded fragment
         val type = arguments?.getString("type");
+        auth = FirebaseAuth.getInstance()
 
         Log.d("in here", "The type is " + type);
+        // looked at the firebase docs here https://firebase.google.com/docs/auth/android/start
+        val user = Firebase.auth.currentUser
+
+//        Log.d(TAG, "email " + email)
 
         var label: String = getString(R.string.dietPlanLabel);
 
@@ -48,16 +65,63 @@ class UpdateModal() : DialogFragment() {
 
         enterButton = view.findViewById(R.id.updateButton)
 
+//        val repository = Repository(context)
+
+
+
         enterButton.setOnClickListener {
             Log.d("in here", "Clicked enter");
             val input = inputView.text.toString()
 
-            if(type == "dietPlan"){
-                Log.d("in here", "updating diet plan with " + input);
-            }else if(type == "password"){
-                Log.d("in here", "updating password with " + input);
-            }else if(type == "email"){
-                Log.d("in here", "updating email with " + input);
+            if(input.isNullOrEmpty()){
+                Toast.makeText(
+                    activity,
+                    "Input is null or empty",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }else {
+                if (type == "dietPlan") {
+
+                    Log.d("in here", "updating diet plan with " + input);
+                } else if (type == "password") {
+                    user?.updatePassword(input)?.addOnCompleteListener(requireActivity()) {
+                        if (it.isSuccessful) {
+                            Log.d("In here", "It was sucessful")
+                            Toast.makeText(
+                                activity,
+                                "Successfully changed password",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            Log.d("In here", "It failed")
+                            Toast.makeText(
+                                activity,
+                                "Change password failed",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                    Log.d("in here", "updating password with " + input);
+                } else if (type == "email") {
+                    Log.d("in here", "updating email with " + input);
+                    user?.updateEmail(input)?.addOnCompleteListener(requireActivity()) {
+                        if (it.isSuccessful) {
+                            Log.d("In here", "It was sucessful")
+                            Toast.makeText(
+                                activity,
+                                "Successfully changed email",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            Log.d("In here", "It failed")
+                            Toast.makeText(
+                                activity,
+                                "Change email failed",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
             }
 
         }
