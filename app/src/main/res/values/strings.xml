@@ -41,5 +41,18 @@
     <string name="product">Product</string>
     <string name="mysymbol">$</string>
     <string name="logo_text">FoodWizards</string>
+    <!--personal info part -->
+    <string name="changeEmail">Change Email</string>
+    <string name="changePassword">Change Password</string>
+    <string name="changeDietPlan">Change Diet Plan</string>
+    <string name="enterNew">Enter new</string>
+    <string name="password">password</string>
+    <string name="email">email</string>
+    <string name="dietPlan">Diet Plan</string>
+    <string name="update">Update</string>
+    <string name="dietPlanLabel">Diet Plan</string>
+    <string name="emailLabel">email</string>
+    <string name="passwordLabel">password</string>
+    <string name="log_out">Log out</string>
 
 </resources>
