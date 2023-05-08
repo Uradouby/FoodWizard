@@ -15,21 +15,26 @@ const val CURRENT_INDEX_KEY = "CURRENT_INDEX_KEY"
 
 class RecipeViewModel(private val savedStateHandle: SavedStateHandle): ViewModel() {
 
-//    init {
-//        GlobalScope.launch(Dispatchers.IO) {
-//            val usersViewModel: UsersViewModel by activityViewModels()
-//            meals = RecipeUtils(usersViewModel).getRecommendDiet()
-//        }
-//    }
-//
-//    var meals: MutableList<Diet>
-//        get() = savedStateHandle.get(CURRENT_INDEX_KEY) ?: meals
-//        set(value) = savedStateHandle.set(CURRENT_INDEX_KEY, value)
-//
-//    fun update() {
-//        GlobalScope.launch(Dispatchers.IO) {
-//            val usersViewModel: UsersViewModel by activityViewModels()
-//            meals = RecipeUtils(usersViewModel).getRecommendDiet()
-//        }
-//    }
+    init {
+        GlobalScope.launch(Dispatchers.IO) {
+
+            meals = RecipeUtils(usersViewModel).getRecommendDiet()
+        }
+    }
+
+    lateinit var usersViewModel: UsersViewModel
+
+    var meals: MutableList<Diet>
+        get() = savedStateHandle.get(CURRENT_INDEX_KEY) ?: meals
+        set(value) = savedStateHandle.set(CURRENT_INDEX_KEY, value)
+
+    fun update() {
+        GlobalScope.launch(Dispatchers.IO) {
+            meals = RecipeUtils(usersViewModel).getRecommendDiet()
+        }
+    }
+
+    fun setUserViewMode(uvm: UsersViewModel){
+        usersViewModel = uvm
+    }
 }
