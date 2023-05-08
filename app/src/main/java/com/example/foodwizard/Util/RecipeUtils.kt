@@ -1,6 +1,8 @@
 package com.example.foodwizard.Util
 
 import android.app.Application
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.fragment.app.activityViewModels
 import com.example.foodwizard.DB.Diet
 import com.example.foodwizard.DB.Nutrition
@@ -21,6 +23,7 @@ class RecipeUtils(val usersViewModel: UsersViewModel) {
     fun getTodayNutrition(): MutableList<Nutrition> {
         var nutrition = mutableListOf<Nutrition>()
         GlobalScope.launch(Dispatchers.IO) {
+            Log.d(TAG, "recipe unil get today global in")
             auth = FirebaseAuth.getInstance()
 
             val user: FirebaseUser? = auth.currentUser
@@ -33,6 +36,7 @@ class RecipeUtils(val usersViewModel: UsersViewModel) {
                 diet.dietResponse?.nutrition?.let { nutrition.add(it) }
             }
         }
+        Log.d(TAG, "recipe unil get today global out")
         return nutrition
     }
 
@@ -50,6 +54,7 @@ class RecipeUtils(val usersViewModel: UsersViewModel) {
         }
         var diets = mutableListOf<Diet>()
         GlobalScope.launch(Dispatchers.IO) {
+            Log.d(TAG, "recipe unil recommend global in")
             var meals = usersViewModel.getAllMeal()
             for(meal in meals){
                 val calo = meal.dietResponse?.nutrition?.calories?.value
@@ -147,6 +152,7 @@ class RecipeUtils(val usersViewModel: UsersViewModel) {
                 }
             }
         }
+        Log.d(TAG, "recipe unil recommend global out")
         return diets
     }
 }
