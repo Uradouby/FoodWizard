@@ -17,12 +17,12 @@ import com.google.firebase.ktx.Firebase
 
 
 //firebase authentication modify
-import { getAuth, updatePassword } from "firebase/auth";
+// import { getAuth, updatePassword } from "firebase/auth";
 
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val TAG = "PERSONALINFO"
+// private const val TAG = "PERSONALINFO"
 
 /**
  * A simple [Fragment] subclass.
@@ -68,17 +68,17 @@ class PersonalInfo : Fragment() {
             Log.d(tag, "Clicked the change password")
             //////////////////////////
             // Firebase change psw  //
-            const auth = getAuth();
-            const user = auth.currentUser;
-
-            // Where is the new password parameter? I just made a random one
-            const newPassword = getASecureRandomPassword();
-            updatePassword(user, newPassword).then(() => {
-                // Update successful.
-            }).catch((error) => {
-            // An error ocurred
-            // ...
-        });
+//            const auth = getAuth();
+//            const user = auth.currentUser;
+//
+//            // Where is the new password parameter? I just made a random one
+//            const newPassword = getASecureRandomPassword();
+//            updatePassword(user, newPassword).then(() => {
+//                // Update successful.
+//            }).catch((error) => {
+//            // An error ocurred
+//            // ...
+//            });
             //////////////////////////
             val fragmentManager = getParentFragmentManager()
             val newFragment = UpdateModal().apply{
@@ -93,14 +93,14 @@ class PersonalInfo : Fragment() {
             Log.d(tag, "Clicked the change email")
             //////////////////////////
             // Firebase change mail //
-            const auth = getAuth();
-            updateEmail(auth.currentUser, "user@example.com").then(() => {
-                // Email updated!
-                // ...
-            }).catch((error) => {
-            // An error occurred
-            // ...
-        });
+//            const auth = getAuth();
+//            updateEmail(auth.currentUser, "user@example.com").then(() => {
+//                // Email updated!
+//                // ...
+//            }).catch((error) => {
+//            // An error occurred
+//            // ...
+//        });
             //////////////////////////
 
 
