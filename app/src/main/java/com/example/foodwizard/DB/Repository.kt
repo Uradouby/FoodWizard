@@ -58,6 +58,10 @@ class Repository private constructor(context: Context){
         return mealDao.getRecommendMeal(lower, higher)
     }
 
+    fun getAllMeal() : MutableList<Diet>{
+        return mealDao.getAllMeal()
+    }
+
 //    fun getRecommendMeal(calories: Int, fat: Int, protein: Int, carbs: Int) : MutableList<Diet>{
 //        return mealDao.getRecommendMeal(calories, fat, protein, carbs)
 //    }

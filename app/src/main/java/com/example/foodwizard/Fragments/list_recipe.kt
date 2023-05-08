@@ -1,5 +1,6 @@
 package com.example.foodwizard.Fragments
 
+import android.content.ContentValues.TAG
 import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
@@ -9,12 +10,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodwizard.Adapter.recipeAdapter
 import com.example.foodwizard.Meal
 import com.example.foodwizard.Util.MarginItemDecoration
+import com.example.foodwizard.Util.RecipeUtils
 import com.example.foodwizard.databinding.FragmentListRecipeBinding
 import com.example.foodwizard.viewModel.RecipeViewModel
 import com.example.foodwizard.viewModel.UsersViewModel
@@ -22,7 +25,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-
 
 class list_recipe : Fragment() {
     private var _binding: FragmentListRecipeBinding? = null
@@ -63,7 +65,7 @@ class list_recipe : Fragment() {
             // TODO : userId swap to current userId
             // Get today's meal
 //            meals= usersViewModel.getRecommendMeal(20, 20, 20, 20)
-            val meals = recipeViewModel.meals
+            val meals = RecipeUtils(usersViewModel).getRecommendDiet()
 
             withContext(Dispatchers.Main) {
                 val adapter = recipeAdapter(meals){

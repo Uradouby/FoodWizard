@@ -22,4 +22,7 @@ interface MealDao {
 //            "AND dietsTable.nutritioncarbsvalue <= :carbs")
 //    fun getRecommendMeal(calories: Int, fat: Int, protein: Int, carbs: Int) : MutableList<Diet>
 
+    @Query("select * from dietsTable")
+    fun getAllMeal() : MutableList<Diet>
+
 }
