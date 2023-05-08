@@ -15,6 +15,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
+
+//firebase authentication modify
+import { getAuth, updatePassword } from "firebase/auth";
+
+
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val TAG = "PERSONALINFO"
@@ -58,8 +63,23 @@ class PersonalInfo : Fragment() {
             }
             newFragment.show(fragmentManager, "changeDiet")
         }
+
         binding.changePassword.setOnClickListener{
             Log.d(tag, "Clicked the change password")
+            //////////////////////////
+            // Firebase change psw  //
+            const auth = getAuth();
+            const user = auth.currentUser;
+
+            // Where is the new password parameter? I just made a random one
+            const newPassword = getASecureRandomPassword();
+            updatePassword(user, newPassword).then(() => {
+                // Update successful.
+            }).catch((error) => {
+            // An error ocurred
+            // ...
+        });
+            //////////////////////////
             val fragmentManager = getParentFragmentManager()
             val newFragment = UpdateModal().apply{
                 arguments = Bundle().apply {
@@ -68,8 +88,24 @@ class PersonalInfo : Fragment() {
             }
             newFragment.show(fragmentManager, "password")
         }
+
         binding.changeEmail.setOnClickListener{
             Log.d(tag, "Clicked the change email")
+            //////////////////////////
+            // Firebase change mail //
+            const auth = getAuth();
+            updateEmail(auth.currentUser, "user@example.com").then(() => {
+                // Email updated!
+                // ...
+            }).catch((error) => {
+            // An error occurred
+            // ...
+        });
+            //////////////////////////
+
+
+
+
             val fragmentManager = getParentFragmentManager()
             val newFragment = UpdateModal().apply{
                 arguments = Bundle().apply {
