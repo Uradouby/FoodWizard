@@ -11,6 +11,7 @@ data class Diet(
     @ColumnInfo(name = "diet_title") var dietTitle: String,
     @ColumnInfo(name = "diet_image_url") var dietImage: String,
     @ColumnInfo(name = "dietResponse") var dietResponse: DietResponse?,
+//    @Embedded var dietResponse: DietResponse?,
     @ColumnInfo(name = "date") var date: String,
     @ColumnInfo(name = "description") var description: String,
     @ColumnInfo(name = "userId") var userId: String,
@@ -49,6 +50,10 @@ data class Nutrition(
     @ColumnInfo(name = "fat") var fat: Nutrient,
     @ColumnInfo(name = "protein") var protein: Nutrient,
     @ColumnInfo(name = "carbs") var carbs: Nutrient,
+//    @Embedded(prefix = "calories") var calories: Nutrient,
+//    @Embedded(prefix = "fat") var fat: Nutrient,
+//    @Embedded(prefix = "protein") var protein: Nutrient,
+//    @Embedded(prefix = "carbs") var carbs: Nutrient,
 ){
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
