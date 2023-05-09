@@ -24,7 +24,7 @@ class UsersViewModel(val app: Application): AndroidViewModel(app) {
         return repository.getTodayMeal(userId,today)
     }
 
-    fun getAllMeal() : List<Diet>{
+    fun getAllMeal() : MutableList<Diet>{
         return repository.getAllMeal()
     }
 

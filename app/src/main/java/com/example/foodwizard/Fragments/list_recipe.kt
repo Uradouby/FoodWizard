@@ -66,9 +66,13 @@ class list_recipe : Fragment() {
             val meals = recipeViewModel.meals
 
             withContext(Dispatchers.Main) {
-                val adapter = recipeAdapter(meals){
+                val adapter = recipeAdapter(meals){meal ->
                     //findNavController().navigate(R.id.nav_detail_meal)
                     val newFragment=detail_recipe()
+                    val bundle = Bundle().apply {
+                        putSerializable("meal", meal)
+                    }
+                    newFragment.arguments = bundle
                     fragmentManager?.let { newFragment.show(it, "dialog") }
                 }
 
