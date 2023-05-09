@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodwizard.Adapter.recipeAdapter
+import com.example.foodwizard.DB.Diet
 import com.example.foodwizard.Meal
 import com.example.foodwizard.Util.MarginItemDecoration
 import com.example.foodwizard.Util.RecipeUtils
@@ -66,7 +67,6 @@ class list_recipe : Fragment() {
             // Get today's meal
 //            meals= usersViewModel.getRecommendMeal(20, 20, 20, 20)
             val meals = RecipeUtils(usersViewModel).getRecommendDiet()
-
             withContext(Dispatchers.Main) {
                 val adapter = recipeAdapter(meals){
                     //findNavController().navigate(R.id.nav_detail_meal)
