@@ -7,9 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="blank_box">#DEF3F1</color>
     <color name="welcome_background">#0E6D68</color>
     <color name="button_color">#31B5AD</color>
     <color name="text_background">#D6F0CA</color>
+    <color name="text_background_received">#BBEAA7</color>
     <color name="main_background">#C9F7F4</color>
     <color name="navigation_color">#7985A3</color>
     <color name="item_default">#A5F29E</color>
