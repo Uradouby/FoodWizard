@@ -55,7 +55,8 @@
     <string name="passwordLabel">password</string>
     <string name="log_out">Log out</string>
     <string name="hover_button_image">Hover Button Image</string>
-
+    <!--personal info-->
+    <string name="personal_info">Personal\nInformation</string>
     <!--speech -->
     <string name="send_message_box_hint">What would you like to ask?</string>
 

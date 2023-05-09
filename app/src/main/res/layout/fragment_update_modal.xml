@@ -9,10 +9,35 @@
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:clipToOutline="true"
+        android:background="@color/background_yellow"
         android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="218dp"
+            android:layout_height="132dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="84dp"
+            android:src="@drawable/flowerbg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/item_default" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            app:tint="@color/item_selected"
+            android:layout_width="347dp"
+            android:layout_height="233dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="156dp"
+            android:src="@drawable/flowerbg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/modalLabel"
+            style="@style/wizard_text"
             android:layout_width="197dp"
             android:layout_height="33dp"
             android:layout_marginTop="100dp"
@@ -26,8 +51,9 @@
 
         <Button
             android:id="@+id/updateButton"
-            android:layout_width="104dp"
-            android:layout_height="67dp"
+            style="@style/wizard_button"
+            android:layout_width="243dp"
+            android:layout_height="72dp"
             android:layout_marginBottom="156dp"
             android:text="@string/update"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -42,6 +68,7 @@
             android:layout_width="234dp"
             android:layout_height="48dp"
             android:text="TextView"
+            style="@style/wizard_text"
             android:textAlignment="center"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -52,15 +79,24 @@
 
         <EditText
             android:id="@+id/input"
-            android:layout_width="228dp"
-            android:layout_height="76dp"
-            android:layout_marginTop="36dp"
+            android:layout_width="392dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="92dp"
             android:ems="10"
+            android:hint="Input Here"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.473"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/typeLabel" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/glutten"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

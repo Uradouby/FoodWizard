@@ -16,5 +16,6 @@
     <color name="navigation_color">#7985A3</color>
     <color name="item_default">#A5F29E</color>
     <color name="item_selected">#DCF29E</color>
+    <color name="background_yellow">#EEFACE</color>
 
 </resources>
