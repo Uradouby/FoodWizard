@@ -19,6 +19,7 @@ import androidx.fragment.app.*
 import com.example.foodwizard.Diet.DietRecognition
 import com.example.foodwizard.Util.PictureUtils.Companion.getScaledBitmap
 import com.example.foodwizard.databinding.FragmentUploadmealBinding
+import com.example.foodwizard.viewModel.RecipeViewModel
 import com.example.foodwizard.viewModel.UsersViewModel
 import com.google.android.gms.tasks.Task
 import com.google.firebase.ktx.Firebase
@@ -105,6 +106,10 @@ class uploadmeal : DialogFragment() {
                     setFragmentResult("requestKey1", bundleOf("bundleKey1" to result))
                     dismiss()
                 }
+                val recipeViewModel: RecipeViewModel by viewModels()
+                val usersViewModel: UsersViewModel by activityViewModels()
+                recipeViewModel.initialize(usersViewModel)
+                recipeViewModel.update()
             }.addOnFailureListener { exception ->
                 // Handle failed upload
                 Log.e("uploadMeal", "Upload Meal Image Error")
