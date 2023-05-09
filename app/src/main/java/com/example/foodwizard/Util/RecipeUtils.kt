@@ -37,6 +37,7 @@ class RecipeUtils(val usersViewModel: UsersViewModel) {
             }
         }
         Log.d(TAG, "recipe unil get today global out")
+        println(nutrition)
         return nutrition
     }
 
@@ -152,6 +153,7 @@ class RecipeUtils(val usersViewModel: UsersViewModel) {
                 }
             }
         }
+        println(diets)
         Log.d(TAG, "recipe unil recommend global out")
         return diets
     }

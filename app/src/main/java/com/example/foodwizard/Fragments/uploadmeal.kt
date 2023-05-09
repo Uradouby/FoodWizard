@@ -18,7 +18,6 @@ import androidx.core.view.doOnLayout
 import androidx.fragment.app.*
 import com.example.foodwizard.Diet.DietRecognition
 import com.example.foodwizard.Util.PictureUtils.Companion.getScaledBitmap
-import com.example.foodwizard.Util.RecipeUtils
 import com.example.foodwizard.databinding.FragmentUploadmealBinding
 import com.example.foodwizard.viewModel.RecipeViewModel
 import com.example.foodwizard.viewModel.UsersViewModel
@@ -109,7 +108,7 @@ class uploadmeal : DialogFragment() {
                 }
                 val recipeViewModel: RecipeViewModel by viewModels()
                 val usersViewModel: UsersViewModel by activityViewModels()
-                recipeViewModel.setUserViewMode(usersViewModel)
+                recipeViewModel.initialize(usersViewModel)
                 recipeViewModel.update()
             }.addOnFailureListener { exception ->
                 // Handle failed upload

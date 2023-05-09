@@ -1,11 +1,8 @@
 package com.example.foodwizard.viewModel
 
-import android.app.Application
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.foodwizard.DB.Diet
-import com.example.foodwizard.DB.Repository
 import com.example.foodwizard.Util.RecipeUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -14,13 +11,6 @@ import kotlinx.coroutines.launch
 const val CURRENT_INDEX_KEY = "CURRENT_INDEX_KEY"
 
 class RecipeViewModel(private val savedStateHandle: SavedStateHandle): ViewModel() {
-
-    init {
-        GlobalScope.launch(Dispatchers.IO) {
-
-            meals = RecipeUtils(usersViewModel).getRecommendDiet()
-        }
-    }
 
     lateinit var usersViewModel: UsersViewModel
 
@@ -34,7 +24,10 @@ class RecipeViewModel(private val savedStateHandle: SavedStateHandle): ViewModel
         }
     }
 
-    fun setUserViewMode(uvm: UsersViewModel){
+    fun initialize(uvm: UsersViewModel){
         usersViewModel = uvm
+        GlobalScope.launch(Dispatchers.IO) {
+            meals = RecipeUtils(usersViewModel).getRecommendDiet()
+        }
     }
 }
