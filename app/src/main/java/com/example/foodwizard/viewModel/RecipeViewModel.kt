@@ -9,6 +9,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 const val CURRENT_INDEX_KEY = "CURRENT_INDEX_KEY"
+const val INITIALIZED = "INITIALIZED"
 
 class RecipeViewModel(private val savedStateHandle: SavedStateHandle): ViewModel() {
 
@@ -17,6 +18,10 @@ class RecipeViewModel(private val savedStateHandle: SavedStateHandle): ViewModel
     var meals: MutableList<Diet>
         get() = savedStateHandle.get(CURRENT_INDEX_KEY) ?: meals
         set(value) = savedStateHandle.set(CURRENT_INDEX_KEY, value)
+
+    var initialized: Boolean
+        get() = savedStateHandle.get(INITIALIZED) ?: false
+        set(value) = savedStateHandle.set(INITIALIZED, value)
 
     fun update() {
         GlobalScope.launch(Dispatchers.IO) {
@@ -27,7 +32,10 @@ class RecipeViewModel(private val savedStateHandle: SavedStateHandle): ViewModel
     fun initialize(uvm: UsersViewModel){
         usersViewModel = uvm
         GlobalScope.launch(Dispatchers.IO) {
-            meals = RecipeUtils(usersViewModel).getRecommendDiet()
+            if(!initialized){
+                meals = RecipeUtils(usersViewModel).getRecommendDiet()
+                initialized = true
+            }
         }
     }
 }
