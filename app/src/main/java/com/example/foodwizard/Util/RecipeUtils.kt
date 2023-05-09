@@ -65,21 +65,21 @@ class RecipeUtils(val usersViewModel: UsersViewModel) {
                     if(f != null){
                         if(pro != null){
                             if(carb != null){
-                                if(calo <= calories && f <= fat && pro <= protein && carb <= carbs){
+                                if(300 - calo <= calories && 100 - f <= fat && 50 - pro <= protein && 150 - carb <= carbs){
                                     diets.add(meal)
                                 }
                             } else {
-                                if(calo <= calories && f <= fat && pro <= protein){
+                                if(300 - calo <= calories && 100 - f <= fat && 50 - pro <= protein){
                                     diets.add(meal)
                                 }
                             }
                         } else {
                             if(carb != null){
-                                if(calo <= calories && f <= fat && carb <= carbs){
+                                if(300 - calo <= calories && 100 - f <= fat && 150 - carb <= carbs){
                                     diets.add(meal)
                                 }
                             } else {
-                                if(calo <= calories && f <= fat){
+                                if(300 - calo <= calories && 100 - f <= fat){
                                     diets.add(meal)
                                 }
                             }
@@ -87,21 +87,21 @@ class RecipeUtils(val usersViewModel: UsersViewModel) {
                     } else {
                         if(pro != null){
                             if(carb != null){
-                                if(calo <= calories&& pro <= protein && carb <= carbs){
+                                if(300 - calo <= calories&& 50 - pro <= protein && 150 - carb <= carbs){
                                     diets.add(meal)
                                 }
                             } else {
-                                if(calo <= calories&& pro <= protein){
+                                if(300 - calo <= calories&& 50 - pro <= protein){
                                     diets.add(meal)
                                 }
                             }
                         } else {
                             if(carb != null){
-                                if(calo <= calories&& carb <= carbs){
+                                if(300 - calo <= calories&& 150 - carb <= carbs){
                                     diets.add(meal)
                                 }
                             } else {
-                                if(calo <= calories){
+                                if(300 - calo <= calories){
                                     diets.add(meal)
                                 }
                             }
@@ -111,21 +111,21 @@ class RecipeUtils(val usersViewModel: UsersViewModel) {
                     if(f != null){
                         if(pro != null){
                             if(carb != null){
-                                if(f <= fat && pro <= protein && carb <= carbs){
+                                if(100 - f <= fat && 50 - pro <= protein && 150 - carb <= carbs){
                                     diets.add(meal)
                                 }
                             } else {
-                                if(f <= fat && pro <= protein){
+                                if(100 - f <= fat && 50 - pro <= protein){
                                     diets.add(meal)
                                 }
                             }
                         } else {
                             if(carb != null){
-                                if(f <= fat && carb <= carbs){
+                                if(100 - f <= fat && 150 - carb <= carbs){
                                     diets.add(meal)
                                 }
                             } else {
-                                if(f <= fat){
+                                if(100 - f <= fat){
                                     diets.add(meal)
                                 }
                             }
@@ -133,17 +133,17 @@ class RecipeUtils(val usersViewModel: UsersViewModel) {
                     } else {
                         if(pro != null){
                             if(carb != null){
-                                if(pro <= protein && carb <= carbs){
+                                if(50 - pro <= protein && 150 - carb <= carbs){
                                     diets.add(meal)
                                 }
                             } else {
-                                if(pro <= protein){
+                                if(50 - pro <= protein){
                                     diets.add(meal)
                                 }
                             }
                         } else {
                             if(carb != null){
-                                if(carb <= carbs){
+                                if(150 - carb <= carbs){
                                     diets.add(meal)
                                 }
                             }
