@@ -1,7 +1,5 @@
 package com.example.foodwizard.Fragments
 
-import android.content.ContentValues.TAG
-import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +15,6 @@ import com.example.foodwizard.Adapter.recipeAdapter
 import com.example.foodwizard.DB.Diet
 import com.example.foodwizard.Meal
 import com.example.foodwizard.Util.MarginItemDecoration
-import com.example.foodwizard.Util.RecipeUtils
 import com.example.foodwizard.databinding.FragmentListRecipeBinding
 import com.example.foodwizard.viewModel.RecipeViewModel
 import com.example.foodwizard.viewModel.UsersViewModel
@@ -66,11 +62,17 @@ class list_recipe : Fragment() {
             // TODO : userId swap to current userId
             // Get today's meal
 //            meals= usersViewModel.getRecommendMeal(20, 20, 20, 20)
-            val meals = RecipeUtils(usersViewModel).getRecommendDiet()
+//            val meals = RecipeUtils(usersViewModel).getRecommendDiet()
+            recipeViewModel.initialize(usersViewModel)
+            val meals = recipeViewModel.meals
             withContext(Dispatchers.Main) {
-                val adapter = recipeAdapter(meals){
+                val adapter = recipeAdapter(meals){meal ->
                     //findNavController().navigate(R.id.nav_detail_meal)
                     val newFragment=detail_recipe()
+                    val bundle = Bundle().apply {
+                        putSerializable("meal", meal)
+                    }
+                    newFragment.arguments = bundle
                     fragmentManager?.let { newFragment.show(it, "dialog") }
                 }
 
