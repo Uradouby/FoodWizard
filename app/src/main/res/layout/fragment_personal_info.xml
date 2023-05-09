@@ -23,7 +23,7 @@
         android:layout_height="165dp"
         android:layout_alignParentLeft="true"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="6dp"
         android:gravity="top"
         android:text="@string/personal_info"
         android:textAppearance="@style/main_text"

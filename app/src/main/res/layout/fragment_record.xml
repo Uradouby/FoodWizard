@@ -17,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/flowerbg" />
 
+
     <TextView
         android:id="@+id/title"
         android:layout_width="300dp"

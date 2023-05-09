@@ -84,6 +84,7 @@
             android:layout_marginTop="92dp"
             android:ems="10"
             android:hint="Input Here"
+            android:padding="15dp"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.473"
