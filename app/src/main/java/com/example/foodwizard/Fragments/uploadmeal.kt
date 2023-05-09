@@ -107,8 +107,10 @@ class uploadmeal : DialogFragment() {
                     setFragmentResult("requestKey1", bundleOf("bundleKey1" to result))
                     dismiss()
                 }
-//                val recipeViewModel: RecipeViewModel by viewModels()
-//                recipeViewModel.update()
+                val recipeViewModel: RecipeViewModel by viewModels()
+                val usersViewModel: UsersViewModel by activityViewModels()
+                recipeViewModel.setUserViewMode(usersViewModel)
+                recipeViewModel.update()
             }.addOnFailureListener { exception ->
                 // Handle failed upload
                 Log.e("uploadMeal", "Upload Meal Image Error")

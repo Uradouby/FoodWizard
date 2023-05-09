@@ -65,7 +65,9 @@ class list_recipe : Fragment() {
             // TODO : userId swap to current userId
             // Get today's meal
 //            meals= usersViewModel.getRecommendMeal(20, 20, 20, 20)
-            val meals = RecipeUtils(usersViewModel).getRecommendDiet()
+//            val meals = RecipeUtils(usersViewModel).getRecommendDiet()
+            recipeViewModel.setUserViewMode(usersViewModel)
+            val meals = recipeViewModel.meals
 
             withContext(Dispatchers.Main) {
                 val adapter = recipeAdapter(meals){
