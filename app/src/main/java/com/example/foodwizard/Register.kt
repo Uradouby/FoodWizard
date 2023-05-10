@@ -16,10 +16,13 @@ import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.lang.ref.Reference
+import java.util.Objects
 
 class Register : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -48,6 +51,8 @@ class Register : AppCompatActivity() {
             val password = binding.password.text.toString()
             val passwordConfirm = binding.repeatpassword.text.toString()
 
+
+
             if (userName.isEmpty() || email.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty()) { //check if the fields are empty
                 Toast.makeText(applicationContext, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }
@@ -69,13 +74,19 @@ class Register : AppCompatActivity() {
                     val user: FirebaseUser? = auth.currentUser
                     val userId: String = user!!.uid
 
+
                     databaseReference =
                         FirebaseDatabase.getInstance().getReference("Users").child(userId)
 
-                    val hashMap: HashMap<String, String> = HashMap()
+
+                    val hashMap: HashMap<String,Any > = HashMap()
                     hashMap.put("userId", userId)
                     hashMap.put("userName", userName)
-//                    hashMap.put("userId",userId)
+                    hashMap.put("email",email)
+                    hashMap.put("calory",0)
+                    hashMap.put("fat",0)
+                    hashMap.put("carb",0)
+                    hashMap.put("protein",0)
 
                     databaseReference.setValue(hashMap).addOnCompleteListener(this) {
                         if (it.isSuccessful) {

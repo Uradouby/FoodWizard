@@ -40,7 +40,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_message"
-                android:layout_width="0dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:background="@color/welcome_background"
