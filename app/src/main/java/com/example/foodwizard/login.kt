@@ -106,14 +106,14 @@ class login : AppCompatActivity() {
             println("Download error")
         }
 
-
-
-
-
         binding = ActivityLoginBinding.inflate(layoutInflater)
-        binding.title.text = Html.fromHtml(
+        /*binding.title.text = Html.fromHtml(
             "<font color=${Color.parseColor("#AEFC08")}>L</font>" +
                     "<font color=${Color.parseColor("#06F23A")}>og In</font>"
+        )*/
+        binding.title.text = Html.fromHtml(
+            "<font color=${Color.parseColor("#AEFC08")}>"+binding.title.text[0]+"</font>" +
+                    "<font color=${Color.parseColor("#06F23A")}>"+binding.title.text.substring(1)+"</font>"
         )
 
 //        GlobalScope.launch(Dispatchers.IO) {
@@ -127,6 +127,7 @@ class login : AppCompatActivity() {
 
         binding.login.setOnClickListener {
 //            val userName = binding.account.text.toString()
+
             val email = binding.email.text.toString()
             val password = binding.password.text.toString()
 //            val user: FirebaseUser? = auth.currentUser

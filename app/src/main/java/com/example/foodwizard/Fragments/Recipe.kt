@@ -1,6 +1,8 @@
 package com.example.foodwizard.Fragments
 
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +31,16 @@ class Recipe : Fragment() {
     ): View? {
         _binding = FragmentRecipeBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
+
+        var tmp:String=""
+        var tokens=binding.title.text.split("\n")
+        for (i in tokens.indices)
+        {
+            tmp+="<font color=${Color.parseColor("#45C561")}>"+tokens[i][0]+"</font>" +
+                    "<font color=${Color.parseColor("#0E6D68")}>"+tokens[i].substring(1)+"\n</font>"
+        }
+        binding.title.text = Html.fromHtml(tmp)
+
         return binding.root
     }
     override fun onDestroyView() {

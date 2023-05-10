@@ -33,10 +33,10 @@ class Register : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityRegisterBinding.inflate(layoutInflater)
 
-        binding.title.text= Html.fromHtml(
-            "<font color=${Color.parseColor("#AEFC08")}>R</font>" +
-                    "<font color=${Color.parseColor("#06F23A")}>egister</font>")
-
+        binding.title.text = Html.fromHtml(
+            "<font color=${Color.parseColor("#AEFC08")}>"+binding.title.text[0]+"</font>" +
+                    "<font color=${Color.parseColor("#06F23A")}>"+binding.title.text.substring(1)+"</font>"
+        )
         auth = FirebaseAuth.getInstance()
 
         binding.back.setOnClickListener {

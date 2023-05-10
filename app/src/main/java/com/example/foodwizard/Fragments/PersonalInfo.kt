@@ -1,34 +1,27 @@
 package com.example.foodwizard.Fragments
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.foodwizard.R
-import com.example.foodwizard.databinding.FragmentNavigationBinding
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import com.example.foodwizard.databinding.FragmentPersonalInfoBinding
 import com.example.foodwizard.login
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 
 //firebase authentication modify
 // import { getAuth, updatePassword } from "firebase/auth";
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-// private const val TAG = "PERSONALINFO"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [PersonalInfo.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class PersonalInfo : Fragment() {
     // TODO: Rename and change types of parameters
     private var _binding: FragmentPersonalInfoBinding? = null
@@ -51,23 +44,30 @@ class PersonalInfo : Fragment() {
         Log.d("Personal INFO", "We in here");
         _binding = FragmentPersonalInfoBinding.inflate(inflater, container, false)
 
+        var tmp:String=""
+        var tokens=binding.title.text.split("\n")
+        for (i in tokens.indices)
+        {
+            tmp+="<font color=${Color.parseColor("#45C561")}>"+tokens[i][0]+"</font>" +
+                    "<font color=${Color.parseColor("#0E6D68")}>"+tokens[i].substring(1)+"\n</font>"
+        }
+        binding.title.text = Html.fromHtml(tmp)
 
-
-        binding.changeDietPlanButton.setOnClickListener{
+        binding.changeDietPlanButton.setOnClickListener {
             Log.d(tag, "Clicked the change Diet Plan")
             val fragmentManager = getParentFragmentManager()
-            val newFragment = UpdateModal().apply{
-                arguments = Bundle().apply {
-                    putString("type", "dietPlan")
+            val newFragment = updatePlan()
+            fragmentManager?.let {
+                if (newFragment != null) {
+                    newFragment.show(it, "updateplan")
                 }
             }
-            newFragment.show(fragmentManager, "changeDiet")
         }
 
-        binding.changePassword.setOnClickListener{
-            Log.d(tag, "Clicked the change password")
-            //////////////////////////
-            // Firebase change psw  //
+            binding.changePassword.setOnClickListener {
+                Log.d(tag, "Clicked the change password")
+                //////////////////////////
+                // Firebase change psw  //
 //            const auth = getAuth();
 //            const user = auth.currentUser;
 //
@@ -79,20 +79,20 @@ class PersonalInfo : Fragment() {
 //            // An error ocurred
 //            // ...
 //            });
-            //////////////////////////
-            val fragmentManager = getParentFragmentManager()
-            val newFragment = UpdateModal().apply{
-                arguments = Bundle().apply {
-                    putString("type", "password")
+                //////////////////////////
+                val fragmentManager = getParentFragmentManager()
+                val newFragment = UpdateModal().apply {
+                    arguments = Bundle().apply {
+                        putString("type", "password")
+                    }
                 }
+                newFragment.show(fragmentManager, "password")
             }
-            newFragment.show(fragmentManager, "password")
-        }
 
-        binding.changeEmail.setOnClickListener{
-            Log.d(tag, "Clicked the change email")
-            //////////////////////////
-            // Firebase change mail //
+            binding.changeEmail.setOnClickListener {
+                Log.d(tag, "Clicked the change email")
+                //////////////////////////
+                // Firebase change mail //
 //            const auth = getAuth();
 //            updateEmail(auth.currentUser, "user@example.com").then(() => {
 //                // Email updated!
@@ -101,28 +101,27 @@ class PersonalInfo : Fragment() {
 //            // An error occurred
 //            // ...
 //        });
-            //////////////////////////
+                //////////////////////////
 
 
-
-
-            val fragmentManager = getParentFragmentManager()
-            val newFragment = UpdateModal().apply{
-                arguments = Bundle().apply {
-                    putString("type", "email")
+                val fragmentManager = getParentFragmentManager()
+                val newFragment = UpdateModal().apply {
+                    arguments = Bundle().apply {
+                        putString("type", "email")
+                    }
                 }
+                newFragment.show(fragmentManager, "email")
             }
-            newFragment.show(fragmentManager, "email")
-        }
 
-        binding.logoutButton.setOnClickListener{
-            FirebaseAuth.getInstance().signOut()
-            val intent = Intent(activity, login::class.java)
-            startActivity(intent)
-        }
+            binding.logoutButton.setOnClickListener {
+                setFragmentResult("log-out", bundleOf("bundleKey2" to ""))
+                FirebaseAuth.getInstance().signOut()
+                val intent = Intent(activity, login::class.java)
+                startActivity(intent)
+            }
 
-        return binding.root
-    }
+            return binding.root
+        }
 
 
 }

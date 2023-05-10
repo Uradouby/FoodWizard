@@ -1,6 +1,8 @@
 package com.example.foodwizard.Fragments
 
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -34,6 +36,15 @@ class Record : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentRecordBinding.inflate(inflater, container, false)
+        var tmp:String=""
+        var tokens=binding.title.text.split("\n")
+        for (i in tokens.indices)
+        {
+            tmp+="<font color=${Color.parseColor("#45C561")}>"+tokens[i][0]+"</font>" +
+                    "<font color=${Color.parseColor("#0E6D68")}>"+tokens[i].substring(1)+"\n</font>"
+        }
+        binding.title.text = Html.fromHtml(tmp)
+
         binding.addFab.setOnClickListener(){
             val newFragment=uploadmeal()
             fragmentManager?.let { newFragment.show(it, "dialog") }

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.UpdateModal">
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:clipToOutline="true"
+        android:background="@color/background_yellow"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="218dp"
+            android:layout_height="132dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="84dp"
+            android:src="@drawable/flowerbg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/item_default" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            app:tint="@color/item_selected"
+            android:layout_width="347dp"
+            android:layout_height="233dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="156dp"
+            android:src="@drawable/flowerbg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/myplan"
+            android:layout_width="221dp"
+            android:layout_height="78dp"
+            android:layout_marginTop="64dp"
+            android:text="@string/my_plan"
+            android:textAlignment="center"
+            android:textAppearance="@style/main_text"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/glutten"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/calory_input"
+            android:layout_width="212dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="88dp"
+            android:ems="10"
+            android:hint="Input Here"
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calory_intake" />
+
+        <TextView
+            android:id="@+id/calory_intake"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/calory_intake"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/myplan"
+            style="@style/wizard_text" />
+
+        <ImageView
+            android:id="@+id/calory"
+            android:layout_width="49dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="60dp"
+            app:layout_constraintEnd_toStartOf="@+id/calory_input"
+            app:layout_constraintHorizontal_bias="0.844"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calory_intake"
+            app:srcCompat="@drawable/calories" />
+
+
+        <TextView
+            android:id="@+id/fat_intake"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/fat_intake"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calory_input"
+            style="@style/wizard_text" />
+
+        <ImageView
+            android:id="@+id/fat"
+            android:layout_width="49dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="60dp"
+            app:layout_constraintEnd_toStartOf="@+id/fat_input"
+            app:layout_constraintHorizontal_bias="0.844"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fat_intake"
+            app:srcCompat="@drawable/fat" />
+
+        <EditText
+            android:id="@+id/fat_input"
+            android:layout_width="212dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="88dp"
+            android:ems="10"
+            android:hint="Input Here"
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fat_intake" />
+
+        <TextView
+            android:id="@+id/carb_intake"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/carb_intake"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fat_input"
+            style="@style/wizard_text" />
+
+        <ImageView
+            android:id="@+id/Carb"
+            android:layout_width="49dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="60dp"
+            app:layout_constraintEnd_toStartOf="@+id/carb_input"
+            app:layout_constraintHorizontal_bias="0.844"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/carb_intake"
+            app:srcCompat="@drawable/carb" />
+
+        <EditText
+            android:id="@+id/carb_input"
+            android:layout_width="212dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="88dp"
+            android:ems="10"
+            android:hint="Input Here"
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/carb_intake" />
+
+        <TextView
+            android:id="@+id/protein_intake"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/protein_intake"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/carb_input"
+            style="@style/wizard_text" />
+
+        <ImageView
+            android:id="@+id/protein"
+            android:layout_width="49dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="60dp"
+            app:layout_constraintEnd_toStartOf="@+id/carb_input"
+            app:layout_constraintHorizontal_bias="0.844"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/protein_intake"
+            app:srcCompat="@drawable/protein" />
+
+        <EditText
+            android:id="@+id/protein_input"
+            android:layout_width="212dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="88dp"
+            android:ems="10"
+            android:hint="Input Here"
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/protein_intake" />
+
+        <Button
+            android:id="@+id/updateButton"
+            style="@style/wizard_button"
+            android:layout_width="243dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/update"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/protein_input" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
