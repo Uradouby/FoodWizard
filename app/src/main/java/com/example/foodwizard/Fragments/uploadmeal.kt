@@ -32,6 +32,7 @@ import java.util.*
 
 class uploadmeal : DialogFragment() {
     private var _binding: FragmentUploadmealBinding? = null
+    private val recipeViewModel: RecipeViewModel by viewModels()
     private var photoName:String? = null
     private var imageURL:String? = null
 
