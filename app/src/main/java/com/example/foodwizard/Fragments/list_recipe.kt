@@ -61,8 +61,6 @@ class list_recipe : Fragment() {
             val usersViewModel: UsersViewModel by activityViewModels()
             // TODO : userId swap to current userId
             // Get today's meal
-//            meals= usersViewModel.getRecommendMeal(20, 20, 20, 20)
-//            val meals = RecipeUtils(usersViewModel).getRecommendDiet()
             recipeViewModel.initialize(usersViewModel)
             val meals = recipeViewModel.meals
             Log.i("get", "from view model get: " + meals)
