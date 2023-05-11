@@ -41,10 +41,11 @@ class list_shop : Fragment() {
             MarginItemDecoration(64)
         )
 //        val asinList = listOf("B08ZFPQGK5", "B00OO77BL6", "B07K77SH7F", "B0829QQHCS")
-        val asinList = listOf("B08ZFPQGK5", "B00OO77BL6")
+        val asinList = listOf("B08ZFPQGK5", "B00OO77BL6", "B07K77SH7F", "B08D7JM1X2", "B0829QQHCS",
+            "B073S4TP58", "B019HV38RO", "B079LY41VY", "B09RGMRWM7", "B0B2N5GHMG")
         val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
         // add your own key here!
-        val myapi = "7E7D26AB23B04E929FEEE6151E90708011"
+        val myapi = "7E7D26AB23B04E929FEEE6151E907080"
         val mytype = "product"
         val mydomain = "amazon.com"
 
