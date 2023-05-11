@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
@@ -89,6 +90,11 @@ class PersonalInfo : Fragment() {
             }
 
             binding.logoutButton.setOnClickListener {
+                Toast.makeText(
+                    context,
+                    "Logged out",
+                    Toast.LENGTH_SHORT,
+                ).show()
                 setFragmentResult("log-out", bundleOf("bundleKey2" to ""))
                 FirebaseAuth.getInstance().signOut()
                 val intent = Intent(activity, login::class.java)

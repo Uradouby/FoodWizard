@@ -1,6 +1,5 @@
 package com.example.foodwizard.Fragments
 import android.app.Dialog
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
@@ -13,18 +12,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.activityViewModels
-import com.example.foodwizard.DB.Repository
 import com.example.foodwizard.R
-import com.example.foodwizard.login
-import com.example.foodwizard.viewModel.UsersViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
 class UpdateModal() : DialogFragment() {
@@ -39,41 +30,41 @@ class UpdateModal() : DialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout to use as dialog or embedded fragment
-        val type = arguments?.getString("type");
+        val type = arguments?.getString("type")
         auth = FirebaseAuth.getInstance()
         // looked at the firebase docs here https://firebase.google.com/docs/auth/android/start
          val user = Firebase.auth.currentUser
 
-        var label: String = getString(R.string.dietPlanLabel);
+        var label: String = getString(R.string.dietPlanLabel)
 
         var inputTypeToSet = InputType.TYPE_CLASS_NUMBER
         var inputHint = ""
         var icon = 0
         if(type == "password"){
             inputTypeToSet = (InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
-            inputHint = getString(R.string.title_activity_register_password);
-            label = getString(R.string.passwordLabel);
+            inputHint = getString(R.string.title_activity_register_password)
+            label = getString(R.string.passwordLabel)
             // looked at https://stackoverflow.com/questions/61487006/how-can-i-get-drawable-in-kotlin to see how you get a drawable in a fragment
             icon =  R.drawable.lock
         }else if(type == "email"){
-            inputHint = getString(R.string.title_activity_register_email);
+            inputHint = getString(R.string.title_activity_register_email)
             inputTypeToSet = (InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
-            label = getString(R.string.emailLabel);
+            label = getString(R.string.emailLabel)
             icon =  R.drawable.account
-            Log.d("icon", icon.toString());
+            Log.d("icon", icon.toString())
         }
 
         val view = inflater.inflate(R.layout.fragment_update_modal, container, false)
 
         // Set up the text view based on what is being updated
         nameTextView = view.findViewById(R.id.typeLabel)
-        nameTextView.text = label;
+        nameTextView.text = label
 
         inputView = view.findViewById(R.id.input)
         inputView.inputType = inputTypeToSet
         inputView.hint = inputHint
         // looked at https://stackoverflow.com/questions/22297073/how-to-programmatically-set-drawableright-on-android-edittext
-        inputView.setCompoundDrawablesWithIntrinsicBounds(icon, 0, 0, 0);
+        inputView.setCompoundDrawablesWithIntrinsicBounds(icon, 0, 0, 0)
 
         enterButton = view.findViewById(R.id.updateButton)
 
@@ -84,7 +75,7 @@ class UpdateModal() : DialogFragment() {
             if(input.isNullOrEmpty()){
                 Toast.makeText(
                     activity,
-                    "Input is null or empty",
+                    getString(R.string.empty_input),
                     Toast.LENGTH_SHORT
                 ).show()
             }else {
@@ -92,7 +83,7 @@ class UpdateModal() : DialogFragment() {
                     if(input.length < 6){
                         Toast.makeText(
                             activity,
-                            "Change password failed, password length must be at least 6",
+                            getString(R.string.password_too_short),
                             Toast.LENGTH_SHORT
                         ).show()
                     }else{
@@ -101,14 +92,14 @@ class UpdateModal() : DialogFragment() {
                                 Log.d("In here", "It was sucessful")
                                 Toast.makeText(
                                     activity,
-                                    "Successfully changed password",
+                                    getString(R.string.password_change_success),
                                     Toast.LENGTH_SHORT
                                 ).show()
                             } else {
                                 Log.d("In here", "It failed")
                                 Toast.makeText(
                                     activity,
-                                    "Change password failed",
+                                    getString(R.string.password_change_fail),
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
@@ -120,7 +111,7 @@ class UpdateModal() : DialogFragment() {
                     if(!input.isValidEmail()){
                         Toast.makeText(
                             activity,
-                            "Change email failed, not a valid email address",
+                            getString(R.string.email_change_fail),
                             Toast.LENGTH_SHORT
                         ).show()
                     }else{
@@ -129,14 +120,14 @@ class UpdateModal() : DialogFragment() {
                                 Log.d("In here", "It was sucessful")
                                 Toast.makeText(
                                     activity,
-                                    "Successfully changed email",
+                                    getString(R.string.email_change_success),
                                     Toast.LENGTH_SHORT
                                 ).show()
                             } else {
                                 Log.d("In here", "It failed")
                                 Toast.makeText(
                                     activity,
-                                    "Change email failed",
+                                    getString(R.string.general_email_change_fail) + (it.exception?.localizedMessage ?: ""),
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
