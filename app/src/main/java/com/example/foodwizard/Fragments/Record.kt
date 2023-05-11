@@ -38,6 +38,7 @@ class Record : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentRecordBinding.inflate(inflater, container, false)
+        binding.chatgptChat.text = "GPT"
         var tmp:String=""
         var tokens=binding.title.text.split("\n")
         for (i in tokens.indices)
