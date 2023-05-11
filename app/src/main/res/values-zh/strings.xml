@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FoodWizard</string>
+    <!--real string values-->
+    <string name="food_wizard">Food Wizard</string>
+    <string name="title_activity_login">登录</string>
+    <string name="back">返回</string>
+    <string name="title_activity_register">注册</string>
+    <string name="title_activity_register_password">密码</string>
+    <string name="title_activity_register_username">用户名</string>
+    <string name="title_activity_register_email">邮箱</string>
+    <string name="title_activity_register_confirmPassword">确认密码</string>
+    <!--record part-->
+    <string name="record_main">记录\n今天\n吃啥:</string>
+    <string name="record_detail">详细</string>
+    <string name="record_upload">上传</string>
+    <string name="record_meal">上传你吃了啥 ^^</string>
+    <string name="try_again">再试一次</string>
+    <string name="signIn_error"> 账户名或者密码无效</string>
+    <string name="success">成功咯</string>
+    <string name="signIn_success">成功登录</string>
+    <string name="add_meal"> 添加食物</string>
+    <string name="see_detail"> 查看详情</string>
+    <!--recipe part-->
+    <string name="recommend_Recipe">推荐\n菜单</string>
+    <!--shop part-->
+    <string name="special_offer">今日\n特价</string>
+    <!--price part-->
+    <string name="url_button">点击购买!</string>
+    <string name="product">产品</string>
+    <string name="mysymbol">$</string>
+    <string name="logo_text">FoodWizards</string>
+    <!--personal info part -->
+    <string name="changeEmail">更改邮箱</string>
+    <string name="changePassword">更改密码</string>
+    <string name="changeDietPlan">更改计划</string>
+    <string name="enterNew">输入新的</string>
+    <string name="password"> 密码</string>
+    <string name="email">邮箱</string>
+    <string name="dietPlan">计划</string>
+    <string name="update">更新</string>
+    <string name="dietPlanLabel">计划</string>
+    <string name="emailLabel">邮箱</string>
+    <string name="passwordLabel">密码</string>
+    <string name="log_out">退出登录</string>
+    <string name="hover_button_image">图标</string>
+    <!--personal info-->
+    <string name="personal_info">个人\n信息</string>
+    <string name="my_plan">我的计划</string>
+    <!--nutrition-->
+    <string name="fat_intake">每日脂肪摄入</string>
+    <string name="calory_intake">每日卡路里摄入</string>
+    <string name="protein_intake">每日蛋白质摄入</string>
+    <string name="carb_intake">碳水摄入</string>
+    <!--speech -->
+    <string name="send_message_box_hint">你想问啥?</string>
+
+</resources>
