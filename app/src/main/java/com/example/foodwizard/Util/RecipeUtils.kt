@@ -21,55 +21,28 @@ class RecipeUtils(val usersViewModel: UsersViewModel) {
     private lateinit var auth: FirebaseAuth
     private var nutrition = mutableListOf<Nutrition>()
     private lateinit var userReference: DatabaseReference
-    private var planCalo = -1
-    private var planFat = -1
-    private var planProtein = -1
-    private var planCarbs = -1
+    private var planCalo=usersViewModel.plancalory
+        get()= usersViewModel.plancalory
+    private var planFat = usersViewModel.planfat
+        get()=usersViewModel.planfat
+    private var planProtein = usersViewModel.planprotein
+        get()=usersViewModel.planprotein
+    private var planCarbs = usersViewModel.plancarb
+        get()=usersViewModel.plancarb
 
     fun getRecommendDiet(): MutableList<Diet> {
         nutrition = mutableListOf<Nutrition>()
         var diets = mutableListOf<Diet>()
-        var added = false
-        GlobalScope.launch(Dispatchers.IO) {
+        //GlobalScope.launch(Dispatchers.IO) {
             Log.d(TAG, "recipe unil get today global in")
             auth = FirebaseAuth.getInstance()
+            Log.d(TAG, "recipe unil get today global in!!!")
             val user: FirebaseUser? = auth.currentUser
+            Log.d(TAG, "recipe unil get today global in!!!!")
             var currentUserId = user!!.uid
-            userReference =
-                FirebaseDatabase.getInstance().getReference("Users").child(currentUserId)
-            userReference.child("calory").get().addOnSuccessListener {
-                Log.i("firebase read", "util Got value ${it.value}")
-                planCalo = it.value.toString().toInt()
-            }.addOnFailureListener {
-                Log.e("firebase read", "util Error getting data", it)
-            }
-            userReference.child("fat").get(). addOnSuccessListener{
-                Log.i("firebase read", "util Got value ${it.value}")
-                planFat = it.value.toString().toInt()
-            }.addOnFailureListener {
-                Log.e("firebase read", "util Error getting data", it)
-            }
-            userReference.child("protein").get().addOnSuccessListener {
-                Log.i("firebase read", "util Got value ${it.value}")
-                planProtein = it.value.toString().toInt()
-            }.addOnFailureListener {
-                Log.e("firebase read", "util Error getting data", it)
-            }
-//            var planCarbs = 0
-            userReference.child("carb").get().addOnSuccessListener {
-                Log.i("firebase read", "util Got value ${it.value}")
-                planCarbs = it.value.toString().toInt()
-            }.addOnFailureListener {
-                Log.e("firebase read", "util Error getting data", it)
-            }
-            while(planCalo == -1 || planFat == -1 || planProtein == -1 || planCarbs == -1){
-
-            }
-            // Get today's meal
             var todayMeal = usersViewModel.getTodayMeal(currentUserId, SimpleDateFormat("MM/dd/yyyy").format(
                 Date()
             ))
-//            println("todayMeal: "+todayMeal)
             for(diet in todayMeal){
                 val nu = diet.dietResponse?.nutrition
                 if (nu != null) {
@@ -201,13 +174,10 @@ class RecipeUtils(val usersViewModel: UsersViewModel) {
                         }
                     }
                 }
-            }
-            added = true
+            //}
             Log.d(TAG, "in scope get diet: "+ diets)
         }
-        while(!added){
 
-        }
         Log.d(TAG, "get diets: "+ diets)
         return diets
     }

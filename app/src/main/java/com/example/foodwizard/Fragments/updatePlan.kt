@@ -10,9 +10,11 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.foodwizard.DB.Diet
@@ -49,7 +51,7 @@ class updatePlan() : DialogFragment() {
     ): View {
         // Inflate the layout to use as dialog or embedded fragment
         val meal = arguments?.getSerializable("meal") as Diet?
-
+        val usersViewModel: UsersViewModel by activityViewModels()
         auth = FirebaseAuth.getInstance()
         val user: FirebaseUser? = auth.currentUser
         val userId: String = user!!.uid
@@ -58,41 +60,48 @@ class updatePlan() : DialogFragment() {
 
         _binding = FragmentUpdatePlanBinding.inflate(inflater, container, false)
         binding.apply{
-
-            databaseReference.child("calory").get().addOnSuccessListener {
-                Log.i("firebase read", "Got value ${it.value}")
-                caloryInput.text= Editable.Factory.getInstance().newEditable(it.value.toString())
-            }.addOnFailureListener {
-                Log.e("firebase read", "Error getting data", it)
-            }
-
-            databaseReference.child("fat").get().addOnSuccessListener {
-                Log.i("firebase read", "Got value ${it.value}")
-                fatInput.text= Editable.Factory.getInstance().newEditable(it.value.toString())
-            }.addOnFailureListener {
-                Log.e("firebase read", "Error getting data", it)
-            }
-
-            databaseReference.child("protein").get().addOnSuccessListener {
-                Log.i("firebase read", "Got value ${it.value}")
-                proteinInput.text= Editable.Factory.getInstance().newEditable(it.value.toString())
-            }.addOnFailureListener {
-                Log.e("firebase read", "Error getting data", it)
-            }
-
-            databaseReference.child("carb").get().addOnSuccessListener {
-                Log.i("firebase read", "Got value ${it.value}")
-                carbInput.text= Editable.Factory.getInstance().newEditable(it.value.toString())
-            }.addOnFailureListener {
-                Log.e("firebase read", "Error getting data", it)
-            }
+            caloryInput.text=Editable.Factory.getInstance().newEditable(usersViewModel.plancalory.toString())
+            fatInput.text=Editable.Factory.getInstance().newEditable(usersViewModel.planfat.toString())
+            proteinInput.text=Editable.Factory.getInstance().newEditable(usersViewModel.planprotein.toString())
+            carbInput.text=Editable.Factory.getInstance().newEditable(usersViewModel.plancarb.toString())
+//
+//            databaseReference.child("calory").get().addOnSuccessListener {
+//                Log.i("firebase read", "Got value ${it.value}")
+//                caloryInput.text= Editable.Factory.getInstance().newEditable(it.value.toString())
+//            }.addOnFailureListener {
+//                Log.e("firebase read", "Error getting data", it)
+//            }
+//
+//            databaseReference.child("fat").get().addOnSuccessListener {
+//                Log.i("firebase read", "Got value ${it.value}")
+//                fatInput.text= Editable.Factory.getInstance().newEditable(it.value.toString())
+//            }.addOnFailureListener {
+//                Log.e("firebase read", "Error getting data", it)
+//            }
+//
+//            databaseReference.child("protein").get().addOnSuccessListener {
+//                Log.i("firebase read", "Got value ${it.value}")
+//                proteinInput.text= Editable.Factory.getInstance().newEditable(it.value.toString())
+//            }.addOnFailureListener {
+//                Log.e("firebase read", "Error getting data", it)
+//            }
+//
+//            databaseReference.child("carb").get().addOnSuccessListener {
+//                Log.i("firebase read", "Got value ${it.value}")
+//                carbInput.text= Editable.Factory.getInstance().newEditable(it.value.toString())
+//            }.addOnFailureListener {
+//                Log.e("firebase read", "Error getting data", it)
+//            }
 
             updateButton.setOnClickListener(){
-                var calory:Double = caloryInput.text.toString().toDouble()
-                var fat:Double = fatInput.text.toString().toDouble()
-                var protein:Double = proteinInput.text.toString().toDouble()
-                var carb:Double = carbInput.text.toString().toDouble()
-
+                var calory= caloryInput.text.toString().toInt()
+                var fat = fatInput.text.toString().toInt()
+                var protein = proteinInput.text.toString().toInt()
+                var carb = carbInput.text.toString().toInt()
+                usersViewModel.plancalory=calory
+                usersViewModel.plancarb=carb
+                usersViewModel.planfat=fat
+                usersViewModel.planprotein=protein
                 val hashMap: HashMap<String,Any > = HashMap()
 
                 hashMap.put("calory",calory)
@@ -100,12 +109,14 @@ class updatePlan() : DialogFragment() {
                 hashMap.put("carb",carb)
                 hashMap.put("protein",protein)
                 databaseReference.setValue(hashMap)
-                val recipeViewModel: RecipeViewModel by viewModels()
                 val usersViewModel: UsersViewModel by activityViewModels()
-                recipeViewModel.initialize(usersViewModel)
-                Log.e("init", "init ok")
-                recipeViewModel.update()
-                Log.e("update", "update ok")
+                usersViewModel.updateSign()
+//                val recipeViewModel = ViewModelProvider(requireActivity()).get(RecipeViewModel::class.java)
+//                val usersViewModel: UsersViewModel by activityViewModels()
+//                recipeViewModel.initialize(usersViewModel)
+//                Log.e("init", "init ok")
+//                recipeViewModel.update()
+//                Log.e("update", "update ok")
                 dismiss()
             }
         }

@@ -25,8 +25,8 @@ import kotlinx.coroutines.withContext
 
 class list_recipe : Fragment() {
     private var _binding: FragmentListRecipeBinding? = null
-    private val recipeViewModel: RecipeViewModel by viewModels()
-    private lateinit var meals: MutableList<Meal>
+    //private val recipeViewModel: RecipeViewModel by viewModels()
+    //private lateinit var meals: MutableList<Meal>
     private val binding
         get() = checkNotNull(_binding) {
             "Cannot access binding because it is null. Is the view visible?"
@@ -57,14 +57,11 @@ class list_recipe : Fragment() {
 
     fun updateview()
     {
+        Log.d("dad","update view")
         GlobalScope.launch(Dispatchers.IO) {
             val usersViewModel: UsersViewModel by activityViewModels()
-            // TODO : userId swap to current userId
-            // Get today's meal
-//            meals= usersViewModel.getRecommendMeal(20, 20, 20, 20)
-//            val meals = RecipeUtils(usersViewModel).getRecommendDiet()
-            recipeViewModel.initialize(usersViewModel)
-            val meals = recipeViewModel.meals
+            usersViewModel.refreshRecommend()
+            val meals = usersViewModel.meals
             Log.i("get", "from view model get: " + meals)
             withContext(Dispatchers.Main) {
                 val adapter = recipeAdapter(meals){meal ->

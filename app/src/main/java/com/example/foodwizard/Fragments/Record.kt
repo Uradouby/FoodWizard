@@ -8,9 +8,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResultListener
 import com.example.foodwizard.R
 import com.example.foodwizard.databinding.FragmentRecordBinding
+import com.example.foodwizard.viewModel.UsersViewModel
 
 class Record : Fragment() {
     private var _binding: FragmentRecordBinding? = null
@@ -48,6 +50,8 @@ class Record : Fragment() {
         binding.addFab.setOnClickListener(){
             val newFragment=uploadmeal()
             fragmentManager?.let { newFragment.show(it, "dialog") }
+            val usersViewModel: UsersViewModel by activityViewModels()
+            usersViewModel.updateSign()
         }
         return binding.root
     }

@@ -1,11 +1,13 @@
 package com.example.foodwizard.viewModel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.example.foodwizard.DB.Diet
 import com.example.foodwizard.DB.Repository
 import com.example.foodwizard.DB.User
+import com.example.foodwizard.Util.RecipeUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -15,6 +17,14 @@ class UsersViewModel(val app: Application): AndroidViewModel(app) {
 
     private val repository = Repository.getInstance(app.applicationContext)
 //    val usersData: LiveData<List<User>> = repository.getAllUsers()
+
+    var plancalory=0
+    var plancarb=0
+    var planfat=0
+    var planprotein=0
+
+    var meals=RecipeUtils(this).getRecommendDiet()
+    private var sign=true
 
     fun insertDiet(diet: Diet){
         repository.insertDiet(diet)
@@ -27,7 +37,20 @@ class UsersViewModel(val app: Application): AndroidViewModel(app) {
     fun getAllMeal() : MutableList<Diet>{
         return repository.getAllMeal()
     }
-
+    fun updateSign()
+    {
+        sign=true
+    }
+    fun refreshRecommend()
+    {
+        if (sign)
+        {
+            Log.d("dadada","update!!!")
+            meals = RecipeUtils(this).getRecommendDiet()
+            Log.d("daa",meals.toString())
+            sign=false
+        }
+    }
 //    fun addUser(user: User) {
 //        repository.addUser(user)
 //    }
