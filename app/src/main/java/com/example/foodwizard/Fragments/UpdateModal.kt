@@ -45,10 +45,13 @@ class UpdateModal() : DialogFragment() {
         var label: String = getString(R.string.dietPlanLabel);
 
         var inputTypeToSet = InputType.TYPE_CLASS_NUMBER
+        var inputHint = ""
         if(type == "password"){
             inputTypeToSet = (InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
+            inputHint = getString(R.string.title_activity_register_password);
             label = getString(R.string.passwordLabel);
         }else if(type == "email"){
+            inputHint = getString(R.string.title_activity_register_email);
             inputTypeToSet = (InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
             label = getString(R.string.emailLabel);
         }
@@ -60,6 +63,7 @@ class UpdateModal() : DialogFragment() {
 
         inputView = view.findViewById(R.id.input)
         inputView.inputType = inputTypeToSet
+        inputView.setHint(inputHint)
 
         enterButton = view.findViewById(R.id.updateButton)
 
