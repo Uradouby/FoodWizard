@@ -74,7 +74,7 @@ class login : AppCompatActivity() {
         val storage = Firebase.storage
         val storageRef = storage.reference
 
-        val drawableId: Int = resources.getIdentifier("dog", "drawable", packageName)
+        val drawableId: Int = resources.getIdentifier("bean", "drawable", packageName)
         // 加载 drawable 图像并将其转换为 InputStream
         val drawable: Drawable = resources.getDrawable(drawableId)
         val bitmap: Bitmap = (drawable as BitmapDrawable).bitmap
@@ -86,12 +86,12 @@ class login : AppCompatActivity() {
         // Get Firebase Storage reference
 
         // create StorageReference storage dir in Google Cloud
-        val mountainsRef = storageRef.child("images/dog.jpg")
+        val mountainsRef = storageRef.child("images/bean.jpg")
         val uploadTask = mountainsRef.putBytes(stream.toByteArray())
         uploadTask.addOnFailureListener {
             println("Upload Error")
         }.addOnSuccessListener { taskSnapshot ->
-            println("Successfully Uploaded!")
+            println("Successfully Uploaded1!")
         }
 
         // download the image from cloud
