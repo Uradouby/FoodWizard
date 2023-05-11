@@ -33,49 +33,9 @@ import kotlinx.coroutines.launch
 class Main : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     val usersViewModel: UsersViewModel by viewModels()
-    private lateinit var databaseReference: DatabaseReference
-    private lateinit var auth: FirebaseAuth
     public
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        GlobalScope.launch(Dispatchers.IO)
-        {
-            auth = FirebaseAuth.getInstance()
-            val user: FirebaseUser? = auth.currentUser
-            val userId: String = user!!.uid
-            databaseReference =
-                FirebaseDatabase.getInstance().getReference("Users").child(userId)
-
-            databaseReference.child("calory").get().addOnSuccessListener {
-                Log.i("firebase read", "Got value ${it.value}")
-                usersViewModel.plancalory= it.value.toString().toInt()
-            }.addOnFailureListener {
-                Log.e("firebase read", "Error getting data", it)
-            }
-
-            databaseReference.child("fat").get().addOnSuccessListener {
-                Log.i("firebase read", "Got value ${it.value}")
-                usersViewModel.planfat= it.value.toString().toInt()
-            }.addOnFailureListener {
-                Log.e("firebase read", "Error getting data", it)
-            }
-
-            databaseReference.child("protein").get().addOnSuccessListener {
-                Log.i("firebase read", "Got value ${it.value}")
-                usersViewModel.planprotein= it.value.toString().toInt()
-            }.addOnFailureListener {
-                Log.e("firebase read", "Error getting data", it)
-            }
-
-            databaseReference.child("carb").get().addOnSuccessListener {
-                Log.i("firebase read", "Got value ${it.value}")
-                usersViewModel.plancarb= it.value.toString().toInt()
-            }.addOnFailureListener {
-                Log.e("firebase read", "Error getting data", it)
-            }
-        }
-
-
 
         binding=ActivityMainBinding.inflate(layoutInflater)
 
