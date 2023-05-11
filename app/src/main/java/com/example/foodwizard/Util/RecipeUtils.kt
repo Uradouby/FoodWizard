@@ -27,7 +27,7 @@ class RecipeUtils(val usersViewModel: UsersViewModel) {
     private var planCarbs = -1
 
     fun getRecommendDiet(): MutableList<Diet> {
-        nutrition = mutableListOf<Nutrition>()
+        nutrition = mutableListOf()
         var diets = mutableListOf<Diet>()
         var added = false
         GlobalScope.launch(Dispatchers.IO) {
