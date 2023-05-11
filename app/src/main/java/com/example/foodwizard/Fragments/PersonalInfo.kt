@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
+import com.example.foodwizard.R
 import com.example.foodwizard.databinding.FragmentPersonalInfoBinding
 import com.example.foodwizard.login
 import com.google.firebase.auth.FirebaseAuth
@@ -92,7 +93,7 @@ class PersonalInfo : Fragment() {
             binding.logoutButton.setOnClickListener {
                 Toast.makeText(
                     context,
-                    "Logged out",
+                    getString(R.string.log_out_message),
                     Toast.LENGTH_SHORT,
                 ).show()
                 setFragmentResult("log-out", bundleOf("bundleKey2" to ""))
