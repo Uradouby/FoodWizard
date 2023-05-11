@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:windowSoftInputMode="adjustResize"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -9,6 +10,31 @@
         android:layout_height="wrap_content"
         android:background="@color/main_background"
         android:paddingBottom="8dp">
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/flowerbg" />
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="252dp"
+            android:layout_height="251dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/flowerbg"
+            app:tint="@color/item_default" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/botleaf" />
 
         <TextView
             android:id="@+id/toolbar_title"
@@ -43,26 +69,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar_title" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_message"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="@color/black"
-                android:hint="@string/send_message_box_hint"
-                android:inputType="textMultiLine"
-                android:lineSpacingExtra="4dp"
-                android:maxLines="4"
-                android:minHeight="32dp"
-                android:paddingHorizontal="12dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:textSize="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/message_received" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp"
+            android:backgroundTint="@color/black"
+            android:hint="@string/send_message_box_hint"
+            android:inputType="textMultiLine"
+            android:lineSpacingExtra="4dp"
+            android:maxLines="4"
+            android:minHeight="32dp"
+            android:paddingHorizontal="12dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/message_received" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/send_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -77,7 +103,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/message_received"
                 app:tint="@color/white" />
 
-<!--            <ProgressBar-->
+        <!--            <ProgressBar-->
 <!--                android:id="@+id/loading"-->
 <!--                style="?android:attr/progressBarStyle"-->
 <!--                android:layout_width="wrap_content"-->

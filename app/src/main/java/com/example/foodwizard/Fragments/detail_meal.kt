@@ -14,9 +14,6 @@ import com.bumptech.glide.Glide
 import com.example.foodwizard.DB.Diet
 import com.example.foodwizard.R
 import com.example.foodwizard.databinding.DetailItemMealBinding
-import com.example.foodwizard.databinding.FragmentListMealBinding
-import com.example.foodwizard.databinding.FragmentListShopBinding
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.squareup.picasso.Picasso
 
 class detail_meal() : DialogFragment() {
