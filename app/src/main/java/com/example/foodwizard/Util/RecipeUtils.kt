@@ -31,7 +31,7 @@ class RecipeUtils(val usersViewModel: UsersViewModel) {
         get()=usersViewModel.plancarb
 
     fun getRecommendDiet(): MutableList<Diet> {
-        nutrition = mutableListOf<Nutrition>()
+        nutrition = mutableListOf()
         var diets = mutableListOf<Diet>()
         //GlobalScope.launch(Dispatchers.IO) {
             Log.d(TAG, "recipe unil get today global in")
@@ -40,6 +40,7 @@ class RecipeUtils(val usersViewModel: UsersViewModel) {
             val user: FirebaseUser? = auth.currentUser
             Log.d(TAG, "recipe unil get today global in!!!!")
             var currentUserId = user!!.uid
+
             var todayMeal = usersViewModel.getTodayMeal(currentUserId, SimpleDateFormat("MM/dd/yyyy").format(
                 Date()
             ))
