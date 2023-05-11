@@ -4,26 +4,18 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
-import android.widget.Button
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
-import com.example.foodwizard.DB.USER_TYPE
 import com.example.foodwizard.DB.User
 import com.example.foodwizard.databinding.ActivityRegisterBinding
 import com.example.foodwizard.viewModel.UsersViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import java.lang.ref.Reference
-import java.util.Objects
 
+val TAG = "Register"
 class Register : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var databaseReference: DatabaseReference
@@ -51,10 +43,8 @@ class Register : AppCompatActivity() {
             val password = binding.password.text.toString()
             val passwordConfirm = binding.repeatpassword.text.toString()
 
-
-
             if (userName.isEmpty() || email.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty()) { //check if the fields are empty
-                Toast.makeText(applicationContext, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, getString(R.string.register_empty_fields), Toast.LENGTH_SHORT).show()
             }
             if (password != passwordConfirm) { //check if the password and the confirm password are the same
                 Toast.makeText(applicationContext, "Passwords do not match", Toast.LENGTH_SHORT).show()
@@ -74,10 +64,8 @@ class Register : AppCompatActivity() {
                     val user: FirebaseUser? = auth.currentUser
                     val userId: String = user!!.uid
 
-
                     databaseReference =
                         FirebaseDatabase.getInstance().getReference("Users").child(userId)
-
 
                     val hashMap: HashMap<String,Any > = HashMap()
                     hashMap.put("userId", userId)
@@ -92,37 +80,22 @@ class Register : AppCompatActivity() {
                         if (it.isSuccessful) {
                             Toast.makeText(
                                 applicationContext,
-                                "User created Successfully",
+                                getString(R.string.register_success),
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
                     }
-
+                }else{
+                    // looked at https://firebase.google.com/docs/auth/android/password-auth#sign_in_a_user_with_an_email_address_and_password
+                    // If sign in fails, display a message to the user.
+                    Log.d(TAG, "createUserWithEmail:failure", it.exception)
+                    Toast.makeText(
+                        baseContext,
+                        getString(R.string.register_fail) + (it.exception?.localizedMessage ?: ""),
+                        Toast.LENGTH_SHORT,
+                    ).show()
                 }
             }
-
-
-//        if (userName.isEmpty() || email.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty()) { //check if the fields are empty
-//            Toast.makeText(applicationContext, "Please fill all fields", Toast.LENGTH_SHORT).show()
-//            return
-//        } else
-//            if (password != passwordConfirm) { //check if the password and the confirm password are the same
-//                Toast.makeText(applicationContext, "Passwords do not match", Toast.LENGTH_SHORT).show()
-//                return
-//            }else
-//                for(user in allUsers!!){
-//                    if(user.userName == userName){ //check if the user name already exists
-//                        Toast.makeText(applicationContext, "User with this User name already exists", Toast.LENGTH_SHORT).show()
-//                        return
-//                    }
-//                    else
-//                        if(!ValidationManager.isValidUsername(userName)){ //check if the user name already exists
-//                            Toast.makeText(applicationContext, "User name must be between 4 and 20 characters and start with a letter", Toast.LENGTH_SHORT).show()
-//                            return
-//                        }
-//                    }
-//        GlobalScope.launch (Dispatchers.IO){ usersViewModel.addUser(User(userName, ValidationManager.encryption(password),USER_TYPE.USER)) }//add the user to the database
-//        Toast.makeText(applicationContext, "User created Successfully", Toast.LENGTH_SHORT).show()
     }
 
 

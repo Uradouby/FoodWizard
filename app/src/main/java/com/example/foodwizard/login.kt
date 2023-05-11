@@ -114,6 +114,7 @@ class login : AppCompatActivity() {
 //            Log.e("firebase read", "Error getting data", it)
 //        }
 
+<<<<<<< HEAD
         // Image Upload/Download in Firebase Storage
 
 
@@ -148,6 +149,7 @@ class login : AppCompatActivity() {
         }.addOnFailureListener {
             println("Download error")
         }
+
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         /*binding.title.text = Html.fromHtml(
@@ -201,6 +203,41 @@ class login : AppCompatActivity() {
                             )
                             val intent = Intent(this, Main::class.java)
                             startActivity(intent)
+                            // Image Upload/Download in Firebase Storage
+                            val storage = Firebase.storage
+                            val storageRef = storage.reference
+
+                            val drawableId: Int = resources.getIdentifier("dog", "drawable", packageName)
+                            // 加载 drawable 图像并将其转换为 InputStream
+                            val drawable: Drawable = resources.getDrawable(drawableId)
+                            val bitmap: Bitmap = (drawable as BitmapDrawable).bitmap
+                            val stream = ByteArrayOutputStream()
+
+                            //Report error in red underline, but it is working!!!
+                            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+
+                            // Get Firebase Storage reference
+
+                            // create StorageReference storage dir in Google Cloud
+                            val mountainsRef = storageRef.child("images/dog.jpg")
+                            val uploadTask = mountainsRef.putBytes(stream.toByteArray())
+                            uploadTask.addOnFailureListener {
+                                println("Upload Error")
+                            }.addOnSuccessListener { taskSnapshot ->
+                                println("Successfully Uploaded!")
+                            }
+
+                            // download the image from cloud
+                            // create a StorageReference on target downloading dir
+                            val imageRef = storageRef.child("images/dog.jpg")
+
+                            val localFile = File.createTempFile("dog", "jpg")
+                            imageRef.getFile(localFile).addOnSuccessListener {
+                                // Uselocal File
+                                println("Successfully Downloaded")
+                            }.addOnFailureListener {
+                                println("Download error")
+                            }
                         }else{
                             MotionToast.darkColorToast(
                                 this,
@@ -218,6 +255,8 @@ class login : AppCompatActivity() {
 
         }
 
+
+
         binding.back.setOnClickListener {
             finish();
         }
@@ -228,100 +267,5 @@ class login : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-    //----------- check if the user had already signed in for the last hour or not ----------------
-//    private fun calculateLastLogin(){
-//        val lastLogin = sharedPreferences.getLong("LAST_LOGIN", -1)
-//        val lastId = sharedPreferences.getInt("USER_ID", -1)
-//        if(lastLogin != -1L &&  System.currentTimeMillis() - lastLogin < 3600000 ) //one hour
-//            goToMainActivityDirectly(lastId) //
-//        else
-//            setOnSignInUpListener()
-//    }
-//
-//    private fun setOnSignInUpListener() {
-//        binding.login.setOnClickListener {
-//            isUserValid()  //check if the user is valid or not
-//        }
-//        sign_up_button.setOnClickListener {
-//            onSignUpClick() //go to sign up fragment
-//        }
-//    }
-
-    //---------------------------check if the user validation ---------------------------
-//    private fun isUserValid() {
-//        usersViewModel.usersData.observe(this) {
-//            if (userCheck(it)) {  //if the user is valid then go to main activity
-//                goToMainActivity()
-//                binding.account.text.clear()
-//                binding.password.text.clear()
-//            } else {
-//                binding.account.text.clear() //clear the edit text if the user is not valid
-//                binding.password.text.clear()
-//            }
-//        }
-//    }
-
-//    companion object {
-//        var currentUserId: Int = 0
-//    }
-
-//    private fun userCheck(users: List<User>) : Boolean { // check if the user is valid or not
-//        var flag = false
-//        for (user in users) {
-//            if ((user.userName == binding.account.text.toString()) &&
-//                ValidationManager.comparePasswordEncrypt(user.password, binding.password.text.toString())) {
-//                flag = true
-//                userId = user.id
-//                currentUserId = user.id
-//            }
-//        }
-//        if (!flag)
-//            errorMotionToast() //show error toast if the user is not valid
-//        else
-//            successMotionToast() //show success toast if the user is valid
-//        return flag //return true if the user is valid
-//    }
-
-//    private fun goToMainActivityDirectly(lastId: Int) {
-//        userId = lastId
-//        userType = if (userId == 1) USER_TYPE.ADMIN else USER_TYPE.USER
-//        val intent = Intent(this, Main::class.java)
-//        intent.putExtra("userId", userId)
-//        intent.putExtra("userType", userType)
-//        startActivity(intent)
-//    }
-
-//    private fun goToMainActivity() { //go to main activity
-//        sharedPreferences.edit().putLong("LAST_LOGIN", System.currentTimeMillis()).apply()
-//        sharedPreferences.edit().putInt("USER_ID", userId).apply()
-//        userType = if (userId == 1) USER_TYPE.ADMIN else USER_TYPE.USER
-//        val intent = Intent(this, Main::class.java)
-//        intent.putExtra("userId", userId)
-//        intent.putExtra("userType", userType)
-//        startActivity(intent)
-//    }
-    //----- Display Motion Toasts successes or fail --------------------------------------
-//    private fun errorMotionToast(){
-//        MotionToast.darkColorToast(
-//            this,
-//            getString(R.string.try_again),
-//            getString(R.string.signIn_error),
-//            MotionToastStyle.ERROR,
-//            MotionToast.GRAVITY_BOTTOM or MotionToast.GRAVITY_BOTTOM,
-//            MotionToast.LONG_DURATION,
-//            ResourcesCompat.getFont(this,R.font.circular)
-//        )
-//    }
-//    private fun successMotionToast(){
-//        MotionToast.darkColorToast(
-//            this,
-//            getString(R.string.success),
-//            getString(R.string.signIn_success),
-//            MotionToastStyle.SUCCESS,
-//            MotionToast.GRAVITY_BOTTOM or MotionToast.GRAVITY_BOTTOM,
-//            MotionToast.LONG_DURATION,
-//            ResourcesCompat.getFont(this,R.font.circular)
-//        )
-//    }
 
 }

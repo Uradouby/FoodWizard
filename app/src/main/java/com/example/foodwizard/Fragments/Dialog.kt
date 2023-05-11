@@ -60,6 +60,7 @@ class Dialog : DialogFragment() {
         return binding.root
     }
 
+    // perform the HTTP request and get the JSON response
     private val client = OkHttpClient()
 
     private suspend fun chatWithGPT(message: String): String {

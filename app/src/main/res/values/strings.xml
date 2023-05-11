@@ -55,5 +55,16 @@
     <string name="carb_intake">Carb Daily Intake</string>
     <!--speech -->
     <string name="send_message_box_hint">What would you like to ask?</string>
+    <string name="register_success">User Created Successfully</string>
+    <string name="register_fail">\"Create User failed - \"</string>
+    <string name="register_empty_fields">Please fill all fields</string>
+    <string name="empty_input">Input is null or empty</string>
+    <string name="password_too_short">Change password failed, password length must be at least 6</string>
+    <string name="password_change_success">Successfully changed password</string>
+    <string name="password_change_fail">Change password failed</string>
+    <string name="email_change_fail">Change email failed, not a valid email address</string>
+    <string name="email_change_success">Successfully changed email</string>
+    <string name="general_email_change_fail">Change email failed - </string>
+    <string name="log_out_message">Logged out</string>
 
 </resources>
