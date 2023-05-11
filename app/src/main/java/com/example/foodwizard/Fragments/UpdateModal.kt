@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -90,41 +91,60 @@ class UpdateModal() : DialogFragment() {
                 ).show()
             }else {
                 if (type == "password") {
-                    user?.updatePassword(input)?.addOnCompleteListener(requireActivity()) {
-                        if (it.isSuccessful) {
-                            Log.d("In here", "It was sucessful")
-                            Toast.makeText(
-                                activity,
-                                "Successfully changed password",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        } else {
-                            Log.d("In here", "It failed")
-                            Toast.makeText(
-                                activity,
-                                "Change password failed",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                    if(input.length < 6){
+                        Toast.makeText(
+                            activity,
+                            "Change password failed, password length must be at least 6",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }else{
+                        user?.updatePassword(input)?.addOnCompleteListener(requireActivity()) {
+                            if (it.isSuccessful) {
+                                Log.d("In here", "It was sucessful")
+                                Toast.makeText(
+                                    activity,
+                                    "Successfully changed password",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            } else {
+                                Log.d("In here", "It failed")
+                                Toast.makeText(
+                                    activity,
+                                    "Change password failed",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
                     }
+
                     Log.d("in here", "updating password with " + input);
                 } else if (type == "email") {
-                    Log.d("in here", "updating email with " + input);
-                    user?.updateEmail(input)?.addOnCompleteListener(requireActivity()) {
-                        if (it.isSuccessful) {
-                            Log.d("In here", "It was sucessful")
-                            Toast.makeText(
-                                activity,
-                                "Successfully changed email",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        } else {
-                            Log.d("In here", "It failed")
-                            Toast.makeText(
-                                activity,
-                                "Change email failed",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                    // got from https://stackoverflow.com/questions/72117435/kotlin-android-email-validation
+                    fun CharSequence?.isValidEmail() = !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
+                    if(!input.isValidEmail()){
+                        Toast.makeText(
+                            activity,
+                            "Change email failed, not a valid email address",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }else{
+                        Log.d("in here", "updating email with " + input);
+                        user?.updateEmail(input)?.addOnCompleteListener(requireActivity()) {
+                            if (it.isSuccessful) {
+                                Log.d("In here", "It was sucessful")
+                                Toast.makeText(
+                                    activity,
+                                    "Successfully changed email",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            } else {
+                                Log.d("In here", "It failed")
+                                Toast.makeText(
+                                    activity,
+                                    "Change email failed",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
                     }
                 }
