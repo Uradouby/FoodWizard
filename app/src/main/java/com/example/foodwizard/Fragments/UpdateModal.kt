@@ -41,10 +41,8 @@ class UpdateModal() : DialogFragment() {
         // Inflate the layout to use as dialog or embedded fragment
         val type = arguments?.getString("type");
         auth = FirebaseAuth.getInstance()
-
-        Log.d("in here", "The type is " + type);
         // looked at the firebase docs here https://firebase.google.com/docs/auth/android/start
-        val user = Firebase.auth.currentUser
+         val user = Firebase.auth.currentUser
 
         var label: String = getString(R.string.dietPlanLabel);
 
@@ -67,6 +65,7 @@ class UpdateModal() : DialogFragment() {
 
         val view = inflater.inflate(R.layout.fragment_update_modal, container, false)
 
+        // Set up the text view based on what is being updated
         nameTextView = view.findViewById(R.id.typeLabel)
         nameTextView.text = label;
 
@@ -75,12 +74,11 @@ class UpdateModal() : DialogFragment() {
         inputView.hint = inputHint
         // looked at https://stackoverflow.com/questions/22297073/how-to-programmatically-set-drawableright-on-android-edittext
         inputView.setCompoundDrawablesWithIntrinsicBounds(icon, 0, 0, 0);
-//        inputView.setlistener
 
         enterButton = view.findViewById(R.id.updateButton)
 
+        // set up the listeners, try to update what is being updated, otherwise display why it cannot be updated
         enterButton.setOnClickListener {
-            Log.d("in here", "Clicked enter");
             val input = inputView.text.toString()
 
             if(input.isNullOrEmpty()){
@@ -116,8 +114,6 @@ class UpdateModal() : DialogFragment() {
                             }
                         }
                     }
-
-                    Log.d("in here", "updating password with " + input);
                 } else if (type == "email") {
                     // got from https://stackoverflow.com/questions/72117435/kotlin-android-email-validation
                     fun CharSequence?.isValidEmail() = !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
@@ -128,7 +124,6 @@ class UpdateModal() : DialogFragment() {
                             Toast.LENGTH_SHORT
                         ).show()
                     }else{
-                        Log.d("in here", "updating email with " + input);
                         user?.updateEmail(input)?.addOnCompleteListener(requireActivity()) {
                             if (it.isSuccessful) {
                                 Log.d("In here", "It was sucessful")
