@@ -1,5 +1,6 @@
 package com.example.foodwizard.Fragments
 import android.app.Dialog
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
@@ -11,6 +12,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.foodwizard.DB.Repository
@@ -46,14 +49,19 @@ class UpdateModal() : DialogFragment() {
 
         var inputTypeToSet = InputType.TYPE_CLASS_NUMBER
         var inputHint = ""
+        var icon = 0
         if(type == "password"){
             inputTypeToSet = (InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
             inputHint = getString(R.string.title_activity_register_password);
             label = getString(R.string.passwordLabel);
+            // looked at https://stackoverflow.com/questions/61487006/how-can-i-get-drawable-in-kotlin to see how you get a drawable in a fragment
+            icon =  R.drawable.lock
         }else if(type == "email"){
             inputHint = getString(R.string.title_activity_register_email);
             inputTypeToSet = (InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
             label = getString(R.string.emailLabel);
+            icon =  R.drawable.account
+            Log.d("icon", icon.toString());
         }
 
         val view = inflater.inflate(R.layout.fragment_update_modal, container, false)
@@ -63,7 +71,9 @@ class UpdateModal() : DialogFragment() {
 
         inputView = view.findViewById(R.id.input)
         inputView.inputType = inputTypeToSet
-        inputView.setHint(inputHint)
+        inputView.hint = inputHint
+        // looked at https://stackoverflow.com/questions/22297073/how-to-programmatically-set-drawableright-on-android-edittext
+        inputView.setCompoundDrawablesWithIntrinsicBounds(0, 0, icon, 0);
 
         enterButton = view.findViewById(R.id.updateButton)
 
