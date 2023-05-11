@@ -42,8 +42,6 @@ class UpdateModal() : DialogFragment() {
         // looked at the firebase docs here https://firebase.google.com/docs/auth/android/start
         val user = Firebase.auth.currentUser
 
-//        Log.d(TAG, "email " + email)
-
         var label: String = getString(R.string.dietPlanLabel);
 
         var inputTypeToSet = InputType.TYPE_CLASS_NUMBER
@@ -65,10 +63,6 @@ class UpdateModal() : DialogFragment() {
 
         enterButton = view.findViewById(R.id.updateButton)
 
-//        val repository = Repository(context)
-
-
-
         enterButton.setOnClickListener {
             Log.d("in here", "Clicked enter");
             val input = inputView.text.toString()
@@ -80,10 +74,7 @@ class UpdateModal() : DialogFragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }else {
-                if (type == "dietPlan") {
-
-                    Log.d("in here", "updating diet plan with " + input);
-                } else if (type == "password") {
+                if (type == "password") {
                     user?.updatePassword(input)?.addOnCompleteListener(requireActivity()) {
                         if (it.isSuccessful) {
                             Log.d("In here", "It was sucessful")
@@ -125,15 +116,6 @@ class UpdateModal() : DialogFragment() {
             }
 
         }
-
-
-
-//        nameTextView = view.findViewById(R.id.name)
-//        possibilityTextView = view.findViewById(R.id.possibility)
-//
-//        // Set text using values from Diet object
-//        nameTextView.text = meal?.dietResponse?.category?.name
-//        possibilityTextView.text = meal?.dietResponse?.category?.probability.toString()
         return view
     }
 
