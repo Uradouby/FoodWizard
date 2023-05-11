@@ -55,7 +55,6 @@ class RecipeUtils(val usersViewModel: UsersViewModel) {
             }.addOnFailureListener {
                 Log.e("firebase read", "util Error getting data", it)
             }
-//            var planCarbs = 0
             userReference.child("carb").get().addOnSuccessListener {
                 Log.i("firebase read", "util Got value ${it.value}")
                 planCarbs = it.value.toString().toInt()
@@ -69,7 +68,6 @@ class RecipeUtils(val usersViewModel: UsersViewModel) {
             var todayMeal = usersViewModel.getTodayMeal(currentUserId, SimpleDateFormat("MM/dd/yyyy").format(
                 Date()
             ))
-//            println("todayMeal: "+todayMeal)
             for(diet in todayMeal){
                 val nu = diet.dietResponse?.nutrition
                 if (nu != null) {
