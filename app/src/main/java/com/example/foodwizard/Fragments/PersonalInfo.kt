@@ -66,20 +66,6 @@ class PersonalInfo : Fragment() {
 
             binding.changePassword.setOnClickListener {
                 Log.d(tag, "Clicked the change password")
-                //////////////////////////
-                // Firebase change psw  //
-//            const auth = getAuth();
-//            const user = auth.currentUser;
-//
-//            // Where is the new password parameter? I just made a random one
-//            const newPassword = getASecureRandomPassword();
-//            updatePassword(user, newPassword).then(() => {
-//                // Update successful.
-//            }).catch((error) => {
-//            // An error ocurred
-//            // ...
-//            });
-                //////////////////////////
                 val fragmentManager = getParentFragmentManager()
                 val newFragment = UpdateModal().apply {
                     arguments = Bundle().apply {
@@ -91,17 +77,6 @@ class PersonalInfo : Fragment() {
 
             binding.changeEmail.setOnClickListener {
                 Log.d(tag, "Clicked the change email")
-                //////////////////////////
-                // Firebase change mail //
-//            const auth = getAuth();
-//            updateEmail(auth.currentUser, "user@example.com").then(() => {
-//                // Email updated!
-//                // ...
-//            }).catch((error) => {
-//            // An error occurred
-//            // ...
-//        });
-                //////////////////////////
 
 
                 val fragmentManager = getParentFragmentManager()
