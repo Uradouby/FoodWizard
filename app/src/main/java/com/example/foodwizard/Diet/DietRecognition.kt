@@ -8,7 +8,6 @@ import com.example.foodwizard.DB.DietResponse
 import com.example.foodwizard.R
 import com.example.foodwizard.Util.Constants.DIET_REC_API_KEY
 import com.example.foodwizard.Util.Constants.DIET_URL
-import com.example.foodwizard.login
 import com.example.foodwizard.viewModel.UsersViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
