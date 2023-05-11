@@ -49,6 +49,12 @@ class Record : Fragment() {
             val newFragment=uploadmeal()
             fragmentManager?.let { newFragment.show(it, "dialog") }
         }
+
+        binding.chatgptChat.setOnClickListener(){
+            val fragmentDialog = Dialog()
+            fragmentManager?.let { fragmentDialog.show(it, "dialog") }
+        }
+
         return binding.root
     }
 

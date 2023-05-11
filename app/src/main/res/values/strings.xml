@@ -34,6 +34,7 @@
     <string name="see_detail"> See detail</string>
     <!--recipe part-->
     <string name="recommend_Recipe">Recommend\nRecipe</string>
+    <string name="chat_gpt">Chat with ChatGPT</string>
     <!--shop part-->
     <string name="special_offer">Special\nOffer</string>
     <!--price part-->
