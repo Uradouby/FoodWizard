@@ -45,7 +45,7 @@ class list_shop : Fragment() {
             "B073S4TP58", "B019HV38RO", "B079LY41VY", "B09RGMRWM7", "B0B2N5GHMG")
         val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
         // add your own key here!
-        val myapi = "7E7D26AB23B04E929FEEE6151E907080"
+        val myapi = ""
         val mytype = "product"
         val mydomain = "amazon.com"
 
