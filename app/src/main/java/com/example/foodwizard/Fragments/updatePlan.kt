@@ -23,7 +23,6 @@ import com.example.foodwizard.databinding.DetailItemMealBinding
 import com.example.foodwizard.databinding.FragmentListMealBinding
 import com.example.foodwizard.databinding.FragmentListShopBinding
 import com.example.foodwizard.databinding.FragmentUpdatePlanBinding
-import com.example.foodwizard.viewModel.RecipeViewModel
 import com.example.foodwizard.viewModel.UsersViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
