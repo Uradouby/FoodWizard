@@ -53,6 +53,12 @@ class Record : Fragment() {
             val usersViewModel: UsersViewModel by activityViewModels()
             usersViewModel.updateSign()
         }
+
+        binding.chatgptChat.setOnClickListener(){
+            val fragmentDialog = Dialog()
+            fragmentManager?.let { fragmentDialog.show(it, "dialog") }
+        }
+
         return binding.root
     }
 
