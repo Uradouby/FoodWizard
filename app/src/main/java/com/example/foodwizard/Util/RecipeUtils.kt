@@ -5,13 +5,9 @@ import android.util.Log
 import com.example.foodwizard.DB.Diet
 import com.example.foodwizard.DB.Nutrition
 import com.example.foodwizard.viewModel.UsersViewModel
-import com.google.firebase.FirebaseError
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 

@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 const val CURRENT_INDEX_KEY = "CURRENT_INDEX_KEY"
 const val INITIALIZED = "INITIALIZED"
 
+// no usage, replaced with userViewModel
 class RecipeViewModel(private val savedStateHandle: SavedStateHandle): ViewModel() {
 
     lateinit var usersViewModel: UsersViewModel
