@@ -2,12 +2,9 @@ package com.example.foodwizard.viewModel
 
 import android.app.Application
 import android.util.Log
-import androidx.activity.viewModels
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import com.example.foodwizard.DB.Diet
 import com.example.foodwizard.DB.Repository
-import com.example.foodwizard.DB.User
 import com.example.foodwizard.Util.RecipeUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -16,7 +13,6 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.util.Date
 
 class UsersViewModel(val app: Application): AndroidViewModel(app) {
 

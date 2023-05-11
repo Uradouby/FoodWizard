@@ -1,34 +1,15 @@
 package com.example.foodwizard
 
-import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings.Global
-import android.text.Editable
 import android.util.Log
-import android.view.MenuItem
 import androidx.activity.viewModels
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
-import com.example.foodwizard.Fragments.Record
 import com.example.foodwizard.Fragments.detail_meal
-import com.example.foodwizard.Fragments.list_meal
 import com.example.foodwizard.databinding.ActivityMainBinding
-import com.example.foodwizard.databinding.ActivityRegisterBinding
 import com.example.foodwizard.viewModel.UsersViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class Main : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
