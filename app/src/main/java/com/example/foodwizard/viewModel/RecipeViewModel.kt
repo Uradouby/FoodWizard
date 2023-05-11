@@ -40,10 +40,6 @@ class RecipeViewModel(private val savedStateHandle: SavedStateHandle): ViewModel
                 initialized = true
             }
         }
-//        if(!initialized){
-//            meals = RecipeUtils(usersViewModel).getRecommendDiet()
-//            initialized = true
-//        }
         while(!initialized){
 
         }
