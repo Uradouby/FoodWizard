@@ -1,5 +1,6 @@
 package com.example.foodwizard
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Bitmap
@@ -48,6 +49,7 @@ class login : AppCompatActivity() {
     private lateinit var database2: DatabaseReference
     private lateinit var auth: FirebaseAuth
 
+    @SuppressLint("WrongThread")
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,8 +62,6 @@ class login : AppCompatActivity() {
         myRef2.setValue("TestValueNow 04/30")
 
         database2 = Firebase.database.reference
-//        database2.child("users").child("John").setValue("changemeplease")
-//        database2.child("meals").child("1").setValue("changemeplease")
 
 
         database2.child("TestKey1").get().addOnSuccessListener {
