@@ -114,7 +114,6 @@ class login : AppCompatActivity() {
 //            Log.e("firebase read", "Error getting data", it)
 //        }
 
-<<<<<<< HEAD
         // Image Upload/Download in Firebase Storage
 
 
