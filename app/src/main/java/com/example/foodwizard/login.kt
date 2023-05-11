@@ -12,15 +12,18 @@ import android.os.Bundle
 import android.text.Html
 import android.text.TextUtils
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
 import com.example.foodwizard.DB.USER_TYPE
 import com.example.foodwizard.DB.User
+import com.example.foodwizard.Util.RecipeUtils
 import com.example.foodwizard.databinding.ActivityLoginBinding
 import com.example.foodwizard.viewModel.UsersViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -46,7 +49,7 @@ class login : AppCompatActivity() {
     ) //userId will be 1
     private lateinit var sharedPreferences: SharedPreferences
 
-    private lateinit var database2: DatabaseReference
+    //private lateinit var database2: DatabaseReference
     private lateinit var auth: FirebaseAuth
 
     @SuppressLint("WrongThread")
@@ -54,27 +57,67 @@ class login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val storage = Firebase.storage
+        val storageRef = storage.reference
         //demo for firebase
         val database = Firebase.database
         val myRef1 = database.getReference("TestKey1")
         myRef1.setValue("TestValue1")
         val myRef2 = database.getReference("TestKey2")
         myRef2.setValue("TestValueNow 04/30")
+       /* var tmps= mutableListOf<String>("https://firebasestorage.googleapis.com/v0/b/foodwizard-92f05.appspot.com/o/images%2Fgreen%20leafy.png?alt=media&token=c3c1e80c-a280-4086-ac42-8d32172ab17a",
+                                        "https://firebasestorage.googleapis.com/v0/b/foodwizard-92f05.appspot.com/o/images%2Fbeef.png?alt=media&token=69945226-f0bb-483a-b7f8-28efc2d91b36",
+                                        "https://firebasestorage.googleapis.com/v0/b/foodwizard-92f05.appspot.com/o/images%2Fbroccoli.png?alt=media&token=8aa77ee3-5fec-4d56-8c2c-6be5accd3117",
+                                        "https://firebasestorage.googleapis.com/v0/b/foodwizard-92f05.appspot.com/o/images%2Fbutter.png?alt=media&token=f96755fb-a293-4583-bb04-0ba0e2859a43",
+                                        "https://firebasestorage.googleapis.com/v0/b/foodwizard-92f05.appspot.com/o/images%2Fcereal.png?alt=media&token=df0931b7-17c9-4463-b4fe-becb105904ca",
+                                        "https://firebasestorage.googleapis.com/v0/b/foodwizard-92f05.appspot.com/o/images%2Fcheese.png?alt=media&token=96c79315-e9f7-4c2f-a5b9-11d4ccd64ac6",
+                                        "https://firebasestorage.googleapis.com/v0/b/foodwizard-92f05.appspot.com/o/images%2Fchicken.png?alt=media&token=1a7f1d43-35f1-4d78-ab7b-d809b9433640",
+                                        "https://firebasestorage.googleapis.com/v0/b/foodwizard-92f05.appspot.com/o/images%2Fchocolate.png?alt=media&token=ae86bd5a-ec62-45e7-ba46-ec9d3be52d26",
+                                        "https://firebasestorage.googleapis.com/v0/b/foodwizard-92f05.appspot.com/o/images%2Fegg.png?alt=media&token=e66e777a-0fc7-4932-aa57-de9fbda0f328",
+                                        "https://firebasestorage.googleapis.com/v0/b/foodwizard-92f05.appspot.com/o/images%2Feggs.png?alt=media&token=1778ee7d-587b-4572-8104-dc4d27955b7c",
+                                        "https://firebasestorage.googleapis.com/v0/b/foodwizard-92f05.appspot.com/o/images%2Fsalmon.png?alt=media&token=513911fb-bad9-4cd5-a1d3-d2e09ffa58ab",
+                                        "https://firebasestorage.googleapis.com/v0/b/foodwizard-92f05.appspot.com/o/images%2Froast%20fish.png?alt=media&token=b93088a0-0139-4a85-9b01-943fbb5f314d",
+                                        "https://firebasestorage.googleapis.com/v0/b/foodwizard-92f05.appspot.com/o/images%2Ficecream.png?alt=media&token=229c54f4-3ece-4c93-87db-ab706341bdda",
+                                        "https://firebasestorage.googleapis.com/v0/b/foodwizard-92f05.appspot.com/o/images%2Fmilk.png?alt=media&token=6db66965-9a93-4d16-b826-2b61529b72b2",
+                                        "https://firebasestorage.googleapis.com/v0/b/foodwizard-92f05.appspot.com/o/images%2Fcashew.png?alt=media&token=7c4344fb-baf6-456f-958e-a3c720f4518e",
+                                        "https://firebasestorage.googleapis.com/v0/b/foodwizard-92f05.appspot.com/o/images%2Fnuts2.png?alt=media&token=28e241c2-c1ad-4b0e-8676-8ffabd81daa2",
+                                        "https://firebasestorage.googleapis.com/v0/b/foodwizard-92f05.appspot.com/o/images%2Fonion.png?alt=media&token=d9098a9a-3840-4dc0-b0c2-e6494fb9e411",
+                                        "https://firebasestorage.googleapis.com/v0/b/foodwizard-92f05.appspot.com/o/images%2Fpotato.png?alt=media&token=368728a4-cfdc-45b1-9f47-9a3c01bc4d8f",
+                                        "https://firebasestorage.googleapis.com/v0/b/foodwizard-92f05.appspot.com/o/images%2Fpretzel.png?alt=media&token=9ba61f08-7c52-41f0-8876-a24f90bd4623",
+                                        "tohttps://firebasestorage.googleapis.com/v0/b/foodwizard-92f05.appspot.com/o/images%2Ftomato.png?alt=media&token=a9e34b1a-0c3f-4f1e-9be9-f9241481fe69",
+                                        "https://firebasestorage.googleapis.com/v0/b/foodwizard-92f05.appspot.com/o/images%2Fyogurt.png?alt=media&token=57569b1b-9da0-49e0-abbf-ea402add9d39")
 
-        database2 = Firebase.database.reference
+        var tmp= mutableListOf<String>("green leafy","beef","broccoli","butter","cereal","cheese",
+                                        "chicken","chocolate","egg","eggs","salmon","roast fish",
+                                        "ice cream","milk","cashew","nuts","onion","potato","pretzel","tomato",
+                                        "yogurt")*/
+//        for (i in tmp.indices)
+//        {
+//            var database2 =
+//                FirebaseDatabase.getInstance().getReference("Meal").child(i.toString())
+//            val hashMap: HashMap<String,Any > = HashMap()
+//            hashMap.put("name",tmp[i])
+//            hashMap.put("calory",0)
+//            hashMap.put("fat",0)
+//            hashMap.put("carb",0)
+//            hashMap.put("protein",0)
+//            Log.d("1",storageRef.child("images/"+tmp[i]+".png").toString())
+//            hashMap.put("imagepath",tmps[i])
+//            database2.setValue(hashMap)
+//            Log.d("updatemeal","success update meals!"+tmp[i])
+//        }
 
 
-        database2.child("TestKey1").get().addOnSuccessListener {
-            Log.i("firebase read", "Got value ${it.value}")
-        }.addOnFailureListener {
-            Log.e("firebase read", "Error getting data", it)
-        }
+//        var database2.child("TestKey1").get().addOnSuccessListener {
+//            Log.i("firebase read", "Got value ${it.value}")
+//        }.addOnFailureListener {
+//            Log.e("firebase read", "Error getting data", it)
+//        }
 
         // Image Upload/Download in Firebase Storage
-        val storage = Firebase.storage
-        val storageRef = storage.reference
 
-        val drawableId: Int = resources.getIdentifier("bean", "drawable", packageName)
+
+        val drawableId: Int = resources.getIdentifier("dog", "drawable", packageName)
         // 加载 drawable 图像并将其转换为 InputStream
         val drawable: Drawable = resources.getDrawable(drawableId)
         val bitmap: Bitmap = (drawable as BitmapDrawable).bitmap
@@ -86,7 +129,7 @@ class login : AppCompatActivity() {
         // Get Firebase Storage reference
 
         // create StorageReference storage dir in Google Cloud
-        val mountainsRef = storageRef.child("images/bean.jpg")
+        val mountainsRef = storageRef.child("images/dog.jpg")
         val uploadTask = mountainsRef.putBytes(stream.toByteArray())
         uploadTask.addOnFailureListener {
             println("Upload Error")

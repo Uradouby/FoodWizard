@@ -7,9 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.foodwizard.Adapter.mealAdapter
-import com.example.foodwizard.Meal
 import com.example.foodwizard.R
 import com.example.foodwizard.Util.MarginItemDecoration
 import com.example.foodwizard.databinding.FragmentRecordBinding

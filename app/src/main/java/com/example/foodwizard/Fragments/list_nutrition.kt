@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodwizard.Adapter.nutritionAdapter
 import com.example.foodwizard.DB.Nutrient
 import com.example.foodwizard.DB.Nutrition
-import com.example.foodwizard.Meal
 import com.example.foodwizard.Util.MarginItemDecoration
 import com.example.foodwizard.databinding.FragmentListNutritionBinding
 

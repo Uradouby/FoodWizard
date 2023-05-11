@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodwizard.Adapter.recipeAdapter
 import com.example.foodwizard.Util.MarginItemDecoration
+import com.example.foodwizard.Util.RecipeUtils.Companion.getMeals
 import com.example.foodwizard.databinding.FragmentListRecipeBinding
 import com.example.foodwizard.viewModel.UsersViewModel
 import kotlinx.coroutines.Dispatchers
@@ -59,16 +60,21 @@ class list_recipe : Fragment() {
             usersViewModel.refreshPlan()
             usersViewModel.refreshRecommend()
             val meals = usersViewModel.meals
+            if (meals.size==0) {
+                meals.add(getMeals()[0])
+                meals.add(getMeals()[1])
+                meals.add(getMeals()[2])
+            }
             Log.i("get", "from view model get: " + meals)
             withContext(Dispatchers.Main) {
-                val adapter = recipeAdapter(meals){meal ->
-                    //findNavController().navigate(R.id.nav_detail_meal)
-                    val newFragment=detail_recipe()
-                    val bundle = Bundle().apply {
-                        putSerializable("meal", meal)
-                    }
-                    newFragment.arguments = bundle
-                    fragmentManager?.let { newFragment.show(it, "dialog") }
+                val adapter = recipeAdapter(meals){_ ->
+//                    //findNavController().navigate(R.id.nav_detail_meal)
+//                    val newFragment=detail_recipe()
+//                    val bundle = Bundle().apply {
+//                        putSerializable("meal", meal)
+//                    }
+//                    newFragment.arguments = bundle
+//                    fragmentManager?.let { newFragment.show(it, "dialog") }
                 }
 
                 ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {

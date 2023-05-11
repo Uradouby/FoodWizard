@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
-import com.example.foodwizard.Meal
 import com.example.foodwizard.databinding.ListItemMealBinding
 import androidx.fragment.app.setFragmentResult
 import com.bumptech.glide.Glide

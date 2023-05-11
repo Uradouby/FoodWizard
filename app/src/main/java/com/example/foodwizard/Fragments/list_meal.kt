@@ -14,8 +14,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodwizard.Adapter.mealAdapter
-import com.example.foodwizard.Diet.DietRecognition
-import com.example.foodwizard.Meal
 import com.example.foodwizard.R
 import com.example.foodwizard.Util.MarginItemDecoration
 import com.example.foodwizard.databinding.FragmentListMealBinding

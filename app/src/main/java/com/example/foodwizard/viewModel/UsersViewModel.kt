@@ -27,6 +27,7 @@ class UsersViewModel(val app: Application): AndroidViewModel(app) {
     var planprotein=0
 
     var meals=RecipeUtils(this).getRecommendDiet()
+
     private var sign=true
     private var planSign = true
 

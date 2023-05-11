@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.foodwizard.DB.Diet
+import com.example.foodwizard.SimpleMeal
 import com.example.foodwizard.Util.RecipeUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -17,7 +18,7 @@ class RecipeViewModel(private val savedStateHandle: SavedStateHandle): ViewModel
 
     lateinit var usersViewModel: UsersViewModel
 
-    var meals: MutableList<Diet>
+    var meals: MutableList<SimpleMeal>
         get() = savedStateHandle.get(CURRENT_INDEX_KEY) ?: meals
         set(value) = savedStateHandle.set(CURRENT_INDEX_KEY, value)
 

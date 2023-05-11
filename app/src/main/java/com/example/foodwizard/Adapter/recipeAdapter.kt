@@ -1,14 +1,18 @@
 package com.example.foodwizard.Adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.foodwizard.DB.Diet
-import com.example.foodwizard.Meal
+import com.example.foodwizard.SimpleMeal
+import com.example.foodwizard.Util.RecipeUtils.Companion.getMeals
 import com.example.foodwizard.databinding.ListItemMealBinding
 import com.example.foodwizard.databinding.ListItemRecipeBinding
+import com.squareup.picasso.Picasso
+import java.lang.Integer.max
 
 class recipeHolder(
     val binding: ListItemRecipeBinding
@@ -17,8 +21,8 @@ class recipeHolder(
 }
 
 class recipeAdapter(
-    private val meals: MutableList<Diet>,
-    private val onMealClicked: (Diet) -> Unit
+    private val meals: MutableList<SimpleMeal>,
+    private val onMealClicked: (SimpleMeal) -> Unit
 ) : RecyclerView.Adapter<recipeHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -38,27 +42,17 @@ class recipeAdapter(
                 binding.upload.visibility=View.INVISIBLE
                 binding.name.visibility=View.VISIBLE
 //                binding.time.visibility=View.VISIBLE
-                binding.name.text = meal.dietTitle
+                binding.name.text = meal.Name
 //                binding.time.text = meal.date
-                Glide.with(binding.food.context)
-                    .load(meal.dietImage)
-                    .into(binding.food)
+                Log.d("Imagepath",meal.ImagePath)
+                Picasso.get().load(meal.ImagePath).into(binding.food)
                 binding.root.setOnClickListener(){
                     onMealClicked(meal)
                 }
             }
 
         }
-        else
-        {
-            holder.apply{
-                binding.food.visibility= View.VISIBLE
-//                binding.upload.visibility=View.VISIBLE
-                binding.name.visibility=View.VISIBLE
-//                binding.time.visibility=View.GONE
-                binding.name.visibility=View.GONE
-            }
-        }
+
     }
-    override fun getItemCount() = meals.size
+    override fun getItemCount() =meals.size
 }

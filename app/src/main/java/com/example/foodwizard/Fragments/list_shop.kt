@@ -57,6 +57,7 @@ class list_shop : Fragment() {
                     call: Call<ApiResponse>,
                     response: Response<ApiResponse>
                 ) {
+                    Log.d("rainforest-response",response.toString())
                     if (response.isSuccessful) {
                         // Log.e("Success", response.body().toString())
                         apiResponseList.add(response)
