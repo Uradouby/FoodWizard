@@ -16,7 +16,6 @@ import com.example.foodwizard.DB.Diet
 import com.example.foodwizard.Meal
 import com.example.foodwizard.Util.MarginItemDecoration
 import com.example.foodwizard.databinding.FragmentListRecipeBinding
-import com.example.foodwizard.viewModel.RecipeViewModel
 import com.example.foodwizard.viewModel.UsersViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -60,6 +59,7 @@ class list_recipe : Fragment() {
         Log.d("dad","update view")
         GlobalScope.launch(Dispatchers.IO) {
             val usersViewModel: UsersViewModel by activityViewModels()
+            usersViewModel.refreshPlan()
             usersViewModel.refreshRecommend()
             val meals = usersViewModel.meals
             Log.i("get", "from view model get: " + meals)
