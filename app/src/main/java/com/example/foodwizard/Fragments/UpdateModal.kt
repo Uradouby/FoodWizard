@@ -73,7 +73,8 @@ class UpdateModal() : DialogFragment() {
         inputView.inputType = inputTypeToSet
         inputView.hint = inputHint
         // looked at https://stackoverflow.com/questions/22297073/how-to-programmatically-set-drawableright-on-android-edittext
-        inputView.setCompoundDrawablesWithIntrinsicBounds(0, 0, icon, 0);
+        inputView.setCompoundDrawablesWithIntrinsicBounds(icon, 0, 0, 0);
+//        inputView.setlistener
 
         enterButton = view.findViewById(R.id.updateButton)
 
