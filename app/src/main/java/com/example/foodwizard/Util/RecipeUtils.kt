@@ -73,12 +73,9 @@ class RecipeUtils(val usersViewModel: UsersViewModel) {
             for(diet in todayMeal){
                 val nu = diet.dietResponse?.nutrition
                 if (nu != null) {
-//                    println("adding: " + diet)
                     nutrition.add(nu)
-//                    println("after adding: " + nutrition)
                 }
             }
-//            println("today nutrition: " + nutrition)
             var calories = 0
             var fat = 0
             var protein = 0
