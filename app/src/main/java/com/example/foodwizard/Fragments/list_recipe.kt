@@ -65,6 +65,7 @@ class list_recipe : Fragment() {
 //            val meals = RecipeUtils(usersViewModel).getRecommendDiet()
             recipeViewModel.initialize(usersViewModel)
             val meals = recipeViewModel.meals
+            Log.i("get", "from view model get: " + meals)
             withContext(Dispatchers.Main) {
                 val adapter = recipeAdapter(meals){meal ->
                     //findNavController().navigate(R.id.nav_detail_meal)

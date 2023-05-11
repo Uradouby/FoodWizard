@@ -11,6 +11,8 @@ import android.view.Window
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.foodwizard.DB.Diet
@@ -19,6 +21,8 @@ import com.example.foodwizard.databinding.DetailItemMealBinding
 import com.example.foodwizard.databinding.FragmentListMealBinding
 import com.example.foodwizard.databinding.FragmentListShopBinding
 import com.example.foodwizard.databinding.FragmentUpdatePlanBinding
+import com.example.foodwizard.viewModel.RecipeViewModel
+import com.example.foodwizard.viewModel.UsersViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -96,6 +100,12 @@ class updatePlan() : DialogFragment() {
                 hashMap.put("carb",carb)
                 hashMap.put("protein",protein)
                 databaseReference.setValue(hashMap)
+                val recipeViewModel: RecipeViewModel by viewModels()
+                val usersViewModel: UsersViewModel by activityViewModels()
+                recipeViewModel.initialize(usersViewModel)
+                Log.e("init", "init ok")
+                recipeViewModel.update()
+                Log.e("update", "update ok")
                 dismiss()
             }
         }

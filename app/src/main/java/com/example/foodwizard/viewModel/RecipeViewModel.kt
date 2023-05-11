@@ -1,5 +1,6 @@
 package com.example.foodwizard.viewModel
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.foodwizard.DB.Diet
@@ -19,13 +20,14 @@ class RecipeViewModel(private val savedStateHandle: SavedStateHandle): ViewModel
         get() = savedStateHandle.get(CURRENT_INDEX_KEY) ?: meals
         set(value) = savedStateHandle.set(CURRENT_INDEX_KEY, value)
 
-    var initialized: Boolean
-        get() = savedStateHandle.get(INITIALIZED) ?: false
-        set(value) = savedStateHandle.set(INITIALIZED, value)
+    var initialized: Boolean = false
+//        get() = savedStateHandle.get(INITIALIZED) ?: false
+//        set(value) = savedStateHandle.set(INITIALIZED, value)
 
     fun update() {
         GlobalScope.launch(Dispatchers.IO) {
             meals = RecipeUtils(usersViewModel).getRecommendDiet()
+            Log.e("update", "meals recommend update")
         }
     }
 
@@ -33,9 +35,17 @@ class RecipeViewModel(private val savedStateHandle: SavedStateHandle): ViewModel
         usersViewModel = uvm
         GlobalScope.launch(Dispatchers.IO) {
             if(!initialized){
+                Log.e("iii", "here!!!")
                 meals = RecipeUtils(usersViewModel).getRecommendDiet()
                 initialized = true
             }
+        }
+//        if(!initialized){
+//            meals = RecipeUtils(usersViewModel).getRecommendDiet()
+//            initialized = true
+//        }
+        while(!initialized){
+
         }
     }
 }
